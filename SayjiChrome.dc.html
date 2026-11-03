@@ -98,7 +98,12 @@ class Component extends DCLogic {
 
   componentDidMount() {
     const rm = this.rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    this.onResize = () => this.setState({ w: window.innerWidth });
+    this.onResize = () => {
+      const w = window.innerWidth;
+      if (w < 760 && this.lastViewportW === w) return;
+      this.lastViewportW = w;
+      this.setState({ w });
+    };
     this.onResize();
     window.addEventListener('resize', this.onResize);
     let tick = false;
@@ -180,7 +185,7 @@ class Component extends DCLogic {
   }
 
   setupReveal() {
-    if (this.rm) return;
+    if (this.rm || window.innerWidth < 760) return;
     const show = el => {
       const t = el.dataset.m;
       if (t === 'a') el.style.transform = 'translateY(0)';

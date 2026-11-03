@@ -28,7 +28,7 @@
   var io = ('IntersectionObserver' in window) ? new IntersectionObserver(function(es){ es.forEach(function(e){ var el = e.target;
       if (el.tagName === 'VIDEO') { if (e.isIntersecting) { if (el.preload !== 'auto') el.preload = 'auto'; var pp = el.play(); if (pp && pp.catch) pp.catch(function(){}); } else if (!el.paused) el.pause(); return; }
       if (e.isIntersecting && el.__sjSrc) { el.setAttribute('src', el.__sjSrc); el.__sjSrc = null; io.unobserve(el); }
-    }); }, { rootMargin: '600px 0px' }) : null;
+    }); }, { rootMargin: window.innerWidth < 760 ? '0px' : '600px 0px' }) : null;
   function apply(){
     var slots = document.querySelectorAll('image-slot[id]');
     for (var i = 0; i < slots.length; i++) {

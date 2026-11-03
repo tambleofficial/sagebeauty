@@ -96,7 +96,12 @@
 <script type="text/x-dc" data-dc-script data-props="{&quot;showContact&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
 class Component extends DCLogic {
   state = { h: null, w: 1280 };
-  componentDidMount() { this.r = () => this.setState({ w: window.innerWidth }); this.r(); window.addEventListener('resize', this.r); }
+  componentDidMount() { this.r = () => {
+      const w = window.innerWidth;
+      if (w < 760 && this.lastViewportW === w) return;
+      this.lastViewportW = w;
+      this.setState({ w });
+    }; this.r(); window.addEventListener('resize', this.r); }
   componentWillUnmount() { window.removeEventListener('resize', this.r); }
   renderVals() {
     const I = {

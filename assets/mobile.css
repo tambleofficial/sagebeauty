@@ -1,5 +1,13 @@
 /* Mobile layout only; desktop declarations remain unchanged. */
 @media (max-width:759px){
+ /* Keep native touch scrolling; remove costly mobile-only paint effects. */
+ html{scroll-behavior:auto!important}
+ [data-hero]{transform:translateZ(0);backface-visibility:hidden}
+ [data-m="a"],[data-m="c"]{transform:none!important;transition:none!important}
+ [data-m="b"]{clip-path:none!important;transition:none!important}
+ [style*="backdrop-filter"],[style*="backdropFilter"]{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+ [style*="animation:inSilk"],[style*="animation: inSilk"],[style*="animation:txSilk"],[style*="animation: txSilk"]{animation:none!important}
+
  html{scroll-padding-top:84px} body{overflow-x:hidden;-webkit-text-size-adjust:100%}
  section,article,figure,nav,figcaption{box-sizing:border-box;min-width:0}
  section:not([id="hero"]) [style*="position:sticky"]:not([data-hero]),section:not([id="hero"]) [style*="position: sticky"]:not([data-hero]){position:relative!important;top:auto!important}

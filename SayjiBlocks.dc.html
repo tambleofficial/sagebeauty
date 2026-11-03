@@ -196,7 +196,12 @@
 <script type="text/x-dc" data-dc-script data-props="{&quot;blocks&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;Array&lt;object&gt;&quot;}}">
 class Component extends DCLogic {
   state = { w: 1280, open: {}, cs: {} };
-  componentDidMount() { this.r = () => this.setState({ w: window.innerWidth }); this.r(); window.addEventListener('resize', this.r); }
+  componentDidMount() { this.r = () => {
+      const w = window.innerWidth;
+      if (w < 760 && this.lastViewportW === w) return;
+      this.lastViewportW = w;
+      this.setState({ w });
+    }; this.r(); window.addEventListener('resize', this.r); }
   componentWillUnmount() { window.removeEventListener('resize', this.r); }
   renderVals() {
     const mob = this.state.w < 760;

@@ -16,12 +16,12 @@
 <link rel="alternate" type="application/rss+xml" title="세이지뷰티" href="https://sayjibeauty.pages.dev/rss.xml">
 
 <meta name="sj-page" content="Main">
-<script src="./assets/media-map.js"></script>
+<script src="./assets/media-map.js?v=20261103-scroll3"></script>
 <script src="./assets/reviews.js"></script>
-<link rel="stylesheet" href="./assets/mobile.css?v=20261103-2">
+<link rel="stylesheet" href="./assets/mobile.css?v=20261103-scroll3">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./support.js"></script>
+<script src="./support.js?v=20261103-scroll3"></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BeautySalon","name":"세이지뷰티 SAYJI BEAUTY","url":"https://sayjibeauty.pages.dev/","telephone":"+82-10-7932-7927","address":{"@type":"PostalAddress","addressLocality":"대구","addressCountry":"KR"},"image":"https://sayjibeauty.pages.dev/assets/sb-logo.png"}</script>
 </head>
 <body>
@@ -338,19 +338,31 @@ class Component extends DCLogic {
 
   componentDidMount() {
     this.rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    this.onResize = () => this.setState({ w: window.innerWidth, h: window.innerHeight });
+    this.onResize = () => {
+      const w = window.innerWidth, h = window.innerHeight;
+      // Mobile browser chrome changes height while scrolling; keep the hero timeline stable.
+      if (w < 760 && this.viewportW === w) return;
+      if (this.viewportW === w && this.viewportH === h) return;
+      this.viewportW = w; this.viewportH = h; this.lastQ = undefined;
+      this.setState({ w, h });
+      this.heroFrame();
+    };
     this.onResize(); window.addEventListener('resize', this.onResize);
-    let tick = false;
-    this.onScroll = () => { if (tick) return; tick = true; requestAnimationFrame(() => { tick = false; this.heroFrame(); }); };
+    this.onScroll = () => {
+      if (this.scrollRaf) return;
+      this.scrollRaf = requestAnimationFrame(() => { this.scrollRaf = 0; this.heroFrame(); });
+    };
     window.addEventListener('scroll', this.onScroll, { passive: true });
     this.heroFrame();
   }
   componentWillUnmount() {
     window.removeEventListener('resize', this.onResize); window.removeEventListener('scroll', this.onScroll);
-     clearTimeout(this.ft);
+    cancelAnimationFrame(this.scrollRaf); cancelAnimationFrame(this.mvRaf);
+    clearTimeout(this.ft);
   }
   heroFrame() {
-    const vh = window.innerHeight, vw = window.innerWidth;
+    const vw = window.innerWidth;
+    const vh = vw < 760 ? (this.viewportH || window.innerHeight) : window.innerHeight;
     const q = Math.max(0, Math.min(2, window.scrollY / vh));
     const mobH = vw < 760;
     if (q >= 2 && this.lastQ >= 2) return;
@@ -369,7 +381,7 @@ class Component extends DCLogic {
       const w = w0 + (vw - w0) * e, h = h0 + (vh - h0) * e;
       const x0 = cx + (vw / 2 - cx) * e - w / 2, y0 = cy + (vh / 2 - cy) * e - h / 2;
       const rad = (w0 / 2) * (1 - e);
-      if (mobH) { vid.style.clipPath = 'none'; vid.style.opacity = cl(r * 1.6).toFixed(3); vid.style.transform = `scale(${(1.08 - 0.08 * e).toFixed(4)})`; }
+      if (mobH) { vid.style.willChange = 'transform,opacity'; vid.style.clipPath = 'none'; vid.style.opacity = cl(r * 1.6).toFixed(3); vid.style.transform = `scale(${(1.08 - 0.08 * e).toFixed(4)})`; }
       else { vid.style.clipPath = `inset(${y0.toFixed(1)}px ${(vw - x0 - w).toFixed(1)}px ${(vh - y0 - h).toFixed(1)}px ${x0.toFixed(1)}px round ${rad.toFixed(1)}px)`; vid.style.opacity = cl(r * 5).toFixed(3); }
       const ve = this.videoEl.current;
       if (ve) { ve.muted = true; ve.defaultMuted = true; ve.loop = true; ve.playsInline = true; if (r > 0 && q < 1.99 && ve.paused) ve.play && ve.play().catch(() => {}); else if ((r <= 0 || q >= 1.99) && !ve.paused) ve.pause(); }

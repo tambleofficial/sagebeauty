@@ -139,7 +139,12 @@
 <script type="text/x-dc" data-dc-script data-props="{&quot;variant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;full&quot;,&quot;compact&quot;],&quot;default&quot;:&quot;full&quot;,&quot;tsType&quot;:&quot;'full'|'compact'&quot;},&quot;lead&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
 class Component extends DCLogic {
   state = { w: typeof window !== 'undefined' ? window.innerWidth : 1280 };
-  componentDidMount() { this.onR = () => this.setState({ w: window.innerWidth }); window.addEventListener('resize', this.onR, { passive: true }); }
+  componentDidMount() { this.onR = () => {
+      const w = window.innerWidth;
+      if (w < 760 && this.lastViewportW === w) return;
+      this.lastViewportW = w;
+      this.setState({ w });
+    }; window.addEventListener('resize', this.onR, { passive: true }); }
   componentWillUnmount() { window.removeEventListener('resize', this.onR); }
   renderVals() {
     const v = this.props.variant ?? 'full';
