@@ -2,10 +2,7 @@
 @media (max-width:759px){
  /* Keep native touch scrolling; remove costly mobile-only paint effects. */
  html{scroll-behavior:auto!important}
- #hero-intro{height:100svh!important;pointer-events:auto!important}
- #hero-intro>[data-hero]{position:relative!important;top:auto!important;transform:none!important;height:100svh!important;will-change:auto!important}
- #hero-intro+#face{margin-top:0!important}
- #hero-intro [style*="will-change"]{will-change:auto!important}
+ [data-hero]{transform:translateZ(0);backface-visibility:hidden}
  [data-m="a"],[data-m="c"]{transform:none!important;transition:none!important}
  [data-m="b"]{clip-path:none!important;transition:none!important}
  [style*="backdrop-filter"],[style*="backdropFilter"]{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}

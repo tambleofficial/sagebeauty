@@ -684,7 +684,7 @@
       });
       // Wheel zoom stays available inside reframe mode as a trackpad nicety —
       // zooms toward the cursor (offset' = cursor·(1-k) + offset·k).
-      this.addEventListener('wheel', (e) => {
+      this._onReframeWheel = (e) => {
         if (!this.hasAttribute('data-reframe')) return;
         e.preventDefault();
         const r = this.getBoundingClientRect();
@@ -699,7 +699,7 @@
         this._view.y = cy * (1 - k) + this._view.y * k;
         this._clampView();
         this._applyView();
-      }, { passive: false });
+      };
     }
 
     connectedCallback() {
@@ -716,14 +716,23 @@
       subs.add(this._subFn);
       // The host may inject window.omelette.writeFile AFTER the first render;
       // re-render on hover so the editable-gated controls reliably appear.
-      this.addEventListener('pointerenter', this._subFn);
+      this._onEditableHover = () => {
+        if (window.omelette && window.omelette.writeFile) this._render();
+      };
+      this.addEventListener('pointerenter', this._onEditableHover, { passive: true });
       // width%/height% in _applyView encode the frame aspect at call time —
       // a host resize (responsive grid, pane divider) would stretch the
       // image until the next _render. Re-render on size change: _render()
       // re-seeds _view from stored before clamp/apply, so a shrink→grow
       // cycle round-trips instead of ratcheting x/y toward the narrower
       // frame's clamp range.
-      this._ro = new ResizeObserver(() => this._render());
+      this._ro = new ResizeObserver(entries => {
+        const rect = entries[0].contentRect;
+        const size = rect.width + ':' + rect.height;
+        if (this._lastRenderSize === size) return;
+        this._lastRenderSize = size;
+        this._render();
+      });
       this._ro.observe(this);
       load();
       this._render();
@@ -731,7 +740,7 @@
 
     disconnectedCallback() {
       subs.delete(this._subFn);
-      this.removeEventListener('pointerenter', this._subFn);
+      this.removeEventListener('pointerenter', this._onEditableHover);
       this.removeEventListener('dragenter', this);
       this.removeEventListener('dragover', this);
       this.removeEventListener('dragleave', this);
@@ -747,6 +756,7 @@
     _enterReframe() {
       if (this.hasAttribute('data-reframe')) return;
       this.setAttribute('data-reframe', '');
+      this.addEventListener('wheel', this._onReframeWheel, { passive: false });
       this._signalReframe(true);
       // Best-effort commit when the document unloads mid-reframe (a host
       // navigation racing the enter signal, a manual reload, tab close):
@@ -793,6 +803,7 @@
     _exitReframe(commit) {
       if (!this.hasAttribute('data-reframe')) return;
       if (this._dragUp) this._dragUp();
+      this.removeEventListener('wheel', this._onReframeWheel);
       this.removeAttribute('data-reframe');
       this.removeAttribute('data-panning');
       if (this._outside) document.removeEventListener('pointerdown', this._outside, true);
