@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+@keyframes txSilk{from{background-position:0% 50%}to{background-position:100% 50%}}
+</style>
+</helmet>
+<div>
+<sc-for list="{{ blocks }}" as="b" hint-placeholder-count="2">
+<section id="{{ b.id }}" style="position:relative;overflow:clip;padding:clamp(110px,12vw,170px) 0;background:{{ b.bg }}">
+  <sc-if value="{{ b.isSilk }}" hint-placeholder-val="{{ false }}">
+  <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,#F6E4DD 0%,#FBF3EF 22%,#F2DCD2 40%,#FCF6F3 58%,#F1D9CE 76%,#F9EEE9 100%);background-size:220% 220%;animation:txSilk 18s ease-in-out infinite alternate"></div>
+  <div style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(60% 80% at 30% 20%,rgba(255,255,255,.7),rgba(255,255,255,0) 60%)"></div>
+  <div style="position:absolute;left:0;right:0;top:0;height:240px;pointer-events:none;background:{{ b.fadeTop }}"></div>
+  </sc-if>
+  <sc-if value="{{ b.hasGhost }}" hint-placeholder-val="{{ false }}">
+  <span aria-hidden="true" style="position:absolute;right:clamp(-20px,1vw,24px);top:clamp(40px,6vw,96px);font-family:Inter,sans-serif;font-weight:200;font-size:clamp(160px,24vw,360px);line-height:.8;letter-spacing:-.07em;color:#B97A63;opacity:.06;pointer-events:none;user-select:none">{{ b.no }}</span>
+  </sc-if>
+  <div style="position:relative;max-width:1200px;margin:0 auto;padding:0 clamp(20px,4vw,48px)">
+
+    <sc-if value="{{ b.hasHead }}" hint-placeholder-val="{{ true }}">
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:32px 48px;margin-bottom:clamp(48px,6vw,88px)">
+        <div style="display:flex;flex-direction:column;gap:28px;flex:1 1 460px">
+          <div style="display:flex;align-items:center;gap:14px;font-family:Inter,sans-serif;font-size:12px;font-weight:500;letter-spacing:.22em;color:#121212"><span style="color:#B97A63">{{ b.no }}</span><span data-m="c" style="display:block;width:40px;height:1px;background:linear-gradient(90deg,#B97A63,#E9C2AE)"></span><span>{{ b.en }}</span></div>
+          <h2 style="margin:0;font-size:clamp(32px,3.6vw,52px);line-height:1.34;font-weight:600;letter-spacing:-.04em;color:#121212">
+            <sc-for list="{{ b.lines }}" as="l" hint-placeholder-count="1">
+              <span style="display:block;overflow:hidden"><span data-m="a" data-d="{{ l.d }}" style="display:block">{{ l.text }}</span></span>
+            </sc-for>
+          </h2>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:22px;flex:0 1 380px;padding-top:24px;border-top:1px solid #E6DCD8">
+          <p style="margin:0;font-size:17px;line-height:1.85;color:#4A4648;text-wrap:pretty">{{ b.desc }}</p>
+          <sc-if value="{{ b.hasLink }}" hint-placeholder-val="{{ false }}">
+            <a href="{{ b.linkHref }}" target="{{ b.linkTarget }}" style="align-self:flex-start;display:inline-flex;align-items:center;gap:12px;font-size:14px;font-weight:600;padding-bottom:6px;border-bottom:1px solid #B97A63;transition:color .3s" style-hover="color:#B97A63">{{ b.linkLabel }}</a>
+          </sc-if>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ b.isRow }}" hint-placeholder-val="{{ true }}">
+      <div style="display:grid;grid-template-columns:{{ b.g3 }};gap:clamp(20px,2.4vw,32px);align-items:start">
+        <sc-for list="{{ b.tiles }}" as="t" hint-placeholder-count="3">
+          <figure style="margin:0;padding-top:{{ t.mt }};display:flex;flex-direction:column;gap:16px"><div style="position:relative;aspect-ratio:4/5;overflow:hidden;background:{{ b.tileBg }}"><div style="position:absolute;inset:0;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.02)"><image-slot id="{{ t.id }}" shape="rect" placeholder="{{ t.ph }}"></image-slot></div></div><figcaption style="display:flex;justify-content:space-between;gap:12px;align-items:baseline"><span style="font-size:15px;font-weight:600;letter-spacing:-.02em">{{ t.kr }}</span><span style="font-family:Inter,sans-serif;font-size:11.5px;font-weight:500;letter-spacing:.2em;color:#9A8F8A">{{ t.en }}</span></figcaption></figure>
+        </sc-for>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ b.isReview }}" hint-placeholder-val="{{ false }}">
+      <div data-rv="1" style="display:flex;flex-wrap:wrap;justify-content:center;gap:20px">
+        <sc-for list="{{ b.reviews }}" as="r" hint-placeholder-count="5">
+          <article style="flex:0 0 clamp(180px,17vw,204px);display:flex;flex-direction:column;background:#FFFFFF;border:1px solid #EFE7E3">
+            <div style="position:relative;aspect-ratio:4/5;overflow:hidden;background:#F4EEEB"><image-slot id="{{ r.id }}" shape="rect" placeholder="REVIEW 4:5 — 실제 후기 이미지"></image-slot></div>
+            <div style="display:flex;flex-direction:column;gap:16px;padding:22px 22px 24px;flex:1">
+              <div style="display:flex;justify-content:space-between;align-items:center;gap:12px"><span style="font-size:14px;font-weight:600">{{ r.name }}</span><span style="font-family:Inter,sans-serif;font-size:12px;color:#9A8F8A">{{ r.date }}</span></div>
+              <p style="margin:0;font-size:15px;line-height:1.75;color:#121212;min-height:5.25em;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden">실제 고객 후기 원문이 들어갑니다.</p>
+              <span style="margin-top:auto;align-self:flex-start;font-size:12px;font-weight:500;color:#A86A55;border:1px solid #E9C2AE;padding:6px 10px">{{ r.program }}</span>
+            </div>
+          </article>
+        </sc-for>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ b.isConsult }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;flex-wrap:wrap;gap:clamp(40px,6vw,96px);align-items:flex-start">
+        <div style="flex:7 1 460px;min-width:0;display:flex;flex-direction:column;border-top:1px solid #E6DCD8">
+          <sc-for list="{{ b.csteps }}" as="s" hint-placeholder-count="5">
+            <button onMouseEnter="{{ s.select }}" onClick="{{ s.select }}" style="all:unset;cursor:pointer;position:relative;display:grid;grid-template-columns:56px minmax(0,1fr);gap:16px;padding:clamp(24px,2.6vw,34px) 0;border-bottom:1px solid #EFE7E3">
+              <span style="position:absolute;left:0;bottom:-1px;height:1px;background:linear-gradient(90deg,#B97A63,#E9C2AE);width:{{ s.line }};transition:width .9s cubic-bezier(.2,.7,.2,1)"></span>
+              <span style="font-family:Inter,sans-serif;font-size:13px;font-weight:500;letter-spacing:.1em;color:{{ s.noColor }};padding-top:6px;transition:color .5s">{{ s.no }}</span>
+              <span style="display:flex;flex-direction:column;gap:10px">
+                <span style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap"><span style="font-size:clamp(20px,1.9vw,24px);font-weight:600;letter-spacing:-.03em;color:{{ s.color }};transition:color .5s">{{ s.kr }}</span><span style="font-family:Inter,sans-serif;font-size:11.5px;font-weight:500;letter-spacing:.2em;color:{{ s.enColor }};transition:color .5s">{{ s.en }}</span></span>
+                <span style="font-size:15.5px;line-height:1.75;color:{{ s.descColor }};transition:color .5s">{{ s.desc }}</span>
+              </span>
+            </button>
+          </sc-for>
+        </div>
+        <figure style="flex:5 1 320px;min-width:0;margin:0;display:flex;flex-direction:column;gap:16px;position:sticky;top:110px">
+          <div style="position:relative;aspect-ratio:4/5;overflow:hidden;background:#F4EEEB">
+            <sc-for list="{{ b.csteps }}" as="s" hint-placeholder-count="1">
+              <div style="position:absolute;inset:0;opacity:{{ s.imgO }};transition:opacity .9s ease;pointer-events:{{ s.pe }}">
+                <image-slot id="m-consult-{{ s.no }}" shape="rect" placeholder="{{ s.ph }}"></image-slot>
+              </div>
+            </sc-for>
+          </div>
+          <figcaption style="display:flex;justify-content:space-between;gap:12px;align-items:baseline"><span style="font-size:15px;font-weight:600;letter-spacing:-.02em">{{ b.cActiveKr }}</span><span style="font-family:Inter,sans-serif;font-size:11.5px;font-weight:500;letter-spacing:.2em;color:#B97A63">STEP {{ b.cActiveNo }} / 05</span></figcaption>
+        </figure>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ b.isSplit }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;flex-wrap:wrap;gap:clamp(40px,6vw,96px);align-items:flex-start">
+        <div style="flex:7 1 440px;min-width:0;display:flex;flex-direction:column;border-top:1px solid #E6DCD8">
+          <sc-for list="{{ b.items }}" as="it" hint-placeholder-count="4">
+            <div style="display:grid;grid-template-columns:56px minmax(0,1fr);gap:8px 16px;padding:clamp(22px,2.4vw,30px) 0;border-bottom:1px solid #EFE7E3;align-items:baseline">
+              <span style="font-family:Inter,sans-serif;font-size:12px;font-weight:500;letter-spacing:.1em;color:#B97A63">{{ it.no }}</span>
+              <span style="display:flex;flex-direction:column;gap:8px">
+                <span style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap"><span style="font-size:clamp(19px,1.8vw,22px);font-weight:600;letter-spacing:-.03em">{{ it.kr }}</span><span style="font-family:Inter,sans-serif;font-size:11.5px;font-weight:500;letter-spacing:.2em;color:#9A8F8A">{{ it.en }}</span></span>
+                <span style="font-size:15.5px;line-height:1.75;color:#4A4648">{{ it.desc }}</span>
+              </span>
+            </div>
+          </sc-for>
+          <sc-if value="{{ b.hasNote }}" hint-placeholder-val="{{ false }}">
+            <p style="margin:24px 0 0;font-size:14px;line-height:1.8;color:#7A706C">{{ b.note }}</p>
+          </sc-if>
+        </div>
+        <figure style="flex:5 1 320px;min-width:0;margin:0;display:flex;flex-direction:column;gap:16px;position:sticky;top:110px"><div style="position:relative;aspect-ratio:4/5;overflow:hidden;background:{{ b.tileBg }}"><div style="position:absolute;inset:0;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.02)"><image-slot id="{{ b.tile.id }}" shape="rect" placeholder="{{ b.tile.ph }}"></image-slot></div></div><figcaption style="display:flex;justify-content:space-between;gap:12px;align-items:baseline"><span style="font-size:15px;font-weight:600;letter-spacing:-.02em">{{ b.tile.kr }}</span><span style="font-family:Inter,sans-serif;font-size:11.5px;font-weight:500;letter-spacing:.2em;color:#9A8F8A">{{ b.tile.en }}</span></figcaption></figure>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ b.isSteps }}" hint-placeholder-val="{{ false }}">
+      <div style="display:grid;grid-template-columns:{{ b.stepCols }};gap:48px clamp(20px,2.4vw,32px)">
+        <sc-for list="{{ b.items }}" as="it" hint-placeholder-count="4">
+          <div style="display:flex;flex-direction:column;gap:22px">
+            <div style="display:flex;align-items:center;gap:12px">
+              <span style="width:9px;height:9px;border-radius:50%;background:#FFFFFF;border:1px solid #B97A63;flex-shrink:0"></span>
+              <span style="flex:1;height:1px;margin-right:calc(-1 * clamp(20px,2.4vw,32px));background:{{ it.lineBg }}"></span>
+            </div>
+            <span style="font-family:Inter,sans-serif;font-weight:200;font-size:clamp(48px,5vw,72px);line-height:.9;letter-spacing:-.06em;color:#B97A63">{{ it.no }}</span>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <span style="font-family:Inter,sans-serif;font-size:11.5px;font-weight:500;letter-spacing:.2em;color:#9A8F8A">{{ it.en }}</span>
+              <span style="font-size:clamp(20px,1.8vw,23px);font-weight:600;letter-spacing:-.03em">{{ it.kr }}</span>
+              <span style="font-size:15.5px;line-height:1.75;color:#4A4648;min-height:3.5em">{{ it.desc }}</span>
+            </div>
+            <a href="{{ it.href }}" style="align-self:flex-start;display:inline-flex;align-items:center;gap:10px;font-size:14px;font-weight:600;padding-bottom:6px;border-bottom:1px solid #B97A63;transition:color .3s" style-hover="color:#B97A63">{{ it.cta }}<span style="font-family:Inter,sans-serif;font-weight:400">→</span></a>
+          </div>
+        </sc-for>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ b.isStats }}" hint-placeholder-val="{{ false }}">
+      <div data-m="c" data-o="left" style="height:1px;background:linear-gradient(90deg,#B97A63,#E9C2AE 40%,rgba(233,194,174,0))"></div>
+      <div style="display:grid;grid-template-columns:{{ b.g4 }};row-gap:40px;padding:clamp(28px,3.4vw,44px) 0">
+        <sc-for list="{{ b.stats }}" as="s" hint-placeholder-count="4">
+          <div style="display:flex;flex-direction:column;gap:14px;padding:0 clamp(16px,2vw,28px);border-left:1px solid #F0E8E5">
+            <span style="font-family:Inter,sans-serif;font-size:clamp(36px,3.8vw,54px);font-weight:300;letter-spacing:-.045em;line-height:1">{{ s.value }}</span>
+            <span style="font-size:14px;line-height:1.6;color:#4A4648">{{ s.label }}</span>
+          </div>
+        </sc-for>
+      </div>
+      <p style="margin:8px 0 0;font-size:12px;color:#9A8F8A">공개 수치는 증빙 자료 확인 후 게시합니다.</p>
+    </sc-if>
+
+    <sc-if value="{{ b.isFaq }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;flex-wrap:wrap;gap:clamp(40px,6vw,96px);align-items:flex-start">
+        <div style="flex:4 1 300px;min-width:0;display:flex;flex-direction:column;gap:28px;position:sticky;top:110px">
+          <div style="display:flex;align-items:center;gap:14px;font-family:Inter,sans-serif;font-size:12px;font-weight:500;letter-spacing:.22em;color:#121212"><span style="color:#B97A63">{{ b.no }}</span><span data-m="c" style="display:block;width:40px;height:1px;background:linear-gradient(90deg,#B97A63,#E9C2AE)"></span><span>{{ b.en }}</span></div>
+          <h2 style="margin:0;font-size:clamp(32px,3.6vw,52px);line-height:1.34;font-weight:600;letter-spacing:-.04em;color:#121212">
+            <sc-for list="{{ b.lines }}" as="l" hint-placeholder-count="1"><span style="display:block;overflow:hidden"><span data-m="a" data-d="{{ l.d }}" style="display:block">{{ l.text }}</span></span></sc-for>
+          </h2>
+          <p style="margin:0;font-size:17px;line-height:1.85;color:#4A4648;max-width:340px">{{ b.desc }}</p>
+          <a href="#" style="align-self:flex-start;display:inline-flex;align-items:center;gap:12px;font-size:14px;font-weight:600;padding-bottom:6px;border-bottom:1px solid #B97A63;transition:color .3s" style-hover="color:#B97A63">톡톡으로 문의하기<span style="font-family:Inter,sans-serif;font-weight:400">→</span></a>
+        </div>
+        <div style="flex:7 1 460px;min-width:0;border-top:1px solid #E6DCD8">
+          <sc-for list="{{ b.faq }}" as="f" hint-placeholder-count="4">
+            <div style="border-bottom:1px solid #EFE7E3">
+              <button onClick="{{ f.toggle }}" style="all:unset;cursor:pointer;width:100%;box-sizing:border-box;display:grid;grid-template-columns:56px minmax(0,1fr) 24px;align-items:center;gap:16px;padding:28px 0">
+                <span style="font-family:Inter,sans-serif;font-size:12px;font-weight:500;letter-spacing:.1em;color:#B97A63">Q{{ f.no }}</span>
+                <span style="font-size:clamp(17px,1.5vw,19px);font-weight:600;letter-spacing:-.025em">{{ f.q }}</span>
+                <span style="font-family:Inter,sans-serif;font-weight:300;font-size:22px;color:#B97A63;transform:rotate({{ f.rot }});transition:transform .45s cubic-bezier(.2,.7,.2,1);text-align:center">+</span>
+              </button>
+              <div style="display:grid;grid-template-rows:{{ f.rows }};transition:grid-template-rows .5s cubic-bezier(.2,.7,.2,1)"><div style="overflow:hidden"><p style="margin:0;padding:0 40px 30px 72px;font-size:16px;line-height:1.85;color:#4A4648">{{ f.a }}</p></div></div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ b.isCta }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:40px">
+        <div style="display:flex;flex-direction:column;gap:28px">
+          <div style="display:flex;align-items:center;gap:14px;font-family:Inter,sans-serif;font-size:12px;font-weight:500;letter-spacing:.22em"><span data-m="c" style="display:block;width:40px;height:1px;background:linear-gradient(90deg,#B97A63,#E9C2AE)"></span><span>RESERVATION</span></div>
+          <h2 style="margin:0;font-size:clamp(32px,3.6vw,52px);font-weight:600;letter-spacing:-.04em;line-height:1.34">
+            <sc-for list="{{ b.lines }}" as="l" hint-placeholder-count="2"><span style="display:block">{{ l.text }}</span></sc-for>
+          </h2>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <a href="{{ b.ctaHref }}" data-gloss="1" style="position:relative;overflow:hidden;background:#121212;color:#FFFFFF;border-radius:999px;padding:17px 32px;font-size:15px;font-weight:600" style-hover="color:#FFFFFF;background:#2A2829">{{ b.ctaLabel }}</a>
+          <a href="tel:01079327927" style="border:1px solid #121212;border-radius:999px;padding:16px 30px;font-family:Inter,sans-serif;font-size:15px;font-weight:500;background:rgba(255,255,255,.4)" style-hover="background:#FFFFFF;color:#121212">010-7932-7927</a>
+        </div>
+      </div>
+    </sc-if>
+
+  </div>
+</section>
+</sc-for>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;blocks&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;Array&lt;object&gt;&quot;}}">
+class Component extends DCLogic {
+  state = { w: 1280, open: {}, cs: {} };
+  componentDidMount() { this.r = () => this.setState({ w: window.innerWidth }); this.r(); window.addEventListener('resize', this.r); }
+  componentWillUnmount() { window.removeEventListener('resize', this.r); }
+  renderVals() {
+    const mob = this.state.w < 760;
+    const g3 = mob ? 'minmax(0,1fr)' : 'repeat(3,minmax(0,1fr))', span2 = mob ? 'auto' : 'span 2', g4 = mob ? 'repeat(2,minmax(0,1fr))' : 'repeat(4,minmax(0,1fr))';
+    const raw = this.props.blocks || [];
+    const blocks = raw.map((b, bi) => {
+      const pink = b.bg === '#FBE9EE';
+      const openIdx = this.state.open[bi] ?? 0;
+      return {
+        ...b, id: b.id || 'block-' + bi, bg: pink ? '#F6E4DD' : (bi % 2 ? 'linear-gradient(180deg,#FFFFFF 0%,#FBF5F2 100%)' : 'linear-gradient(180deg,#FBF5F2 0%,#FFFFFF 40%)'), isSilk: pink, fadeTop: (bi > 0 && (bi - 1) % 2 && raw[bi - 1].bg !== '#FBE9EE') ? 'linear-gradient(180deg,#FBF5F2 0%,rgba(251,245,242,.6) 40%,rgba(251,245,242,0) 100%)' : 'linear-gradient(180deg,#FFFFFF 0%,rgba(255,255,255,.6) 40%,rgba(255,255,255,0) 100%)', hasGhost: !pink && !mob && !!b.no && (b.type === 'row' || b.type === 'split') && bi % 2 === 0, g3, span2, g4,
+        noColor: pink ? '#121212' : '#EC7693', lineColor: pink ? '#121212' : '#F3A7B9', tileBg: pink ? '#FFFFFF' : '#F7F3F4',
+        hasHead: b.type !== 'cta' && b.type !== 'faq', isSteps: b.type === 'steps', stepCols: mob ? 'minmax(0,1fr)' : (this.state.w < 1000 ? 'repeat(2,minmax(0,1fr))' : 'repeat(4,minmax(0,1fr))'), isRow: b.type === 'row', isReview: b.type === 'review', isSplit: b.type === 'split', isConsult: b.type === 'consult', isStats: b.type === 'stats', isFaq: b.type === 'faq', isCta: b.type === 'cta',
+        lines: (b.title || []).map((text, i) => ({ text, d: String(i * 0.08) })),
+        desc: b.desc || '', hasLink: !!b.link, linkHref: b.link ? b.link[1] : '', linkLabel: b.link ? b.link[0] : '', linkTarget: b.link && /^https?:/.test(b.link[1]) ? '_blank' : '_self',
+        tiles: (b.tiles || []).map(([kr, en, id, ph], i) => ({ kr, en, id, ph: `${en} · 4:5 (1200×1500) — ${ph}`, d: String(i * 0.12), mt: mob || (b.tiles || []).length !== 3 ? '0px' : ['0px', '72px', '28px'][i] })),
+        reviews: (b.reviews || []).map(([id, program, name]) => ({ id, program, name, date: '2026.00.00' })),
+        rvPrev: ev => { const el = ev.currentTarget.closest('section').querySelector('[data-rv]'); el && el.scrollBy({ left: -304, behavior: 'smooth' }); },
+        rvNext: ev => { const el = ev.currentTarget.closest('section').querySelector('[data-rv]'); el && el.scrollBy({ left: 304, behavior: 'smooth' }); },
+        items: (b.items || []).map(([no, kr, en, desc, href, cta], i, arr) => ({ no, kr, en, desc, href: href || '#', cta: cta || '바로가기', lineBg: i === arr.length - 1 ? 'linear-gradient(90deg,#E9C2AE,rgba(233,194,174,0))' : 'linear-gradient(90deg,#B97A63,#E9C2AE)' })),
+        itemCols: '48px minmax(0,1fr)',
+        tile: b.tile ? { kr: b.tile[0], en: b.tile[1], id: b.tile[2], ph: `${b.tile[1]} · 4:5 (1200×1500) — ${b.tile[3]}` } : { kr: '', en: '', id: 'none-' + bi, ph: '' },
+        ...(() => { const ci = this.state.cs[bi] ?? 0, it = b.items || []; return {
+          csteps: it.map(([no, kr, en, desc], i) => { const a = ci === i; return { no, kr, en, desc, select: () => this.setState(s => ({ cs: { ...s.cs, [bi]: i } })),
+            line: a ? '100%' : '0%', enColor: a ? '#B97A63' : '#C4BBB7', color: a ? '#121212' : '#ADA39F', descColor: a ? '#4A4648' : '#BDB4B0', noColor: a ? '#B97A63' : '#C4BBB7',
+            imgO: a ? 1 : 0, pe: a ? 'auto' : 'none', ph: 'STEP ' + no + ' · 4:5 — ' + kr + ' 장면' }; }),
+          cActiveKr: it[ci] ? it[ci][1] : '', cActiveNo: it[ci] ? it[ci][0] : '' }; })(),
+        hasNote: !!b.note, note: b.note || '',
+        stats: (b.stats || []).map(([value, label]) => ({ value, label })),
+        faq: (b.faq || []).map(([q, a], i) => { const o = openIdx === i; return { q, a, no: String(i + 1).padStart(2, '0'), rows: o ? '1fr' : '0fr', rot: o ? '45deg' : '0deg',
+          toggle: () => this.setState(s => ({ open: { ...s.open, [bi]: o ? -1 : i } })) }; }),
+        ctaHref: b.ctaHref || '/contact#reservation', ctaLabel: b.ctaLabel || '상담 예약'
+      };
+    });
+    return { blocks };
+  }
+}
+</script>
+</body>
+</html>

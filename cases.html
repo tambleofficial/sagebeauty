@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<title>CASES | 세이지뷰티 SAYJI BEAUTY</title>
+<meta name="description" content="세이지뷰티 실제 작업 사례와 고객 후기.">
+<link rel="canonical" href="https://sagebeauty.pages.dev/cases">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="세이지뷰티 SAYJI BEAUTY">
+<meta property="og:title" content="CASES | 세이지뷰티 SAYJI BEAUTY">
+<meta property="og:description" content="세이지뷰티 실제 작업 사례와 고객 후기.">
+<meta property="og:url" content="https://sagebeauty.pages.dev/cases">
+<meta property="og:image" content="https://sagebeauty.pages.dev/assets/sb-logo.png">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/sb-mono.png">
+<link rel="alternate" type="application/rss+xml" title="세이지뷰티" href="https://sagebeauty.pages.dev/rss.xml">
+<meta name="sj-page" content="Cases">
+<script src="./assets/media-map.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#FBE9EE"/><circle cx="50" cy="50" r="26" fill="none" stroke="#B97A63" stroke-width="1.5"/><text x="50" y="58" text-anchor="middle" font-family="Helvetica" font-size="22" fill="#121212">S</text></svg></template>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;display=swap">
+<script src="./image-slot.js"></script>
+<style>
+html{scroll-behavior:smooth}
+body{margin:0;background:#FFFFFF;color:#121212;font-family:Pretendard,'SUIT',-apple-system,sans-serif;-webkit-font-smoothing:antialiased;word-break:keep-all}
+a{color:#121212;text-decoration:none}
+a:hover{color:#646164}
+::selection{background:#FBE9EE}
+@keyframes sjLb{from{opacity:0}to{opacity:1}}
+</style>
+</helmet>
+<div style="background:#FFFFFF;color:#121212;font-family:Pretendard,'SUIT',sans-serif">
+<dc-import name="SayjiChrome" active="cases" hint-size="100%,0px"></dc-import>
+<dc-import name="SayjiChapterHero" no="04" title="CASES" kr="실제 작업 사례" desc="동일 고객의 실제 자료만, 같은 조건으로 촬영한 사진으로 보여드립니다." hint-size="100%,66svh"></dc-import>
+
+<section id="gallery" style="padding:clamp(96px,10vw,140px) 0">
+  <div style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,4vw,48px)">
+    <div style="display:grid;grid-template-columns:{{ g3 }};gap:24px;align-items:end;margin-bottom:32px">
+      <div style="display:flex;flex-direction:column;gap:20px;grid-column:{{ span2 }}">
+        <span style="display:flex;gap:12px;font-family:Inter,sans-serif;font-size:12px;font-weight:500;letter-spacing:.2em"><span style="color:#EC7693">01</span>PORTFOLIO</span>
+        <h2 style="margin:0;font-size:clamp(30px,3.4vw,46px);line-height:1.32;font-weight:600;letter-spacing:-.035em;overflow:hidden"><span data-m="a" style="display:block">프로그램별 작업 사례</span></h2>
+      </div>
+      <p style="margin:0;font-size:17px;line-height:1.8">사진을 누르면 크게 볼 수 있습니다. 현재 {{ count }}개의 사례가 있습니다.</p>
+    </div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:32px">
+      <sc-for list="{{ filters }}" as="f" hint-placeholder-count="6">
+        <button onClick="{{ f.select }}" style="font-family:Inter,sans-serif;font-size:12px;font-weight:500;letter-spacing:.14em;padding:12px 18px;border:1px solid {{ f.border }};background:{{ f.bg }};color:{{ f.color }};cursor:pointer;border-radius:999px;transition:all .3s">{{ f.label }}</button>
+      </sc-for>
+    </div>
+    <div style="display:grid;grid-template-columns:{{ g3 }};gap:24px">
+      <sc-for list="{{ cases }}" as="c" hint-placeholder-count="9">
+        <figure onMouseEnter="{{ c.enter }}" onMouseLeave="{{ c.leave }}" style="margin:0;display:flex;flex-direction:column;gap:14px;opacity:{{ c.op }};clip-path:{{ c.clip }};transition:opacity .35s ease,clip-path .5s cubic-bezier(.7,0,.2,1)">
+          <div style="position:relative;aspect-ratio:4/5;overflow:hidden;background:#F7F3F4">
+            <div style="position:absolute;inset:0;transform:scale({{ c.scale }});transition:transform .8s cubic-bezier(.2,.7,.2,1)"><image-slot id="case-{{ c.id }}" shape="rect" placeholder="{{ c.ph }}"></image-slot></div>
+            <span style="position:absolute;inset:0;border:1px solid #F3A7B9;opacity:{{ c.border }};transition:opacity .4s;pointer-events:none"></span>
+          </div>
+          <figcaption style="display:flex;justify-content:space-between;gap:12px;align-items:center">
+            <span style="display:flex;flex-direction:column;gap:2px"><span style="font-size:16px;font-weight:600">{{ c.kr }}</span><span style="font-family:Inter,sans-serif;font-size:11px;letter-spacing:.18em;color:#646164">CASE {{ c.no }}</span></span>
+            <button onClick="{{ c.open }}" data-cursor="OPEN" style="border:1px solid #E2DCDE;background:#FFFFFF;border-radius:999px;padding:10px 16px;font-size:13px;font-weight:600;cursor:pointer;color:#121212">크게 보기</button>
+          </figcaption>
+        </figure>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section id="before-after" style="padding:clamp(96px,10vw,140px) 0;background:#FFFFFF;border-top:1px solid #F1EDEE">
+  <div style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,4vw,48px)">
+    <div style="display:grid;grid-template-columns:{{ g3 }};gap:24px;align-items:end;margin-bottom:clamp(40px,5vw,64px)">
+      <div style="display:flex;flex-direction:column;gap:20px;grid-column:{{ span2 }}">
+        <span style="display:flex;gap:12px;font-family:Inter,sans-serif;font-size:12px;font-weight:500;letter-spacing:.2em"><span style="color:#EC7693">02</span>BEFORE / AFTER</span>
+        <h2 style="margin:0;font-size:clamp(30px,3.4vw,46px);line-height:1.32;font-weight:600;letter-spacing:-.035em">
+          <span style="display:block;overflow:hidden"><span data-m="a" style="display:block">같은 조명, 같은 각도로</span></span>
+          <span style="display:block;overflow:hidden"><span data-m="a" data-d=".08" style="display:block">그대로 보여드립니다.</span></span>
+        </h2>
+      </div>
+      <p style="margin:0;font-size:17px;line-height:1.8">가운데 선을 좌우로 움직여 비교해 보세요.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:{{ g3 }};gap:24px;align-items:start">
+      <div style="display:flex;flex-direction:column;border-top:1px solid #121212;grid-column:{{ span2 }}">
+        <sc-for list="{{ baRules }}" as="r" hint-placeholder-count="3">
+          <div style="display:grid;grid-template-columns:48px minmax(0,1fr);gap:16px;padding:26px 0;border-bottom:1px solid #ECE7E8;align-items:baseline">
+            <span style="font-family:Inter,sans-serif;font-size:13px;font-weight:500;color:#EC7693;padding-left:4px">{{ r.no }}</span>
+            <span style="display:flex;flex-direction:column;gap:6px"><span style="font-size:20px;font-weight:600">{{ r.kr }}</span><span style="font-size:16px;line-height:1.7">{{ r.desc }}</span></span>
+          </div>
+        </sc-for>
+      </div>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:14px">
+        <div ref="{{ baRef }}" style="position:relative;aspect-ratio:4/5;overflow:hidden;background:#F7F3F4;user-select:none">
+          <div style="position:absolute;inset:0"><image-slot id="ba-before-45" shape="rect" placeholder="BEFORE 4:5 — 동일 고객 · 동일 조명"></image-slot></div>
+          <div style="position:absolute;inset:0;clip-path:inset(0 0 0 {{ baPct }})"><image-slot id="ba-after-45" shape="rect" placeholder="AFTER 4:5 — 동일 고객 · 동일 조명"></image-slot></div>
+          <div onPointerDown="{{ baDown }}" data-cursor="DRAG" style="position:absolute;top:0;bottom:0;left:{{ baPct }};width:40px;margin-left:-20px;cursor:ew-resize;display:flex;justify-content:center;touch-action:none">
+            <span style="width:1px;height:100%;background:#FFFFFF"></span>
+            <span style="position:absolute;top:50%;width:44px;height:44px;margin-top:-22px;border-radius:50%;background:#FFFFFF;border:1px solid #F3A7B9;display:flex;align-items:center;justify-content:center;font-family:Inter,sans-serif;font-size:13px">↔</span>
+          </div>
+        </div>
+        <figcaption style="display:flex;justify-content:space-between;gap:12px;align-items:baseline"><span style="font-size:16px;font-weight:600">전 · 후 비교</span><span style="font-family:Inter,sans-serif;font-size:11px;letter-spacing:.18em;color:#646164">BEFORE ← → AFTER</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<dc-import name="SayjiBlocks" blocks="{{ blocks }}" hint-size="100%,1000px"></dc-import>
+<dc-import name="SayjiFooter" show-contact="{{ false }}" hint-size="100%,140px"></dc-import>
+
+<sc-if value="{{ lbOpen }}" hint-placeholder-val="{{ false }}">
+  <div onClick="{{ closeLb }}" style="position:fixed;inset:0;z-index:120;background:rgba(252,251,250,.98);display:flex;align-items:center;justify-content:center;padding:clamp(20px,5vw,72px);animation:sjLb .35s ease both">
+    <div onClick="{{ stop }}" style="display:grid;grid-template-columns:{{ g3 }};gap:24px;max-width:1200px;width:100%;align-items:end">
+      <div style="aspect-ratio:4/5;max-height:80vh"><image-slot id="case-{{ lb.id }}" shape="rect" placeholder="{{ lb.ph }}"></image-slot></div>
+      <div style="display:flex;flex-direction:column;gap:18px;grid-column:{{ span2 }}">
+        <span style="font-family:Inter,sans-serif;font-size:12px;font-weight:500;letter-spacing:.2em;color:#646164">CASE {{ lb.no }} · {{ lb.cat }}</span>
+        <span style="font-size:clamp(28px,3vw,40px);font-weight:600;letter-spacing:-.03em">{{ lb.kr }}</span>
+        <p style="margin:0;font-size:16px;line-height:1.8;color:#646164">상담 내용과 디자인 포인트가 들어갑니다.</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button onClick="{{ prevLb }}" style="border:1px solid #121212;background:#FFFFFF;border-radius:999px;padding:13px 22px;font-size:14px;font-weight:600;cursor:pointer">← 이전</button>
+          <button onClick="{{ nextLb }}" style="border:1px solid #121212;background:#FFFFFF;border-radius:999px;padding:13px 22px;font-size:14px;font-weight:600;cursor:pointer">다음 →</button>
+          <button onClick="{{ closeLb }}" style="border:0;background:#121212;color:#FFFFFF;border-radius:999px;padding:13px 22px;font-size:14px;font-weight:600;cursor:pointer">닫기</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { filter: 'ALL', fading: false, hover: null, lb: null, ba: 50, w: 1280 };
+  baRef = React.createRef();
+  componentDidMount() {
+    this.r = () => this.setState({ w: window.innerWidth }); this.r(); window.addEventListener('resize', this.r);
+    this.onKey = e => { if (this.state.lb == null) return; if (e.key === 'Escape') this.setState({ lb: null }); if (e.key === 'ArrowRight') this.move(1); if (e.key === 'ArrowLeft') this.move(-1); };
+    window.addEventListener('keydown', this.onKey);
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this.r); window.removeEventListener('keydown', this.onKey); clearTimeout(this.t); }
+  all() {
+    const kr = { BROW: '눈썹 디자인', LIP: '입술 톤 디자인', EYELINE: '아이라인 디자인', SCALP: '두피 디자인', CORRECTION: '리커렉션' };
+    return ['BROW', 'LIP', 'BROW', 'EYELINE', 'CORRECTION', 'EYELINE', 'CORRECTION', 'BROW', 'LIP', 'EYELINE', 'LIP', 'BROW']
+      .map((cat, i) => { const id = String(i + 1).padStart(2, '0'); return { id, no: id, cat, kr: kr[cat], ph: `CASE ${id} · ${cat} 4:5 실제 작업 사진` }; });
+  }
+  list() { const f = this.state.filter; return this.all().filter(c => f === 'ALL' || c.cat === f); }
+  move(d) { const l = this.list(); const i = l.findIndex(c => c.id === this.state.lb); if (i >= 0) this.setState({ lb: l[(i + d + l.length) % l.length].id }); }
+  renderVals() {
+    const st = this.state, mob = st.w < 760;
+    const setF = f => { if (f === st.filter) return; this.setState({ fading: true }); clearTimeout(this.t); this.t = setTimeout(() => this.setState({ filter: f, fading: false }), 380); };
+    const list = this.list();
+    const lb = this.all().find(c => c.id === st.lb) || { id: '00', no: '', cat: '', kr: '', ph: '' };
+    return {
+      baRef: this.baRef,
+      g3: mob ? 'minmax(0,1fr)' : 'repeat(3,minmax(0,1fr))', span2: mob ? 'auto' : 'span 2',
+      filters: ['ALL', 'BROW', 'LIP', 'EYELINE', 'CORRECTION'].map(f => ({ label: f, select: () => setF(f), bg: st.filter === f ? '#121212' : '#FFFFFF', color: st.filter === f ? '#FFFFFF' : '#121212', border: st.filter === f ? '#121212' : '#E2DCDE' })),
+      count: String(list.length),
+      cases: list.map(c => { const h = st.hover === c.id; return { ...c, enter: () => this.setState({ hover: c.id }), leave: () => this.setState({ hover: null }), open: () => this.setState({ lb: c.id }),
+        scale: h ? 1.025 : 1, border: h ? 1 : 0, op: st.fading ? 0 : 1, clip: st.fading ? 'inset(0 0 100% 0)' : 'inset(0 0 0% 0)' }; }),
+      lbOpen: st.lb != null, lb, closeLb: () => this.setState({ lb: null }), stop: e => e.stopPropagation(), prevLb: () => this.move(-1), nextLb: () => this.move(1),
+      baPct: st.ba.toFixed(1) + '%',
+      baDown: e => {
+        e.preventDefault();
+        const mv = ev => { const r = this.baRef.current.getBoundingClientRect(); this.setState({ ba: Math.max(0, Math.min(100, ((ev.clientX - r.left) / r.width) * 100)) }); };
+        const up = () => { window.removeEventListener('pointermove', mv); window.removeEventListener('pointerup', up); };
+        window.addEventListener('pointermove', mv); window.addEventListener('pointerup', up);
+      },
+      baRules: [['01', '동일 고객', '같은 고객의 실제 자료만 게시합니다.'], ['02', '동일 조건', '같은 조명과 각도에서 촬영한 사진을 비교합니다.'], ['03', '보정 없음', '밝기나 색을 인위적으로 바꾸지 않습니다.']].map(([no, kr, desc]) => ({ no, kr, desc })),
+      blocks: [
+        { type: 'review', id: 'review', no: '03', en: 'REVIEW', title: ['고객이 직접 남긴 이야기'], desc: '실제 후기만, 작성일과 익명 표기로 게시합니다.',
+          reviews: [['review-1', '눈썹 디자인', '김*'], ['review-2', '입술 톤 디자인', '이*'], ['review-3', '아이라인 디자인', '박*'], ['review-4', '눈썹 디자인', '최*'], ['review-5', '리커렉션', '정*']] },
+        { type: 'cta', bg: '#FBE9EE', title: ['나에게 어울리는 방향이', '궁금하다면.'] }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

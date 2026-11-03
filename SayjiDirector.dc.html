@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<section id="director" style="position:relative;overflow:clip;padding:clamp(110px,12vw,170px) 0;background:linear-gradient(180deg,#FFFFFF 0%,#FBF5F2 100%)">
+  <div style="position:absolute;right:-12%;top:0;width:60%;height:80%;background:radial-gradient(50% 50% at 50% 50%,rgba(233,194,174,.26),rgba(255,255,255,0) 70%);pointer-events:none"></div>
+  <div style="position:relative;max-width:1200px;margin:0 auto;padding:0 clamp(20px,4vw,48px);display:flex;flex-wrap:wrap;gap:clamp(48px,7vw,112px);align-items:flex-start">
+    <figure style="flex:5 1 320px;min-width:0;margin:0;display:flex;flex-direction:column;gap:16px;position:sticky;top:110px">
+      <div style="position:relative;aspect-ratio:4/5;overflow:hidden;background:#F1E9E5"><image-slot id="m-dir-1" shape="rect" placeholder="DIRECTOR · 4:5 (1200×1500) — 대표원장 실제 사진"></image-slot></div>
+      <figcaption style="display:flex;justify-content:space-between;gap:12px;align-items:baseline"><span style="font-size:15px;font-weight:600;letter-spacing:-.02em">대표원장</span><span style="font-family:Inter,sans-serif;font-size:11.5px;font-weight:500;letter-spacing:.2em;color:#9A8F8A">DIRECTOR</span></figcaption>
+    </figure>
+    <div style="flex:7 1 440px;min-width:0;display:flex;flex-direction:column;gap:56px">
+      <div style="display:flex;flex-direction:column;gap:28px">
+        <div style="display:flex;align-items:center;gap:14px;font-family:Inter,sans-serif;font-size:12px;font-weight:500;letter-spacing:.22em;color:#121212"><span style="color:#B97A63">{{ no }}</span><span data-m="c" style="display:block;width:40px;height:1px;background:linear-gradient(90deg,#B97A63,#E9C2AE)"></span><span>DIRECTOR</span></div>
+        <div style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap"><span style="font-size:clamp(30px,3.2vw,44px);font-weight:600;letter-spacing:-.04em">대표원장 이름</span><span style="font-family:Inter,sans-serif;font-size:13px;font-weight:500;letter-spacing:.18em;color:#B97A63">SAYJI BEAUTY &amp; ACADEMY</span></div>
+        <h2 style="margin:0;font-size:clamp(22px,2.2vw,30px);line-height:1.5;font-weight:500;letter-spacing:-.035em;color:#121212;padding-left:22px;border-left:1px solid #E9C2AE">충분히 듣고, 얼굴 전체를 살핀 뒤<br>디자인을 시작합니다.</h2>
+        <p style="margin:0;font-size:17px;line-height:1.85;color:#4A4648;max-width:560px;text-wrap:pretty">상담부터 디자인, 진행까지 대표원장이 직접 함께합니다. 대표원장 소개 문구를 이곳에 입력합니다.</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <span style="font-size:13px;font-weight:500;color:#A86A55;border:1px solid #E9C2AE;padding:7px 12px">눈썹 디자인</span>
+          <span style="font-size:13px;font-weight:500;color:#A86A55;border:1px solid #E9C2AE;padding:7px 12px">입술 톤 디자인</span>
+          <span style="font-size:13px;font-weight:500;color:#A86A55;border:1px solid #E9C2AE;padding:7px 12px">리커렉션 상담</span>
+          <span style="font-size:13px;font-weight:500;color:#A86A55;border:1px solid #E9C2AE;padding:7px 12px">PMU 교육</span>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:44px clamp(24px,3vw,40px)">
+        <div style="display:flex;flex-direction:column;gap:6px;min-width:0">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding-bottom:14px;border-bottom:1px solid #121212"><span style="font-size:17px;font-weight:600;letter-spacing:-.02em">경력</span><span style="font-family:Inter,sans-serif;font-size:11.5px;font-weight:500;letter-spacing:.2em;color:#9A8F8A">CAREER</span></div>
+          <div style="display:grid;grid-template-columns:64px minmax(0,1fr);gap:16px;padding:16px 0;border-bottom:1px solid #EFE7E3;align-items:baseline"><span style="font-family:Inter,sans-serif;font-size:13px;font-weight:500;color:#B97A63;font-variant-numeric:tabular-nums">0000</span><span style="font-size:15.5px;line-height:1.65;color:#121212">경력 내용 입력</span></div>
+          <div style="display:grid;grid-template-columns:64px minmax(0,1fr);gap:16px;padding:16px 0;border-bottom:1px solid #EFE7E3;align-items:baseline"><span style="font-family:Inter,sans-serif;font-size:13px;font-weight:500;color:#B97A63;font-variant-numeric:tabular-nums">0000</span><span style="font-size:15.5px;line-height:1.65;color:#121212">경력 내용 입력</span></div>
+          <div style="display:grid;grid-template-columns:64px minmax(0,1fr);gap:16px;padding:16px 0;border-bottom:1px solid #EFE7E3;align-items:baseline"><span style="font-family:Inter,sans-serif;font-size:13px;font-weight:500;color:#B97A63;font-variant-numeric:tabular-nums">0000</span><span style="font-size:15.5px;line-height:1.65;color:#121212">경력 내용 입력</span></div>
+          <div style="display:grid;grid-template-columns:64px minmax(0,1fr);gap:16px;padding:16px 0;border-bottom:1px solid #EFE7E3;align-items:baseline"><span style="font-family:Inter,sans-serif;font-size:13px;font-weight:500;color:#B97A63;font-variant-numeric:tabular-nums">0000</span><span style="font-size:15.5px;line-height:1.65;color:#121212">경력 내용 입력</span></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px;min-width:0">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding-bottom:14px;border-bottom:1px solid #121212"><span style="font-size:17px;font-weight:600;letter-spacing:-.02em">수상</span><span style="font-family:Inter,sans-serif;font-size:11.5px;font-weight:500;letter-spacing:.2em;color:#9A8F8A">AWARDS</span></div>
+          <div style="display:grid;grid-template-columns:64px minmax(0,1fr);gap:16px;padding:16px 0;border-bottom:1px solid #EFE7E3;align-items:baseline"><span style="font-family:Inter,sans-serif;font-size:13px;font-weight:500;color:#B97A63;font-variant-numeric:tabular-nums">0000</span><span style="font-size:15.5px;line-height:1.65;color:#121212">수상 내역 입력</span></div>
+          <div style="display:grid;grid-template-columns:64px minmax(0,1fr);gap:16px;padding:16px 0;border-bottom:1px solid #EFE7E3;align-items:baseline"><span style="font-family:Inter,sans-serif;font-size:13px;font-weight:500;color:#B97A63;font-variant-numeric:tabular-nums">0000</span><span style="font-size:15.5px;line-height:1.65;color:#121212">수상 내역 입력</span></div>
+          <div style="display:grid;grid-template-columns:64px minmax(0,1fr);gap:16px;padding:16px 0;border-bottom:1px solid #EFE7E3;align-items:baseline"><span style="font-family:Inter,sans-serif;font-size:13px;font-weight:500;color:#B97A63;font-variant-numeric:tabular-nums">0000</span><span style="font-size:15.5px;line-height:1.65;color:#121212">수상 내역 입력</span></div>
+          <div style="display:grid;grid-template-columns:64px minmax(0,1fr);gap:16px;padding:16px 0;border-bottom:1px solid #EFE7E3;align-items:baseline"><span style="font-family:Inter,sans-serif;font-size:13px;font-weight:500;color:#B97A63;font-variant-numeric:tabular-nums">0000</span><span style="font-size:15.5px;line-height:1.65;color:#121212">수상 내역 입력</span></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px;min-width:0">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding-bottom:14px;border-bottom:1px solid #121212"><span style="font-size:17px;font-weight:600;letter-spacing:-.02em">자격 · 인증</span><span style="font-family:Inter,sans-serif;font-size:11.5px;font-weight:500;letter-spacing:.2em;color:#9A8F8A">CERTIFICATION</span></div>
+          <div style="display:grid;grid-template-columns:64px minmax(0,1fr);gap:16px;padding:16px 0;border-bottom:1px solid #EFE7E3;align-items:baseline"><span style="font-family:Inter,sans-serif;font-size:13px;font-weight:500;color:#B97A63;font-variant-numeric:tabular-nums">0000</span><span style="font-size:15.5px;line-height:1.65;color:#121212">자격 · 인증 내용 입력</span></div>
+          <div style="display:grid;grid-template-columns:64px minmax(0,1fr);gap:16px;padding:16px 0;border-bottom:1px solid #EFE7E3;align-items:baseline"><span style="font-family:Inter,sans-serif;font-size:13px;font-weight:500;color:#B97A63;font-variant-numeric:tabular-nums">0000</span><span style="font-size:15.5px;line-height:1.65;color:#121212">자격 · 인증 내용 입력</span></div>
+          <div style="display:grid;grid-template-columns:64px minmax(0,1fr);gap:16px;padding:16px 0;border-bottom:1px solid #EFE7E3;align-items:baseline"><span style="font-family:Inter,sans-serif;font-size:13px;font-weight:500;color:#B97A63;font-variant-numeric:tabular-nums">0000</span><span style="font-size:15.5px;line-height:1.65;color:#121212">자격 · 인증 내용 입력</span></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px;min-width:0">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding-bottom:14px;border-bottom:1px solid #121212"><span style="font-size:17px;font-weight:600;letter-spacing:-.02em">교육 · 강의</span><span style="font-family:Inter,sans-serif;font-size:11.5px;font-weight:500;letter-spacing:.2em;color:#9A8F8A">EDUCATION</span></div>
+          <div style="display:grid;grid-template-columns:64px minmax(0,1fr);gap:16px;padding:16px 0;border-bottom:1px solid #EFE7E3;align-items:baseline"><span style="font-family:Inter,sans-serif;font-size:13px;font-weight:500;color:#B97A63;font-variant-numeric:tabular-nums">0000</span><span style="font-size:15.5px;line-height:1.65;color:#121212">교육 · 강의 활동 입력</span></div>
+          <div style="display:grid;grid-template-columns:64px minmax(0,1fr);gap:16px;padding:16px 0;border-bottom:1px solid #EFE7E3;align-items:baseline"><span style="font-family:Inter,sans-serif;font-size:13px;font-weight:500;color:#B97A63;font-variant-numeric:tabular-nums">0000</span><span style="font-size:15.5px;line-height:1.65;color:#121212">교육 · 강의 활동 입력</span></div>
+          <div style="display:grid;grid-template-columns:64px minmax(0,1fr);gap:16px;padding:16px 0;border-bottom:1px solid #EFE7E3;align-items:baseline"><span style="font-family:Inter,sans-serif;font-size:13px;font-weight:500;color:#B97A63;font-variant-numeric:tabular-nums">0000</span><span style="font-size:15.5px;line-height:1.65;color:#121212">교육 · 강의 활동 입력</span></div>
+        </div>
+      </div>
+      <p style="margin:0;font-size:12px;color:#9A8F8A">경력 · 수상 · 자격 정보는 증빙 자료 확인 후 게시합니다.</p>
+    </div>
+  </div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"no":{"editor":"text","default":"01","tsType":"string"}}'>
+class Component extends DCLogic {
+  renderVals() { return { no: this.props.no ?? '01' }; }
+}
+</script>
+</body>
+</html>

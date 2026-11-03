@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<script src="./assets/media-map.js"></script>
+</helmet>
+<div>
+<header ref="{{ headerRef }}" style="position:fixed;top:0;left:0;right:0;z-index:60;background:rgba(255,255,255,0);border-bottom:1px solid rgba(18,18,18,0);transition:background .5s ease,border-color .5s ease,backdrop-filter .5s ease">
+  <div style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,4vw,48px);height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px">
+    <a href="/" style="display:flex;align-items:center;gap:14px;white-space:nowrap;flex-shrink:0;color:#121212">
+      <img src="assets/sb-mono.png" alt="" style="height:34px;width:auto;display:block">
+      <span style="font-family:Inter,sans-serif;font-weight:500;font-size:13px;letter-spacing:.32em">SAYJI BEAUTY</span>
+    </a>
+    <sc-if value="{{ showNav }}" hint-placeholder-val="{{ true }}">
+      <nav style="display:flex;gap:clamp(22px,3vw,48px);align-items:center">
+        <sc-for list="{{ nav }}" as="n" hint-placeholder-count="5">
+          <a href="{{ n.href }}" style="position:relative;font-family:Inter,sans-serif;font-size:12px;font-weight:500;letter-spacing:.18em;white-space:nowrap;color:#121212;padding:8px 0" style-hover="color:#646164">
+            {{ n.label }}
+            <span style="position:absolute;left:0;bottom:0;height:1px;background:#F3A7B9;width:{{ n.line }};transition:width .4s ease"></span>
+          </a>
+        </sc-for>
+      </nav>
+    </sc-if>
+    <div style="display:flex;gap:12px;align-items:center;flex-shrink:0">
+      <sc-if value="{{ showBook }}" hint-placeholder-val="{{ true }}"><a href="/contact#reservation" data-gloss="1" data-cursor="BOOK" style="position:relative;overflow:hidden;background:#121212;color:#FFFFFF;font-family:Inter,sans-serif;font-size:11px;font-weight:500;letter-spacing:.2em;padding:14px 22px;white-space:nowrap;border-radius:999px" style-hover="color:#FFFFFF;background:#2A2829">RESERVATION</a></sc-if>
+      <sc-if value="{{ showMenuBtn }}" hint-placeholder-val="{{ false }}">
+        <button onClick="{{ toggleMenu }}" style="width:44px;height:44px;border-radius:50%;border:1px solid #E7E2E3;background:#FFFFFF;display:flex;flex-direction:column;gap:5px;align-items:center;justify-content:center;cursor:pointer;padding:0">
+          <span style="width:16px;height:1px;background:#121212"></span><span style="width:16px;height:1px;background:#121212"></span>
+        </button>
+      </sc-if>
+    </div>
+  </div>
+</header>
+
+<sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed;inset:0;z-index:58;background:#FFFFFF;padding:110px clamp(20px,6vw,56px) 40px;display:flex;flex-direction:column;justify-content:space-between">
+    <div style="display:flex;flex-direction:column">
+      <sc-for list="{{ nav }}" as="n" hint-placeholder-count="5">
+        <a href="{{ n.href }}" style="display:flex;align-items:baseline;gap:16px;padding:18px 0;border-bottom:1px solid #F1EDEE;color:#121212">
+          <span style="font-family:Inter,sans-serif;font-size:11px;color:#646164">{{ n.no }}</span>
+          <span style="font-family:Inter,sans-serif;font-size:34px;font-weight:300;letter-spacing:-.02em">{{ n.label }}</span>
+        </a>
+      </sc-for>
+    </div>
+    <a href="tel:01079327927" style="font-family:Inter,sans-serif;font-size:18px;color:#121212">010-7932-7927</a>
+  </div>
+</sc-if>
+
+<sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+  <div style="position:fixed;right:22px;top:50%;transform:translateY(-50%);z-index:50;display:flex;flex-direction:column;gap:8px;align-items:flex-end">
+    <sc-for list="{{ quick }}" as="q" hint-placeholder-count="4">
+      <a href="{{ q.href }}" onMouseEnter="{{ q.enter }}" onMouseLeave="{{ q.leave }}" style="display:flex;align-items:center;gap:8px;color:#121212" style-hover="color:#121212">
+        <span style="height:48px;display:flex;align-items:center;max-width:{{ q.labelW }};opacity:{{ q.labelO }};overflow:hidden;white-space:nowrap;background:#FFFFFF;border:1px solid #F3A7B9;border-radius:999px;font-size:13px;font-weight:500;transition:max-width .36s cubic-bezier(.2,.7,.2,1),opacity .3s ease;box-sizing:border-box"><span style="padding:0 18px">{{ q.label }}</span></span>
+        <span style="width:48px;height:48px;border-radius:50%;background:{{ q.bg }};border:1px solid {{ q.border }};display:flex;align-items:center;justify-content:center;transition:background .3s,border-color .3s;box-sizing:border-box;flex-shrink:0">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#121212" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="{{ q.d }}"></path></svg>
+        </span>
+      </a>
+    </sc-for>
+  </div>
+</sc-if>
+
+<sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed;left:0;right:0;bottom:0;z-index:50;display:grid;grid-template-columns:1fr 1fr;background:#FFFFFF">
+    <a href="/contact#reservation" style="height:58px;display:flex;align-items:center;justify-content:center;background:#121212;color:#FFFFFF;font-size:15px;font-weight:500">예약하기</a>
+    <a href="/contact#naver" style="height:58px;display:flex;align-items:center;justify-content:center;background:#FBE9EE;color:#121212;font-size:15px;font-weight:500;border-top:1px solid #F3A7B9">상담하기</a>
+  </div>
+</sc-if>
+
+
+<div ref="{{ curtainRef }}" style="position:fixed;inset:0;z-index:400;background:#FBE9EE;transform:translateY(100%);pointer-events:none;display:flex;align-items:center;justify-content:center">
+  <span style="position:absolute;left:0;right:0;top:0;height:1px;background:#F3A7B9"></span>
+  <span style="font-family:Inter,sans-serif;font-size:12px;font-weight:500;letter-spacing:.4em;color:#121212">SAYJI</span>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;active&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;&quot;,&quot;brand&quot;,&quot;program&quot;,&quot;correction&quot;,&quot;cases&quot;,&quot;contact&quot;],&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { w: 1280, qa: null, menu: false };
+  headerRef = React.createRef(); ringRef = React.createRef(); dotRef = React.createRef(); labelRef = React.createRef(); curtainRef = React.createRef();
+
+  componentDidMount() {
+    const rm = this.rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.onResize = () => this.setState({ w: window.innerWidth });
+    this.onResize();
+    window.addEventListener('resize', this.onResize);
+    let tick = false;
+    this.onScroll = () => { if (tick) return; tick = true; requestAnimationFrame(() => { tick = false; this.scrollFrame(); }); };
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    this.scrollFrame();
+
+    const c = this.curtainRef.current;
+    try {
+      if (sessionStorage.getItem('sjCurtain')) {
+        sessionStorage.removeItem('sjCurtain');
+        c.style.transition = 'none'; c.style.transform = 'translateY(0)';
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          c.style.transition = 'transform .55s cubic-bezier(.7,0,.2,1)'; c.style.transform = 'translateY(-100%)';
+        }));
+      }
+    } catch (e) {}
+    this.onClick = e => {
+      const a = e.target.closest && e.target.closest('a');
+      if (!a || e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey || a.target === '_blank') return;
+      const href = a.getAttribute('href') || '';
+      if (!/\.dc\.html/.test(href)) return;
+      e.preventDefault();
+      if (this.state.menu) this.setState({ menu: false });
+      if (rm) { location.href = href; return; }
+      c.style.transition = 'none'; c.style.transform = 'translateY(100%)'; void c.offsetHeight;
+      c.style.transition = 'transform .42s cubic-bezier(.7,0,.2,1)'; c.style.transform = 'translateY(0)';
+      try { sessionStorage.setItem('sjCurtain', '1'); } catch (_) {}
+      setTimeout(() => { location.href = href; }, 440);
+    };
+    document.addEventListener('click', this.onClick);
+
+    this.onOver = e => {
+      const g = e.target.closest && e.target.closest('[data-gloss]');
+      if (g === this.lastGloss) return;
+      this.lastGloss = g;
+      if (!g || rm) return;
+      const s = document.createElement('span');
+      s.style.cssText = 'position:absolute;top:0;bottom:0;left:0;width:60%;pointer-events:none;background:linear-gradient(100deg,rgba(255,255,255,0) 0%,rgba(251,233,238,.55) 50%,rgba(255,255,255,0) 100%);transform:translateX(-120%)';
+      g.appendChild(s);
+      s.animate([{ transform: 'translateX(-120%)' }, { transform: 'translateX(220%)' }], { duration: 700, easing: 'cubic-bezier(.4,0,.2,1)' }).onfinish = () => s.remove();
+    };
+    document.addEventListener('mouseover', this.onOver);
+
+    this.setupReveal();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.onResize);
+    window.removeEventListener('scroll', this.onScroll);
+    document.removeEventListener('click', this.onClick);
+    document.removeEventListener('mouseover', this.onOver);
+    document.removeEventListener('mousemove', this.onMove);
+    cancelAnimationFrame(this.craf);
+    this.io && this.io.disconnect(); this.mo && this.mo.disconnect();
+  }
+
+  scrollFrame() {
+    const y = window.scrollY;
+    const h = this.headerRef.current;
+    if (h) {
+      const on = y > 40;
+      if (on !== this.hOn) {
+        this.hOn = on;
+        h.style.background = on ? 'rgba(255,255,255,.9)' : 'rgba(255,255,255,0)';
+        h.style.backdropFilter = h.style.webkitBackdropFilter = on ? 'blur(12px)' : 'none';
+        h.style.borderBottomColor = on ? '#F1EDEE' : 'rgba(18,18,18,0)';
+      }
+    }
+    if (this.rm || window.innerWidth < 900) return;
+    const vh = window.innerHeight;
+    document.querySelectorAll('[data-shift]').forEach(el => {
+      const r = el.getBoundingClientRect();
+      if (r.bottom < -100 || r.top > vh + 100) return;
+      const p = (r.top + r.height / 2 - vh / 2) / vh;
+      el.style.transform = `translateY(${Math.max(-10, Math.min(10, p * -20)).toFixed(1)}px)`;
+    });
+  }
+
+  setupReveal() {
+    if (this.rm) return;
+    const show = el => {
+      const t = el.dataset.m;
+      if (t === 'a') el.style.transform = 'translateY(0)';
+      if (t === 'b') el.style.clipPath = 'inset(0 0 0 0)';
+      if (t === 'c') el.style.transform = 'scaleX(1)';
+    };
+    this.io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { const t = e.target.__sjEl || e.target; show(t); this.io.unobserve(e.target); }
+    }), { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+    const init = el => {
+      if (el.__sj) return; el.__sj = 1;
+      const t = el.dataset.m, d = +(el.dataset.d || 0);
+      if (t === 'a') { el.style.transform = 'translateY(108%)'; el.style.transition = `transform 1s cubic-bezier(.2,.75,.1,1) ${d}s`; }
+      if (t === 'b') { return; }
+      if (t === 'c') { el.style.transform = 'scaleX(0)'; el.style.transformOrigin = (el.dataset.o || 'left') + ' center'; el.style.transition = `transform 1.1s cubic-bezier(.7,0,.2,1) ${d}s`; }
+      if (t === 'a' && el.parentElement) { el.parentElement.__sjEl = el; this.io.observe(el.parentElement); } else this.io.observe(el);
+    };
+    const scan = () => document.querySelectorAll('[data-m]').forEach(init);
+    scan();
+    let pend = false;
+    this.mo = new MutationObserver(() => { if (pend) return; pend = true; requestAnimationFrame(() => { pend = false; scan(); }); });
+    this.mo.observe(document.body, { childList: true, subtree: true });
+  }
+
+  setupCursor() {
+    if (!window.matchMedia('(pointer: fine)').matches) return;
+    const ring = this.ringRef.current, dot = this.dotRef.current, lab = this.labelRef.current;
+    let x = -100, y = -100, rx = -100, ry = -100, s = 1, ts = 1, vis = false;
+    this.onMove = e => {
+      x = e.clientX; y = e.clientY;
+      const on = window.innerWidth >= 900;
+      if (on !== vis) { vis = on; ring.style.opacity = dot.style.opacity = on ? 1 : 0; }
+      const t = e.target.closest && e.target.closest('a,button,[data-cursor],image-slot');
+      ts = t ? 1.5 : 1;
+      const txt = t && t.dataset && t.dataset.cursor ? t.dataset.cursor : '';
+      if (txt !== lab.textContent) lab.textContent = txt;
+      lab.style.opacity = txt && vis ? 1 : 0;
+      ring.style.borderColor = t ? '#F3A7B9' : '#121212';
+    };
+    document.addEventListener('mousemove', this.onMove, { passive: true });
+    document.addEventListener('mouseleave', () => { vis = false; ring.style.opacity = dot.style.opacity = lab.style.opacity = 0; });
+    let running = false;
+    const kick = () => { if (!running) { running = true; this.craf = requestAnimationFrame(loop); } };
+    document.addEventListener('mousemove', kick, { passive: true });
+    const loop = () => {
+      rx += (x - rx) * 0.2; ry += (y - ry) * 0.2; s += (ts - s) * 0.18;
+      if (Math.abs(x - rx) + Math.abs(y - ry) + Math.abs(ts - s) > 0.05) this.craf = requestAnimationFrame(loop); else running = false;
+      ring.style.transform = `translate(${rx - 14}px,${ry - 14}px) scale(${s.toFixed(3)})`;
+      dot.style.transform = `translate(${x}px,${y}px)`;
+      lab.style.transform = `translate(${rx + 26}px,${ry + 8}px)`;
+    };
+  }
+
+  renderVals() {
+    const st = this.state, active = this.props.active || '';
+    const isMobile = st.w < 900;
+    const icons = {
+      book: 'M4 6h16v14H4z M4 10h16 M8 3.5v4 M16 3.5v4 M9 15l2 2 4-4',
+      talk: 'M12 4c4.7 0 8.5 3 8.5 6.8S16.7 17.6 12 17.6c-.8 0-1.6-.1-2.3-.3L5.5 20l.9-3.7C4.6 15 3.5 13 3.5 10.8 3.5 7 7.3 4 12 4z M9 11h.01 M12 11h.01 M15 11h.01',
+      call: 'M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1z',
+      map: 'M12 21s-6.5-5.6-6.5-11.2a6.5 6.5 0 0 1 13 0C18.5 15.4 12 21 12 21z M12 12.3a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z'
+    };
+    const nav = [['01', 'BRAND', '/brand', 'brand'], ['02', 'PROGRAM', '/program', 'program'], ['03', 'CORRECTION', '/correction', 'correction'], ['04', 'CASES', '/cases', 'cases'], ['05', 'CONTACT', '/contact', 'contact']]
+      .map(([no, label, href, key]) => ({ no, label, href, line: key === active ? '100%' : '0%' }));
+    const quick = [['book', '예약', '/contact#reservation'], ['talk', '톡톡', '/contact#naver'], ['call', '전화', 'tel:01079327927'], ['map', '위치', '/contact#map']].map(([k, label, href]) => {
+      const h = st.qa === k;
+      return { label, href, d: icons[k], enter: () => this.setState({ qa: k }), leave: () => this.setState({ qa: null }),
+        labelW: h ? '120px' : '0px', labelO: h ? 1 : 0, bg: h ? '#FBE9EE' : '#FFFFFF', border: h ? '#F3A7B9' : '#E7E2E3' };
+    });
+    return {
+      headerRef: this.headerRef, ringRef: this.ringRef, dotRef: this.dotRef, labelRef: this.labelRef, curtainRef: this.curtainRef,
+      nav, quick, isDesktop: !isMobile, isMobile,
+      showNav: st.w >= 1000, showBook: !isMobile, _pad: (document.body.style.paddingBottom = isMobile ? '58px' : ''), showMenuBtn: st.w < 1000, menuOpen: st.menu && st.w < 1000,
+      toggleMenu: () => this.setState(s => ({ menu: !s.menu }))
+    };
+  }
+}
+</script>
+</body>
+</html>
