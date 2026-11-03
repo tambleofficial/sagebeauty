@@ -1,0 +1,27 @@
+/* Mobile layout only; desktop declarations remain unchanged. */
+@media (max-width:759px){
+ html{scroll-padding-top:84px} body{overflow-x:hidden;-webkit-text-size-adjust:100%}
+ section,article,figure,nav,figcaption{box-sizing:border-box;min-width:0}
+ section:not([id="hero"]) [style*="position:sticky"],section:not([id="hero"]) [style*="position: sticky"]{position:relative!important;top:auto!important}
+ [data-hero]{position:sticky!important;top:0!important}
+ section [style*="display:flex"][style*="flex-wrap:wrap"],section [style*="display: flex"][style*="flex-wrap: wrap"]{min-width:0;max-width:100%}
+ section [style*="align-items:flex-start"][style*="flex-wrap:wrap"],section [style*="align-items: flex-start"][style*="flex-wrap: wrap"]{flex-direction:column!important;gap:32px!important}
+ section [style*="flex:4 1"],section [style*="flex: 4 1"],section [style*="flex:5 1"],section [style*="flex: 5 1"],section [style*="flex:7 1"],section [style*="flex: 7 1"]{flex:0 1 auto!important;width:100%!important;max-width:100%!important}
+ section figure{margin:0;max-width:100%!important} section figure img{max-width:100%}
+ section h1{font-size:clamp(34px,10vw,56px)!important} section h2{font-size:clamp(26px,7.3vw,34px)!important;line-height:1.4!important}
+ section h1,section h2,section h3,section p{overflow-wrap:anywhere}
+ section figcaption{gap:10px!important;flex-wrap:wrap;line-height:1.5}
+ section [style*="repeat(auto-fit,minmax(200px"],section [style*="repeat(auto-fit, minmax(200px"]{grid-template-columns:minmax(0,1fr)!important}
+ section [style*="grid-template-columns:56px minmax(0,1fr) 24px"],section [style*="grid-template-columns: 56px minmax(0, 1fr) 24px"]{grid-template-columns:32px minmax(0,1fr) 20px!important;gap:10px!important;padding:22px 0!important}
+ section p[style*="72px"]{padding:0 0 24px 42px!important}
+ [data-rv]{display:flex!important;flex-wrap:nowrap!important;justify-content:flex-start!important;overflow-x:auto!important;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;gap:16px!important;padding:0 0 18px;scroll-padding:0;-webkit-overflow-scrolling:touch;touch-action:pan-x pan-y;scrollbar-width:thin}
+ [data-rv]>article{flex:0 0 84%!important;width:84%!important;min-width:0;max-width:320px;scroll-snap-align:start;box-sizing:border-box}
+ [data-rv] .sj-review-visual{display:none!important}
+ [data-rv]>article p{display:block!important;-webkit-line-clamp:unset!important;overflow:visible!important;min-height:0!important;font-size:15px!important;line-height:1.8!important}
+ [data-rv]>article>div:last-child{padding:22px!important}
+ [data-rv]>article>div:last-child>div{flex-wrap:wrap;gap:8px!important}
+ .sj-review-controls{display:flex!important;justify-content:space-between;align-items:center;gap:12px;margin-top:12px;font-size:13px;color:#7a706c}
+ .sj-review-controls button{background:white;border:1px solid #e9c2ae;width:44px;height:44px;font-size:20px;color:#a86a55;cursor:pointer}
+ [id^="director-"]{scroll-margin-top:88px}
+}
+.sj-review-controls{display:none}

@@ -17,6 +17,8 @@
 
 <meta name="sj-page" content="Cases">
 <script src="./assets/media-map.js"></script>
+<script src="./assets/reviews.js"></script>
+<link rel="stylesheet" href="./assets/mobile.css">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
@@ -170,7 +172,7 @@ class Component extends DCLogic {
       },
       baRules: [['01', '동일 고객', '같은 고객의 실제 자료만 게시합니다.'], ['02', '동일 조건', '같은 조명과 각도에서 촬영한 사진을 비교합니다.'], ['03', '보정 없음', '밝기나 색을 인위적으로 바꾸지 않습니다.']].map(([no, kr, desc]) => ({ no, kr, desc })),
       blocks: [
-        { type: 'review', id: 'review', no: '03', en: 'REVIEW', title: ['고객이 직접 남긴 이야기'], desc: '실제 후기만, 작성일과 익명 표기로 게시합니다.',
+        { type: 'review', id: 'review', no: '03', en: 'REVIEW', title: ['고객이 직접 남긴 이야기'], desc: '네이버 플레이스 방문자 리뷰를 작성자와 방문일 기준으로 소개합니다.',
           reviews: [['review-1', '눈썹 디자인', '김*'], ['review-2', '입술 톤 디자인', '이*'], ['review-3', '아이라인 디자인', '박*'], ['review-4', '눈썹 디자인', '최*'], ['review-5', '리커렉션', '정*']] },
         { type: 'cta', bg: '#FBE9EE', title: ['나에게 어울리는 방향이', '궁금하다면.'] }
       ]

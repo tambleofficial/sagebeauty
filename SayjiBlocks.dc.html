@@ -56,15 +56,16 @@
       <div data-rv="1" style="display:flex;flex-wrap:wrap;justify-content:center;gap:20px">
         <sc-for list="{{ b.reviews }}" as="r" hint-placeholder-count="5">
           <article style="flex:0 0 clamp(108px,17vw,204px);display:flex;flex-direction:column;background:#FFFFFF;border:1px solid #EFE7E3">
-            <div style="position:relative;aspect-ratio:4/5;overflow:hidden;background:#F4EEEB"><image-slot id="{{ r.id }}" shape="rect" placeholder="REVIEW 4:5 — 실제 후기 이미지"></image-slot></div>
+            <div class="sj-review-visual" style="position:relative;aspect-ratio:4/5;overflow:hidden;background:#F4EEEB"><image-slot id="{{ r.id }}" shape="rect" placeholder="디자인 참고 이미지"></image-slot></div><span style="padding:12px 22px 0;font-size:11px;color:#7A706C">네이버 방문자 리뷰 · 사진은 디자인 참고용</span>
             <div style="display:flex;flex-direction:column;gap:16px;padding:22px 22px 24px;flex:1">
               <div style="display:flex;justify-content:space-between;align-items:center;gap:12px"><span style="font-size:14px;font-weight:600">{{ r.name }}</span><span style="font-family:Inter,sans-serif;font-size:12px;color:#9A8F8A">{{ r.date }}</span></div>
-              <p style="margin:0;font-size:15px;line-height:1.75;color:#121212;min-height:5.25em;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden">실제 고객 후기 원문이 들어갑니다.</p>
-              <span style="margin-top:auto;align-self:flex-start;font-size:12px;font-weight:500;color:#A86A55;border:1px solid #E9C2AE;padding:6px 10px">{{ r.program }}</span>
+              <p style="margin:0;font-size:15px;line-height:1.75;color:#121212;min-height:5.25em;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden">{{ r.text }}</p>
+              <a href="https://m.place.naver.com/place/2050630772/review/visitor" target="_blank" rel="noopener noreferrer" style="font-size:12px;color:#7A706C;text-decoration:underline">네이버 플레이스 원문 보기</a><span style="margin-top:auto;align-self:flex-start;font-size:12px;font-weight:500;color:#A86A55;border:1px solid #E9C2AE;padding:6px 10px">{{ r.program }}</span>
             </div>
           </article>
         </sc-for>
       </div>
+<div class="sj-review-controls"><span>옆으로 밀어 리뷰를 확인하세요</span><div><button type="button" aria-label="이전 리뷰" onClick="{{ b.rvPrev }}">←</button><button type="button" aria-label="다음 리뷰" onClick="{{ b.rvNext }}">→</button></div></div>
     </sc-if>
 
     <sc-if value="{{ b.isConsult }}" hint-placeholder-val="{{ false }}">
@@ -211,7 +212,7 @@ class Component extends DCLogic {
         lines: (b.title || []).map((text, i) => ({ text, d: String(i * 0.08) })),
         desc: b.desc || '', hasLink: !!b.link, linkHref: b.link ? b.link[1] : '', linkLabel: b.link ? b.link[0] : '', linkTarget: b.link && /^https?:/.test(b.link[1]) ? '_blank' : '_self',
         tiles: (b.tiles || []).map(([kr, en, id, ph], i) => ({ kr, en, id, ph: `${en} · 4:5 (1200×1500) — ${ph}`, d: String(i * 0.12), mt: mob || (b.tiles || []).length !== 3 ? '0px' : ['0px', '72px', '28px'][i] })),
-        reviews: (b.reviews || []).map(([id, program, name]) => ({ id, program, name, date: '2026.00.00' })),
+        reviews: window.SAYJI_REVIEWS.map((r, i) => ({ ...r, id: 'review-' + (i + 1) })),
         rvPrev: ev => { const el = ev.currentTarget.closest('section').querySelector('[data-rv]'); el && el.scrollBy({ left: -304, behavior: 'smooth' }); },
         rvNext: ev => { const el = ev.currentTarget.closest('section').querySelector('[data-rv]'); el && el.scrollBy({ left: 304, behavior: 'smooth' }); },
         items: (b.items || []).map(([no, kr, en, desc, href, cta], i, arr) => ({ no, kr, en, desc, href: href || '#', cta: cta || '바로가기', lineBg: i === arr.length - 1 ? 'linear-gradient(90deg,#E9C2AE,rgba(233,194,174,0))' : 'linear-gradient(90deg,#B97A63,#E9C2AE)' })),
