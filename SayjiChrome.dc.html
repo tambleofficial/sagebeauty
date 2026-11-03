@@ -9,6 +9,18 @@
 <x-dc>
 <helmet>
 <script src="./assets/media-map.js"></script>
+<style>
+html,body{overflow-x:clip;-webkit-text-size-adjust:100%}
+img,video{max-width:100%}
+@media (max-width:759px){
+  [style*="animation:inSilk"],[style*="animation: inSilk"],[style*="background-size:220% 220%"]{animation:none!important}
+  [style*="position:sticky"]:not([data-hero]){position:relative!important;top:auto!important}
+  [style*="backdrop-filter"]{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+  h1,h2,h3{word-break:keep-all;overflow-wrap:anywhere}
+  p{word-break:keep-all}
+}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
 </helmet>
 <div>
 <header ref="{{ headerRef }}" style="position:fixed;top:0;left:0;right:0;z-index:60;background:rgba(255,255,255,0);border-bottom:1px solid rgba(18,18,18,0);transition:background .5s ease,border-color .5s ease,backdrop-filter .5s ease">
@@ -152,7 +164,8 @@ class Component extends DCLogic {
       if (on !== this.hOn) {
         this.hOn = on;
         h.style.background = on ? 'rgba(255,255,255,.9)' : 'rgba(255,255,255,0)';
-        h.style.backdropFilter = h.style.webkitBackdropFilter = on ? 'blur(12px)' : 'none';
+        h.style.backdropFilter = h.style.webkitBackdropFilter = (on && window.innerWidth >= 760) ? 'blur(12px)' : 'none';
+        if (window.innerWidth < 760) h.style.background = on ? 'rgba(255,255,255,.97)' : 'rgba(255,255,255,0)';
         h.style.borderBottomColor = on ? '#F1EDEE' : 'rgba(18,18,18,0)';
       }
     }

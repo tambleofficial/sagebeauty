@@ -25,6 +25,10 @@
   var pm = document.querySelector('meta[name="sj-page"]'); var p = (pm ? pm.getAttribute('content') + ' ' : '') + decodeURIComponent(location.pathname + location.href);
   var map = Object.assign({}, common);
   Object.keys(pages).forEach(function(k){ if (p.indexOf(k) >= 0) Object.assign(map, pages[k]); });
+  var io = ('IntersectionObserver' in window) ? new IntersectionObserver(function(es){ es.forEach(function(e){ var el = e.target;
+      if (el.tagName === 'VIDEO') { if (e.isIntersecting) { if (el.preload !== 'auto') el.preload = 'auto'; var pp = el.play(); if (pp && pp.catch) pp.catch(function(){}); } else if (!el.paused) el.pause(); return; }
+      if (e.isIntersecting && el.__sjSrc) { el.setAttribute('src', el.__sjSrc); el.__sjSrc = null; io.unobserve(el); }
+    }); }, { rootMargin: '600px 0px' }) : null;
   function apply(){
     var slots = document.querySelectorAll('image-slot[id]');
     for (var i = 0; i < slots.length; i++) {
@@ -37,13 +41,13 @@
       if (/\.mp4$/i.test(f)) {
         var vd = document.createElement('video');
         vd.setAttribute('data-media-video', '1');
-        vd.src = f; vd.muted = true; vd.loop = true; vd.autoplay = true; vd.playsInline = true; vd.setAttribute('playsinline', ''); vd.preload = 'metadata';
+        vd.src = f; vd.muted = true; vd.defaultMuted = true; vd.setAttribute('muted', ''); vd.loop = true; vd.playsInline = true; vd.setAttribute('playsinline', ''); vd.preload = 'none';
         vd.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;pointer-events:none';
         if (host && getComputedStyle(host).position === 'static') host.style.position = 'relative';
         host && host.appendChild(vd);
-        var pr = vd.play(); if (pr && pr.catch) pr.catch(function(){});
+        if (io) io.observe(vd); else { vd.autoplay = true; var pr = vd.play(); if (pr && pr.catch) pr.catch(function(){}); }
       } else {
-        s.setAttribute('src', f);
+        if (io) { s.__sjSrc = f; io.observe(s); } else s.setAttribute('src', f);
       }
       s.style.transform = flip ? 'scaleX(-1)' : '';
     }
