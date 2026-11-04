@@ -1643,7 +1643,7 @@
       const r = registry.get(name);
       if (r.fetched) return;
       r.fetched = true;
-      const url = COMPONENT_DIR + "/" + encodeURIComponent(name) + ".dc.html?v=20261103-touch6";
+      const url = COMPONENT_DIR + "/" + encodeURIComponent(name) + ".dc.html?v=20261104-names7";
       const res = window.__resources;
       const pre = res ? res[url] : void 0;
       const target = typeof pre === "string" && pre ? pre : url;
