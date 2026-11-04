@@ -32,3 +32,20 @@
  [id^="director-"]{scroll-margin-top:88px}
 }
 .sj-review-controls{display:none}
+
+/* Inline mobile program / consultation panels; desktop structure remains intact. */
+.sj-inline-entry{display:contents}
+.sj-inline-panel{display:none}
+@media(max-width:759px){
+ .sj-inline-entry{display:block;width:100%;min-width:0}
+ .sj-inline-panel{display:block;padding:18px 0 26px}
+ .sj-inline-panel figure{width:100%}
+ .sj-inline-panel p{margin:18px 0 14px;font-size:15px;line-height:1.85;color:#4A4648}
+ .sj-inline-panel a{display:inline-block;font-size:14px;font-weight:600;border-bottom:1px solid #B97A63;padding-bottom:6px}
+ .sj-desktop-panel{display:none!important}
+ .sj-inline-trigger{width:100%!important;box-sizing:border-box!important;min-width:0;grid-template-columns:28px minmax(0,1fr)!important;gap:8px 12px!important}
+ #program .sj-inline-trigger>span:nth-child(3){font-size:clamp(25px,7.2vw,38px)!important;overflow-wrap:anywhere;min-width:0}
+ #program .sj-inline-trigger>span:nth-child(4){grid-column:2;font-size:13px!important;gap:8px!important;flex-wrap:wrap}
+ #program .sj-inline-trigger>span:nth-child(4)>span{width:14px!important}
+ #program>div>div:last-child>div,#consulting>div>div>div{width:100%!important;max-width:100%!important}
+}

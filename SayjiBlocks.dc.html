@@ -72,17 +72,17 @@
       <div style="display:flex;flex-wrap:wrap;gap:clamp(40px,6vw,96px);align-items:flex-start">
         <div style="flex:7 1 460px;min-width:0;display:flex;flex-direction:column;border-top:1px solid #E6DCD8">
           <sc-for list="{{ b.csteps }}" as="s" hint-placeholder-count="5">
-            <button onMouseEnter="{{ s.select }}" onClick="{{ s.select }}" style="all:unset;cursor:pointer;position:relative;display:grid;grid-template-columns:56px minmax(0,1fr);gap:16px;padding:clamp(24px,2.6vw,34px) 0;border-bottom:1px solid #EFE7E3">
+            <div class="sj-inline-entry"><button class="sj-inline-trigger" aria-expanded="{{ s.mobileOpen }}" onMouseEnter="{{ s.hover }}" onClick="{{ s.select }}" style="all:unset;cursor:pointer;position:relative;display:grid;grid-template-columns:56px minmax(0,1fr);gap:16px;padding:clamp(24px,2.6vw,34px) 0;border-bottom:1px solid #EFE7E3">
               <span style="position:absolute;left:0;bottom:-1px;height:1px;background:linear-gradient(90deg,#B97A63,#E9C2AE);width:{{ s.line }};transition:width .9s cubic-bezier(.2,.7,.2,1)"></span>
               <span style="font-family:Inter,sans-serif;font-size:13px;font-weight:500;letter-spacing:.1em;color:{{ s.noColor }};padding-top:6px;transition:color .5s">{{ s.no }}</span>
               <span style="display:flex;flex-direction:column;gap:10px">
                 <span style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap"><span style="font-size:clamp(20px,1.9vw,24px);font-weight:600;letter-spacing:-.03em;color:{{ s.color }};transition:color .5s">{{ s.kr }}</span><span style="font-family:Inter,sans-serif;font-size:11.5px;font-weight:500;letter-spacing:.2em;color:{{ s.enColor }};transition:color .5s">{{ s.en }}</span></span>
                 <span style="font-size:15.5px;line-height:1.75;color:{{ s.descColor }};transition:color .5s">{{ s.desc }}</span>
               </span>
-            </button>
+            </button><sc-if value="{{ s.mobileOpen }}"><div class="sj-inline-panel"><figure style="margin:0"><div style="position:relative;aspect-ratio:4/5;overflow:hidden;background:#F4EEEB"><image-slot id="mobile-m-consult-{{ s.no }}" shape="rect" placeholder="{{ s.ph }}"></image-slot></div></figure></div></sc-if></div>
           </sc-for>
         </div>
-        <figure style="flex:5 1 320px;min-width:0;margin:0;display:flex;flex-direction:column;gap:16px;position:sticky;top:110px">
+        <figure class="sj-desktop-panel" style="flex:5 1 320px;min-width:0;margin:0;display:flex;flex-direction:column;gap:16px;position:sticky;top:110px">
           <div style="position:relative;aspect-ratio:4/5;overflow:hidden;background:#F4EEEB">
             <sc-for list="{{ b.csteps }}" as="s" hint-placeholder-count="1">
               <div style="position:absolute;inset:0;opacity:{{ s.imgO }};transition:opacity .9s ease;pointer-events:{{ s.pe }}">
@@ -224,7 +224,7 @@ class Component extends DCLogic {
         itemCols: '48px minmax(0,1fr)',
         tile: b.tile ? { kr: b.tile[0], en: b.tile[1], id: b.tile[2], ph: `${b.tile[1]} · 4:5 (1200×1500) — ${b.tile[3]}` } : { kr: '', en: '', id: 'none-' + bi, ph: '' },
         ...(() => { const ci = this.state.cs[bi] ?? 0, it = b.items || []; return {
-          csteps: it.map(([no, kr, en, desc], i) => { const a = ci === i; return { no, kr, en, desc, select: () => this.setState(s => ({ cs: { ...s.cs, [bi]: i } })),
+          csteps: it.map(([no, kr, en, desc], i) => { const a = ci === i; return { no, kr, en, desc, mobileOpen: mob && a, hover: () => { if (!mob && !a) this.setState(s => ({ cs: { ...s.cs, [bi]: i } })); }, select: () => { if (!a) this.setState(s => ({ cs: { ...s.cs, [bi]: i } })); },
             line: a ? '100%' : '0%', enColor: a ? '#B97A63' : '#C4BBB7', color: a ? '#121212' : '#ADA39F', descColor: a ? '#4A4648' : '#BDB4B0', noColor: a ? '#B97A63' : '#C4BBB7',
             imgO: a ? 1 : 0, pe: a ? 'auto' : 'none', ph: 'STEP ' + no + ' · 4:5 — ' + kr + ' 장면' }; }),
           cActiveKr: it[ci] ? it[ci][1] : '', cActiveNo: it[ci] ? it[ci][0] : '' }; })(),

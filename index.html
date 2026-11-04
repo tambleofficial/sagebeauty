@@ -16,12 +16,12 @@
 <link rel="alternate" type="application/rss+xml" title="세이지뷰티" href="https://sayjibeauty.pages.dev/rss.xml">
 
 <meta name="sj-page" content="Main">
-<script src="./assets/media-map.js?v=20261103-touch6"></script>
+<script src="./assets/media-map.js?v=20261104-inline8"></script>
 <script src="./assets/reviews.js"></script>
-<link rel="stylesheet" href="./assets/mobile.css?v=20261103-touch6">
+<link rel="stylesheet" href="./assets/mobile.css?v=20261104-inline8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./support.js?v=20261103-touch6"></script>
+<script src="./support.js?v=20261104-inline8"></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BeautySalon","name":"세이지뷰티 SAYJI BEAUTY","url":"https://sayjibeauty.pages.dev/","telephone":"+82-10-7932-7927","address":{"@type":"PostalAddress","addressLocality":"대구","addressCountry":"KR"},"image":"https://sayjibeauty.pages.dev/assets/sb-logo.png"}</script>
 </head>
 <body>
@@ -32,7 +32,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;display=swap">
-<script src="./image-slot.js?v=20261103-touch6"></script>
+<script src="./image-slot.js?v=20261104-inline8"></script>
 <style>
 html{scroll-behavior:smooth}
 body{margin:0;background:#FFFFFF;color:#121212;font-family:Pretendard,'SUIT',-apple-system,sans-serif;-webkit-font-smoothing:antialiased;word-break:keep-all}
@@ -137,20 +137,20 @@ a:hover{color:#646164}
       <div style="flex:7 1 460px;min-width:0;display:flex;flex-direction:column">
         <div style="display:flex;flex-direction:column;border-top:1px solid #E6DCD8">
           <sc-for list="{{ programs }}" as="p" hint-placeholder-count="4">
-            <button onMouseEnter="{{ p.select }}" onClick="{{ p.select }}" style="all:unset;cursor:pointer;position:relative;display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:16px;align-items:center;padding:clamp(18px,2vw,26px) 0;border-bottom:1px solid #EFE7E3">
+            <div class="sj-inline-entry"><button class="sj-inline-trigger" aria-expanded="{{ p.mobileOpen }}" onMouseEnter="{{ p.hover }}" onClick="{{ p.select }}" style="all:unset;cursor:pointer;position:relative;display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:16px;align-items:center;padding:clamp(18px,2vw,26px) 0;border-bottom:1px solid #EFE7E3">
               <span style="position:absolute;left:0;bottom:-1px;height:1px;background:linear-gradient(90deg,#B97A63,#E9C2AE);width:{{ p.line }};transition:width .9s cubic-bezier(.2,.7,.2,1)"></span>
               <span style="font-family:Inter,sans-serif;font-size:12px;font-weight:500;letter-spacing:.1em;color:{{ p.noColor }};transition:color .5s">{{ p.no }}</span>
               <span style="font-family:Inter,sans-serif;font-weight:300;font-size:clamp(40px,5.4vw,82px);letter-spacing:-.055em;line-height:1;color:{{ p.color }};transition:color .6s ease">{{ p.en }}</span>
               <span style="display:flex;align-items:center;gap:12px;font-size:15px;font-weight:600;letter-spacing:-.02em;color:{{ p.color }};transition:color .6s ease"><span style="display:block;width:18px;height:1px;background:#B97A63;opacity:{{ p.dot }};transition:opacity .5s"></span>{{ p.kr }}</span>
-            </button>
+            </button><sc-if value="{{ p.mobileOpen }}"><div class="sj-inline-panel"><figure style="margin:0"><div style="position:relative;aspect-ratio:4/5;overflow:hidden;background:#F4EEEB"><image-slot id="mobile-m-program-{{ p.key }}" shape="rect" placeholder="{{ p.ph }}"></image-slot></div></figure><p>{{ p.desc }}</p><a href="/program">프로그램 자세히 보기 →</a></div></sc-if></div>
           </sc-for>
         </div>
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:24px;flex-wrap:wrap;padding-top:32px">
+        <div class="sj-desktop-panel" style="display:flex;justify-content:space-between;align-items:flex-start;gap:24px;flex-wrap:wrap;padding-top:32px">
           <p style="margin:0;font-size:17px;line-height:1.85;color:#4A4648;max-width:460px;min-height:3.7em">{{ activeDesc }}</p>
           <a href="/program" style="align-self:flex-start;display:inline-flex;align-items:center;gap:12px;font-size:14px;font-weight:600;letter-spacing:-.01em;padding-bottom:6px;border-bottom:1px solid #B97A63;transition:color .3s" style-hover="color:#B97A63">프로그램 자세히 보기<span style="font-family:Inter,sans-serif;font-weight:400">→</span></a>
         </div>
       </div>
-      <figure style="flex:5 1 320px;min-width:0;margin:0;display:flex;flex-direction:column;gap:16px;position:sticky;top:110px">
+      <figure class="sj-desktop-panel" style="flex:5 1 320px;min-width:0;margin:0;display:flex;flex-direction:column;gap:16px;position:sticky;top:110px">
         <div style="position:relative">
           <div style="position:absolute;inset:-14% -18%;background:radial-gradient(50% 50% at 50% 50%,rgba(233,194,174,.38),rgba(246,228,221,.25) 45%,rgba(255,255,255,0) 72%);pointer-events:none"></div>
           <div style="position:relative;aspect-ratio:4/5;overflow:hidden;background:#F4EEEB">
@@ -257,17 +257,17 @@ a:hover{color:#646164}
     <div style="display:flex;flex-wrap:wrap;gap:clamp(40px,6vw,96px);align-items:flex-start">
       <div style="flex:7 1 460px;min-width:0;display:flex;flex-direction:column;border-top:1px solid #E6DCD8">
         <sc-for list="{{ steps }}" as="s" hint-placeholder-count="5">
-          <button onMouseEnter="{{ s.select }}" onClick="{{ s.select }}" style="all:unset;cursor:pointer;position:relative;display:grid;grid-template-columns:56px minmax(0,1fr);gap:16px;padding:clamp(24px,2.6vw,34px) 0;border-bottom:1px solid #EFE7E3">
+          <div class="sj-inline-entry"><button class="sj-inline-trigger" aria-expanded="{{ s.mobileOpen }}" onMouseEnter="{{ s.hover }}" onClick="{{ s.select }}" style="all:unset;cursor:pointer;position:relative;display:grid;grid-template-columns:56px minmax(0,1fr);gap:16px;padding:clamp(24px,2.6vw,34px) 0;border-bottom:1px solid #EFE7E3">
             <span style="position:absolute;left:0;bottom:-1px;height:1px;background:linear-gradient(90deg,#B97A63,#E9C2AE);width:{{ s.line }};transition:width .9s cubic-bezier(.2,.7,.2,1)"></span>
             <span style="font-family:Inter,sans-serif;font-size:13px;font-weight:500;letter-spacing:.1em;color:{{ s.noColor }};padding-top:6px;transition:color .5s">{{ s.no }}</span>
             <span style="display:flex;flex-direction:column;gap:10px">
               <span style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap"><span style="font-size:clamp(20px,1.9vw,24px);font-weight:600;letter-spacing:-.03em;color:{{ s.color }};transition:color .5s">{{ s.kr }}</span><span style="font-family:Inter,sans-serif;font-size:11.5px;font-weight:500;letter-spacing:.2em;color:{{ s.enColor }};transition:color .5s">{{ s.en }}</span></span>
               <span style="font-size:15.5px;line-height:1.75;color:{{ s.descColor }};transition:color .5s">{{ s.desc }}</span>
             </span>
-          </button>
+          </button><sc-if value="{{ s.mobileOpen }}"><div class="sj-inline-panel"><figure style="margin:0"><div style="position:relative;aspect-ratio:4/5;overflow:hidden;background:#F4EEEB"><image-slot id="mobile-m-consult-{{ s.no }}" shape="rect" placeholder="{{ s.ph }}"></image-slot></div></figure></div></sc-if></div>
         </sc-for>
       </div>
-      <figure style="flex:5 1 320px;min-width:0;margin:0;display:flex;flex-direction:column;gap:16px;position:sticky;top:110px">
+      <figure class="sj-desktop-panel" style="flex:5 1 320px;min-width:0;margin:0;display:flex;flex-direction:column;gap:16px;position:sticky;top:110px">
         <div style="position:relative;aspect-ratio:4/5;overflow:hidden;background:#F4EEEB">
           <sc-for list="{{ steps }}" as="s" hint-placeholder-count="1">
             <div style="position:absolute;inset:0;opacity:{{ s.imgO }};transition:opacity .9s ease;pointer-events:{{ s.pe }}">
@@ -410,7 +410,7 @@ class Component extends DCLogic {
       ['correction', 'CORRECTION', '리커렉션', '기존 반영구의 잔흔·색감·형태를 먼저 확인하고 가능한 방향을 상담합니다.']
     ];
     const programs = progData.map(([key, en, kr, desc], i) => { const a = st.program === i; return { key, en, kr, desc, no: '0' + (i + 1),
-      select: () => this.setState({ program: i }), line: a ? '100%' : '0%', noColor: a ? '#B97A63' : '#B5ACA8',
+      mobileOpen: mob && a, hover: () => { if (!mob && !a) this.setState({ program: i }); }, select: () => { if (!a) this.setState({ program: i }); }, line: a ? '100%' : '0%', noColor: a ? '#B97A63' : '#B5ACA8',
       color: a ? '#121212' : '#CBC2BE', dot: a ? 1 : 0,
       imgO: a ? 1 : 0, imgS: a ? 1 : 1.025, pe: a ? 'auto' : 'none', ph: `PROGRAM ${en} 4:5 — ${kr} 대표 이미지` }; });
     const setFilter = f => { if (f === st.filter) return; this.setState({ fading: true }); clearTimeout(this.ft); this.ft = setTimeout(() => this.setState({ filter: f, fading: false }), 380); };
@@ -426,7 +426,7 @@ class Component extends DCLogic {
       ['DETAIL', '세부 디자인 확인', '드로잉으로 길이·두께·색감을 확인한 뒤 진행합니다.'],
       ['GUIDE', '진행 후 안내', '관리 방법과 리터치 일정을 안내합니다.']
     ];
-    const steps = stepData.map(([en, kr, desc], i) => { const a = st.step === i; return { no: '0' + (i + 1), en, kr, desc, select: () => this.setState({ step: i }),
+    const steps = stepData.map(([en, kr, desc], i) => { const a = st.step === i; return { no: '0' + (i + 1), en, kr, desc, mobileOpen: mob && a, hover: () => { if (!mob && !a) this.setState({ step: i }); }, select: () => { if (!a) this.setState({ step: i }); },
       line: a ? '100%' : '0%', enColor: a ? '#B97A63' : '#C4BBB7', color: a ? '#121212' : '#ADA39F', descColor: a ? '#4A4648' : '#BDB4B0', noColor: a ? '#B97A63' : '#C4BBB7',
       imgO: a ? 1 : 0, pe: a ? 'auto' : 'none', ph: `STEP 0${i + 1} · 4:5 — ${kr} 장면` }; });
     return {

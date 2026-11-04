@@ -32,7 +32,7 @@
   function apply(){
     var slots = document.querySelectorAll('image-slot[id]');
     for (var i = 0; i < slots.length; i++) {
-      var s = slots[i], v = map[s.id]; if (!v) continue;
+      var s = slots[i], v = map[s.id] || map[s.id.replace(/^mobile-/, '')]; if (!v) continue;
       var parts = v.split('|'), f = ((md() || {})[parts[0]]) || (M + parts[0]), flip = parts[1] === 'flip';
       if (s.getAttribute('data-media') === f) continue;
       s.setAttribute('data-media', f);
