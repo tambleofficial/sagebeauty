@@ -16,13 +16,13 @@
 <link rel="alternate" type="application/rss+xml" title="세이지뷰티" href="https://sayjibeauty.co.kr/rss.xml">
 
 <meta name="sj-page" content="Main">
-<script src="./assets/media-map.js?v=20261112-perf3"></script>
-<script src="./assets/reviews.js?v=20261112-perf3"></script>
-<script src="./assets/sj-cms.js?v=20261112-perf3"></script>
-<link rel="stylesheet" href="./assets/mobile.css?v=20261112-perf3">
+<script src="./assets/media-map.js?v=20261112-perf4"></script>
+<script src="./assets/reviews.js?v=20261112-perf4"></script>
+<script src="./assets/sj-cms.js?v=20261112-perf4"></script>
+<link rel="stylesheet" href="./assets/mobile.css?v=20261112-perf4">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./support.js?v=20261112-perf3"></script>
+<script src="./support.js?v=20261112-perf4"></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BeautySalon","name":"세이지뷰티 SAYJI BEAUTY","url":"https://sayjibeauty.co.kr/","telephone":"+82-10-7932-7927","address":{"@type":"PostalAddress","addressLocality":"대구","addressCountry":"KR"},"image":"https://sayjibeauty.co.kr/assets/sb-logo.png"}</script>
 </head>
 <body>
@@ -33,7 +33,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;display=swap">
-<script src="./image-slot.js?v=20261112-perf3"></script>
+<script src="./image-slot.js?v=20261112-perf4"></script>
 <style>
 html{scroll-behavior:smooth}
 body{margin:0;background:#FFFFFF;color:#121212;font-family:Pretendard,'SUIT',-apple-system,sans-serif;-webkit-font-smoothing:antialiased;word-break:keep-all}
@@ -331,7 +331,7 @@ a:hover{color:#646164}
 <dc-import name="SayjiFooter" hint-size="100%,900px"></dc-import>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;heroVideo&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;assets/media/hero.mp4&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Hero&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;heroVideo&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;assets/media/hero-v2.mp4&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Hero&quot;}}">
 class Component extends DCLogic {
   state = { w: 1280, h: 800, program: 0, filter: 'ALL', fading: false, hoverCase: null, step: 0 };
   rootRef = React.createRef(); heroSticky = React.createRef(); lightRef = React.createRef(); slitRef = React.createRef(); logoRef = React.createRef(); hintRef = React.createRef(); videoRef = React.createRef(); videoEl = React.createRef();
@@ -348,7 +348,7 @@ class Component extends DCLogic {
       this.setState({ w, h });
       this.heroFrame();
     };
-    this.heroSrc = () => (window.innerWidth < 760 ? 'assets/media/hero-720.mp4' : (this.props.heroVideo || 'assets/media/hero.mp4'));
+    this.heroSrc = () => (window.innerWidth < 760 ? 'assets/media/hero-720.mp4' : (this.props.heroVideo || 'assets/media/hero-v2.mp4'));
     this.heroLoad = () => { const ve = this.videoEl.current; if (ve && !ve.getAttribute('src')) { ve.preload = 'auto'; ve.src = this.heroSrc(); } };
     this.onLoadHero = () => setTimeout(this.heroLoad, 200);
     if (document.readyState === 'complete') this.onLoadHero(); else window.addEventListener('load', this.onLoadHero, { once: true });
@@ -435,7 +435,7 @@ class Component extends DCLogic {
       line: a ? '100%' : '0%', enColor: a ? '#B97A63' : '#C4BBB7', color: a ? '#121212' : '#ADA39F', descColor: a ? '#4A4648' : '#BDB4B0', noColor: a ? '#B97A63' : '#C4BBB7',
       imgO: a ? 1 : 0, pe: a ? 'auto' : 'none', ph: `STEP 0${i + 1} · 4:5 — ${kr} 장면` }; });
     return {
-      rootRef: this.rootRef, hintRef: this.hintRef, videoRef: this.videoRef, videoEl: this.videoEl, heroVideo: this.props.heroVideo || 'assets/media/hero.mp4', heroSticky: this.heroSticky, lightRef: this.lightRef, slitRef: this.slitRef, logoRef: this.logoRef,
+      rootRef: this.rootRef, hintRef: this.hintRef, videoRef: this.videoRef, videoEl: this.videoEl, heroVideo: this.props.heroVideo || 'assets/media/hero-v2.mp4', heroSticky: this.heroSticky, lightRef: this.lightRef, slitRef: this.slitRef, logoRef: this.logoRef,
       heroMove: e => { const r = e.currentTarget.getBoundingClientRect(); this.mx = (e.clientX - r.left) / r.width - 0.5; this.my = (e.clientY - r.top) / r.height - 0.5; if (!this.mvRaf) this.mvRaf = requestAnimationFrame(() => { this.mvRaf = 0; this.heroFrame(); }); },
       orbitLabels: st.w < 760 ? 'none' : 'block', stageScale: Math.min(st.w / (st.w < 760 ? 760 : 1280), st.h / 800).toFixed(4), g3: mob ? 'minmax(0,1fr)' : 'repeat(3,minmax(0,1fr))', span2: mob ? 'auto' : 'span 2', g4: mob ? 'repeat(2,minmax(0,1fr))' : 'repeat(4,minmax(0,1fr))',
       ...(() => { const f = tiles([['눈썹', 'BROW', '눈썹 중심 얼굴 크롭'], ['아이라인', 'EYELINE', '눈매 중심 크롭'], ['입술', 'LIP', '입술 중심 크롭']], 'm-face');
