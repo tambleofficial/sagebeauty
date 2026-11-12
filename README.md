@@ -10,8 +10,8 @@ Workers & Pages → Create → Pages → Connect to Git → 저장소 선택
 - Build output directory: /
 
 ## 3. 도메인 교체 (필수)
-현재 주소는 임시로 https://sayjibeauty.pages.dev 로 들어가 있습니다.
-실제 도메인 연결 후 아래 파일에서 https://sayjibeauty.pages.dev 를 실제 도메인으로 일괄 변경하세요.
+현재 주소는 임시로 https://sayjibeauty.co.kr 로 들어가 있습니다.
+실제 도메인 연결 후 아래 파일에서 https://sayjibeauty.co.kr 를 실제 도메인으로 일괄 변경하세요.
 - index.html, brand.html, program.html, correction.html, cases.html, contact.html (canonical / og)
 - sitemap.xml, rss.xml, robots.txt
 

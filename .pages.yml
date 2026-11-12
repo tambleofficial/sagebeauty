@@ -1,0 +1,39 @@
+# 세이지뷰티 Pages CMS 설정
+# 화면의 문구·사진은 편집 모드(https://sayjibeauty.co.kr/edit)에서 바로 고치고, 방문자 후기 목록은 여기서 관리해요.
+media:
+  - name: uploads
+    label: "사진"
+    input: assets/uploads
+    output: /assets/uploads
+    rename: safe
+    extensions: [jpg, jpeg, png, webp]
+
+content:
+  - name: reviews
+    label: "방문자 후기"
+    description: "홈 화면 '방문자 후기'에 위에서부터 순서대로 보여요. 실제 네이버 방문자 후기만 옮겨 주세요."
+    type: file
+    path: content/reviews.json
+    format: json
+    fields:
+      - name: items
+        label: "후기 목록"
+        type: object
+        list:
+          max: 40
+          collapsible:
+            collapsed: true
+            summary: "{index}. {name} · {program}"
+        fields:
+          - name: name
+            label: "작성자 (네이버 닉네임)"
+            type: string
+          - name: date
+            label: "날짜 (예: 2026.10.26)"
+            type: string
+          - name: program
+            label: "받은 시술"
+            type: string
+          - name: text
+            label: "후기 내용"
+            type: text

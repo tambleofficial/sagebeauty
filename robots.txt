@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://sayjibeauty.pages.dev/sitemap.xml
+Sitemap: https://sayjibeauty.co.kr/sitemap.xml

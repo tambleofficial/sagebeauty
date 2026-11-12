@@ -3,26 +3,27 @@
 <head>
 <title>세이지뷰티 SAYJI BEAUTY | 대구 눈썹문신·입술·아이라인 퍼스널 PMU</title>
 <meta name="description" content="대구 세이지뷰티. 얼굴 전체의 균형을 보고 눈썹·입술·아이라인을 1:1로 상담하고 디자인하는 퍼스널 PMU 스튜디오입니다.">
-<link rel="canonical" href="https://sayjibeauty.pages.dev/">
+<link rel="canonical" href="https://sayjibeauty.co.kr/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="세이지뷰티 SAYJI BEAUTY">
 <meta property="og:title" content="세이지뷰티 SAYJI BEAUTY | 대구 눈썹문신·입술·아이라인 퍼스널 PMU">
 <meta property="og:description" content="대구 세이지뷰티. 얼굴 전체의 균형을 보고 눈썹·입술·아이라인을 1:1로 상담하고 디자인하는 퍼스널 PMU 스튜디오입니다.">
-<meta property="og:url" content="https://sayjibeauty.pages.dev/">
-<meta property="og:image" content="https://sayjibeauty.pages.dev/assets/sb-logo.png">
+<meta property="og:url" content="https://sayjibeauty.co.kr/">
+<meta property="og:image" content="https://sayjibeauty.co.kr/assets/sb-logo.png">
 <meta property="og:locale" content="ko_KR">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/assets/sb-mono.png">
-<link rel="alternate" type="application/rss+xml" title="세이지뷰티" href="https://sayjibeauty.pages.dev/rss.xml">
+<link rel="alternate" type="application/rss+xml" title="세이지뷰티" href="https://sayjibeauty.co.kr/rss.xml">
 
 <meta name="sj-page" content="Main">
-<script src="./assets/media-map.js?v=20261104-directors9"></script>
-<script src="./assets/reviews.js"></script>
-<link rel="stylesheet" href="./assets/mobile.css?v=20261104-directors9">
+<script src="./assets/media-map.js?v=20261112-perf1"></script>
+<script src="./assets/reviews.js?v=20261112-perf1"></script>
+<script src="./assets/sj-cms.js?v=20261112-perf1"></script>
+<link rel="stylesheet" href="./assets/mobile.css?v=20261112-perf1">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./support.js?v=20261104-directors9"></script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BeautySalon","name":"세이지뷰티 SAYJI BEAUTY","url":"https://sayjibeauty.pages.dev/","telephone":"+82-10-7932-7927","address":{"@type":"PostalAddress","addressLocality":"대구","addressCountry":"KR"},"image":"https://sayjibeauty.pages.dev/assets/sb-logo.png"}</script>
+<script src="./support.js?v=20261112-perf1"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BeautySalon","name":"세이지뷰티 SAYJI BEAUTY","url":"https://sayjibeauty.co.kr/","telephone":"+82-10-7932-7927","address":{"@type":"PostalAddress","addressLocality":"대구","addressCountry":"KR"},"image":"https://sayjibeauty.co.kr/assets/sb-logo.png"}</script>
 </head>
 <body>
 
@@ -32,7 +33,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;display=swap">
-<script src="./image-slot.js?v=20261104-directors9"></script>
+<script src="./image-slot.js?v=20261112-perf1"></script>
 <style>
 html{scroll-behavior:smooth}
 body{margin:0;background:#FFFFFF;color:#121212;font-family:Pretendard,'SUIT',-apple-system,sans-serif;-webkit-font-smoothing:antialiased;word-break:keep-all}
@@ -85,7 +86,7 @@ a:hover{color:#646164}
     <span ref="{{ hintRef }}" style="position:absolute;left:50%;bottom:32px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:10px;font-family:Inter,sans-serif;font-size:10px;letter-spacing:.32em;color:#7A706C;animation:inFade 1s ease 2.4s both;z-index:2">SCROLL<span style="width:1px;height:36px;background:#B97A63;transform-origin:top;animation:inDrip 2.4s ease-in-out 3s infinite"></span></span>
     <div ref="{{ videoRef }}" style="position:absolute;inset:0;z-index:3;opacity:0;clip-path:inset(50% 50% 50% 50%);will-change:clip-path,opacity;background:#F6EEEA">
       <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,#F3E9E4 0 14px,#F8F1EE 14px 28px);display:flex;align-items:center;justify-content:center"><span style="font-family:ui-monospace,Menlo,monospace;font-size:13px;letter-spacing:.06em;color:#8C7F7A;background:#FFFFFF;padding:10px 14px">HERO VIDEO — {{ heroVideo }} · 16:9 · 1920×1080 · muted loop</span></div>
-      <video ref="{{ videoEl }}" src="{{ heroVideo }}" autoplay="" muted="" loop="" playsInline="" preload="metadata" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></video>
+      <video ref="{{ videoEl }}" muted="" loop="" playsInline="" preload="none" poster="assets/media/hero.poster.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></video>
       <div style="position:absolute;left:0;right:0;bottom:0;height:30%;background:linear-gradient(0deg,rgba(18,18,18,.25),rgba(18,18,18,0));pointer-events:none"></div>
     </div>
   </div>
@@ -347,6 +348,10 @@ class Component extends DCLogic {
       this.setState({ w, h });
       this.heroFrame();
     };
+    this.heroSrc = () => (window.innerWidth < 760 ? 'assets/media/hero-720.mp4' : (this.props.heroVideo || 'assets/media/hero.mp4'));
+    this.heroLoad = () => { const ve = this.videoEl.current; if (ve && !ve.getAttribute('src')) { ve.preload = 'auto'; ve.src = this.heroSrc(); } };
+    this.onLoadHero = () => setTimeout(this.heroLoad, 200);
+    if (document.readyState === 'complete') this.onLoadHero(); else window.addEventListener('load', this.onLoadHero, { once: true });
     this.onResize(); window.addEventListener('resize', this.onResize);
     this.onScroll = () => {
       if (this.scrollRaf) return;
@@ -384,7 +389,7 @@ class Component extends DCLogic {
       if (mobH) { vid.style.willChange = 'transform,opacity'; vid.style.clipPath = 'none'; vid.style.opacity = cl(r * 1.6).toFixed(3); vid.style.transform = `scale(${(1.08 - 0.08 * e).toFixed(4)})`; }
       else { vid.style.clipPath = `inset(${y0.toFixed(1)}px ${(vw - x0 - w).toFixed(1)}px ${(vh - y0 - h).toFixed(1)}px ${x0.toFixed(1)}px round ${rad.toFixed(1)}px)`; vid.style.opacity = cl(r * 5).toFixed(3); }
       const ve = this.videoEl.current;
-      if (ve) { ve.muted = true; ve.defaultMuted = true; ve.loop = true; ve.playsInline = true; if (r > 0 && q < 1.99 && ve.paused) ve.play && ve.play().catch(() => {}); else if ((r <= 0 || q >= 1.99) && !ve.paused) ve.pause(); }
+      if (ve) { ve.muted = true; ve.defaultMuted = true; ve.loop = true; ve.playsInline = true; if (r > 0 && !ve.getAttribute('src')) this.heroLoad(); if (r > 0 && q < 1.99 && ve.paused) ve.play && ve.play().catch(() => {}); else if ((r <= 0 || q >= 1.99) && !ve.paused) ve.pause(); }
     }
     const op = cl((q - 1.5) / 0.5);
     if (mobH) { st.style.opacity = (1 - op).toFixed(3); slit.style.opacity = 0; }
