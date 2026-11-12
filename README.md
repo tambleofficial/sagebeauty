@@ -25,3 +25,7 @@ Workers & Pages → Create → Pages → Connect to Git → 저장소 선택
 ## 참고
 - 영상/이미지: assets/media (Cloudflare Pages 파일당 25MB 제한)
 - 이미지 교체: 같은 파일명으로 assets/media 에 덮어쓰기
+
+## 관리자
+- 편집 모드: /edit (비밀번호 로그인)
+- Pages CMS: 방문자 후기 목록 (content/reviews.json)
