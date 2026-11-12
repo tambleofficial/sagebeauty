@@ -129,7 +129,7 @@
               <span style="font-size:clamp(20px,1.8vw,23px);font-weight:600;letter-spacing:-.03em">{{ it.kr }}</span>
               <span style="font-size:15.5px;line-height:1.75;color:#4A4648;min-height:3.5em">{{ it.desc }}</span>
             </div>
-            <a href="{{ it.href }}" style="align-self:flex-start;display:inline-flex;align-items:center;gap:10px;font-size:14px;font-weight:600;padding-bottom:6px;border-bottom:1px solid #B97A63;transition:color .3s" style-hover="color:#B97A63">{{ it.cta }}<span style="font-family:Inter,sans-serif;font-weight:400">→</span></a>
+            <a href="{{ it.href }}" target="{{ it.target }}" rel="noopener" style="align-self:flex-start;display:inline-flex;align-items:center;gap:10px;font-size:14px;font-weight:600;padding-bottom:6px;border-bottom:1px solid #B97A63;transition:color .3s" style-hover="color:#B97A63">{{ it.cta }}<span style="font-family:Inter,sans-serif;font-weight:400">→</span></a>
           </div>
         </sc-for>
       </div>
@@ -156,7 +156,7 @@
             <sc-for list="{{ b.lines }}" as="l" hint-placeholder-count="1"><span style="display:block;overflow:hidden"><span data-m="a" data-d="{{ l.d }}" style="display:block">{{ l.text }}</span></span></sc-for>
           </h2>
           <p style="margin:0;font-size:17px;line-height:1.85;color:#4A4648;max-width:340px">{{ b.desc }}</p>
-          <a href="#" style="align-self:flex-start;display:inline-flex;align-items:center;gap:12px;font-size:14px;font-weight:600;padding-bottom:6px;border-bottom:1px solid #B97A63;transition:color .3s" style-hover="color:#B97A63">톡톡으로 문의하기<span style="font-family:Inter,sans-serif;font-weight:400">→</span></a>
+          <a href="https://talk.naver.com/profile/wozy9yp" target="_blank" rel="noopener" style="align-self:flex-start;display:inline-flex;align-items:center;gap:12px;font-size:14px;font-weight:600;padding-bottom:6px;border-bottom:1px solid #B97A63;transition:color .3s" style-hover="color:#B97A63">톡톡으로 문의하기<span style="font-family:Inter,sans-serif;font-weight:400">→</span></a>
         </div>
         <div style="flex:7 1 460px;min-width:0;border-top:1px solid #E6DCD8">
           <sc-for list="{{ b.faq }}" as="f" hint-placeholder-count="4">
@@ -220,7 +220,7 @@ class Component extends DCLogic {
         reviews: window.SAYJI_REVIEWS.map((r, i) => ({ ...r, id: 'review-' + (i + 1) })),
         rvPrev: ev => { const el = ev.currentTarget.closest('section').querySelector('[data-rv]'); el && el.scrollBy({ left: -304, behavior: 'smooth' }); },
         rvNext: ev => { const el = ev.currentTarget.closest('section').querySelector('[data-rv]'); el && el.scrollBy({ left: 304, behavior: 'smooth' }); },
-        items: (b.items || []).map(([no, kr, en, desc, href, cta], i, arr) => ({ no, kr, en, desc, href: href || '#', cta: cta || '바로가기', lineBg: i === arr.length - 1 ? 'linear-gradient(90deg,#E9C2AE,rgba(233,194,174,0))' : 'linear-gradient(90deg,#B97A63,#E9C2AE)' })),
+        items: (b.items || []).map(([no, kr, en, desc, href, cta], i, arr) => ({ no, kr, en, desc, href: href || '#', target: /^https?:/.test(href || '') ? '_blank' : '_self', cta: cta || '바로가기', lineBg: i === arr.length - 1 ? 'linear-gradient(90deg,#E9C2AE,rgba(233,194,174,0))' : 'linear-gradient(90deg,#B97A63,#E9C2AE)' })),
         itemCols: '48px minmax(0,1fr)',
         tile: b.tile ? { kr: b.tile[0], en: b.tile[1], id: b.tile[2], ph: `${b.tile[1]} · 4:5 (1200×1500) — ${b.tile[3]}` } : { kr: '', en: '', id: 'none-' + bi, ph: '' },
         ...(() => { const ci = this.state.cs[bi] ?? 0, it = b.items || []; return {

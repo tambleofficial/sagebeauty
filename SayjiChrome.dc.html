@@ -39,7 +39,7 @@ img,video{max-width:100%}
       </nav>
     </sc-if>
     <div style="display:flex;gap:12px;align-items:center;flex-shrink:0">
-      <sc-if value="{{ showBook }}" hint-placeholder-val="{{ true }}"><a href="/contact#reservation" data-gloss="1" data-cursor="BOOK" style="position:relative;overflow:hidden;background:#121212;color:#FFFFFF;font-family:Inter,sans-serif;font-size:11px;font-weight:500;letter-spacing:.2em;padding:14px 22px;white-space:nowrap;border-radius:999px" style-hover="color:#FFFFFF;background:#2A2829">RESERVATION</a></sc-if>
+      <sc-if value="{{ showBook }}" hint-placeholder-val="{{ true }}"><a href="https://booking.naver.com/booking/13/bizes/1446834/items/7255844" target="_blank" rel="noopener" data-gloss="1" data-cursor="BOOK" style="position:relative;overflow:hidden;background:#121212;color:#FFFFFF;font-family:Inter,sans-serif;font-size:11px;font-weight:500;letter-spacing:.2em;padding:14px 22px;white-space:nowrap;border-radius:999px" style-hover="color:#FFFFFF;background:#2A2829">RESERVATION</a></sc-if>
       <sc-if value="{{ showMenuBtn }}" hint-placeholder-val="{{ false }}">
         <button onClick="{{ toggleMenu }}" style="width:44px;height:44px;border-radius:50%;border:1px solid #E7E2E3;background:#FFFFFF;display:flex;flex-direction:column;gap:5px;align-items:center;justify-content:center;cursor:pointer;padding:0">
           <span style="width:16px;height:1px;background:#121212"></span><span style="width:16px;height:1px;background:#121212"></span>
@@ -66,7 +66,7 @@ img,video{max-width:100%}
 <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
   <div style="position:fixed;right:22px;top:50%;transform:translateY(-50%);z-index:50;display:flex;flex-direction:column;gap:8px;align-items:flex-end">
     <sc-for list="{{ quick }}" as="q" hint-placeholder-count="4">
-      <a href="{{ q.href }}" onMouseEnter="{{ q.enter }}" onMouseLeave="{{ q.leave }}" style="display:flex;align-items:center;gap:8px;color:#121212" style-hover="color:#121212">
+      <a href="{{ q.href }}" target="{{ q.target }}" rel="noopener" onMouseEnter="{{ q.enter }}" onMouseLeave="{{ q.leave }}" style="display:flex;align-items:center;gap:8px;color:#121212" style-hover="color:#121212">
         <span style="height:48px;display:flex;align-items:center;max-width:{{ q.labelW }};opacity:{{ q.labelO }};overflow:hidden;white-space:nowrap;background:#FFFFFF;border:1px solid #F3A7B9;border-radius:999px;font-size:13px;font-weight:500;transition:max-width .36s cubic-bezier(.2,.7,.2,1),opacity .3s ease;box-sizing:border-box"><span style="padding:0 18px">{{ q.label }}</span></span>
         <span style="width:48px;height:48px;border-radius:50%;background:{{ q.bg }};border:1px solid {{ q.border }};display:flex;align-items:center;justify-content:center;transition:background .3s,border-color .3s;box-sizing:border-box;flex-shrink:0">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#121212" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="{{ q.d }}"></path></svg>
@@ -78,8 +78,8 @@ img,video{max-width:100%}
 
 <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
   <div style="position:fixed;left:0;right:0;bottom:0;z-index:50;display:grid;grid-template-columns:1fr 1fr;background:#FFFFFF">
-    <a href="/contact#reservation" style="height:58px;display:flex;align-items:center;justify-content:center;background:#121212;color:#FFFFFF;font-size:15px;font-weight:500">예약하기</a>
-    <a href="/contact#naver" style="height:58px;display:flex;align-items:center;justify-content:center;background:#FBE9EE;color:#121212;font-size:15px;font-weight:500;border-top:1px solid #F3A7B9">상담하기</a>
+    <a href="https://booking.naver.com/booking/13/bizes/1446834/items/7255844" target="_blank" rel="noopener" style="height:58px;display:flex;align-items:center;justify-content:center;background:#121212;color:#FFFFFF;font-size:15px;font-weight:500">예약하기</a>
+    <a href="https://talk.naver.com/profile/wozy9yp" target="_blank" rel="noopener" style="height:58px;display:flex;align-items:center;justify-content:center;background:#FBE9EE;color:#121212;font-size:15px;font-weight:500;border-top:1px solid #F3A7B9">상담하기</a>
   </div>
 </sc-if>
 
@@ -249,9 +249,9 @@ class Component extends DCLogic {
     };
     const nav = [['01', 'BRAND', '/brand', 'brand'], ['02', 'PROGRAM', '/program', 'program'], ['03', 'CORRECTION', '/correction', 'correction'], ['04', 'CASES', '/cases', 'cases'], ['05', 'CONTACT', '/contact', 'contact']]
       .map(([no, label, href, key]) => ({ no, label, href, line: key === active ? '100%' : '0%' }));
-    const quick = [['book', '예약', '/contact#reservation'], ['talk', '톡톡', '/contact#naver'], ['call', '전화', 'tel:01079327927'], ['map', '위치', '/contact#map']].map(([k, label, href]) => {
+    const quick = [['book', '예약', 'https://booking.naver.com/booking/13/bizes/1446834/items/7255844'], ['talk', '톡톡', 'https://talk.naver.com/profile/wozy9yp'], ['call', '전화', 'tel:01079327927'], ['map', '위치', 'https://naver.me/G28M0ltd']].map(([k, label, href]) => {
       const h = st.qa === k;
-      return { label, href, d: icons[k], enter: () => this.setState({ qa: k }), leave: () => this.setState({ qa: null }),
+      return { label, href, target: /^https?:/.test(href) ? '_blank' : '_self', d: icons[k], enter: () => this.setState({ qa: k }), leave: () => this.setState({ qa: null }),
         labelW: h ? '120px' : '0px', labelO: h ? 1 : 0, bg: h ? '#FBE9EE' : '#FFFFFF', border: h ? '#F3A7B9' : '#E7E2E3' };
     });
     return {

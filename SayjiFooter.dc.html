@@ -27,7 +27,7 @@
           <span style="font-size:16px;font-weight:600;color:#121212">예약 · 상담</span>
           <div style="display:flex;gap:10px 24px;flex-wrap:wrap">
             <sc-for list="{{ naver }}" as="s" hint-placeholder-count="3">
-              <a href="{{ s.href }}" onMouseEnter="{{ s.enter }}" onMouseLeave="{{ s.leave }}" style="display:flex;align-items:center;gap:12px;color:#121212" style-hover="color:#121212">
+              <a href="{{ s.href }}" target="_blank" rel="noopener" onMouseEnter="{{ s.enter }}" onMouseLeave="{{ s.leave }}" style="display:flex;align-items:center;gap:12px;color:#121212" style-hover="color:#121212">
                 <span style="width:48px;height:48px;border-radius:50%;border:1px solid {{ s.border }};background:{{ s.bg }};display:flex;align-items:center;justify-content:center;transition:background .3s,border-color .3s;box-sizing:border-box;flex-shrink:0">
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#121212" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="{{ s.d }}"></path></svg>
                 </span>
@@ -64,14 +64,14 @@
         </div>
         <div style="display:grid;grid-template-columns:{{ rowCols }};gap:16px;padding:26px 0;border-bottom:1px solid #ECE7E8;align-items:center">
           <span style="font-size:16px;font-weight:600;color:#121212">주소</span>
-          <a href="https://m.place.naver.com/place/2050630772/location" target="_blank" rel="noopener" style="font-size:15px;line-height:1.6;color:#121212;align-self:center;justify-self:start;border-bottom:1px solid #F3A7B9;padding-bottom:2px">대구광역시 중구 명덕로55길 1, 4층 (대봉동, 대천빌딩) ↗</a>
+          <a href="https://naver.me/G28M0ltd" target="_blank" rel="noopener" style="font-size:15px;line-height:1.6;color:#121212;align-self:center;justify-self:start;border-bottom:1px solid #F3A7B9;padding-bottom:2px">대구광역시 중구 명덕로55길 1, 4층 (대봉동, 대천빌딩) ↗</a>
         </div>
       </div>
       <figure id="map" style="margin:0;display:flex;flex-direction:column;gap:14px">
         <div data-m="b" style="aspect-ratio:4/5;overflow:hidden;background:#F7F3F4">
           <iframe title="세이지뷰티 위치" src="https://maps.google.com/maps?q=%EB%8C%80%EA%B5%AC%EA%B4%91%EC%97%AD%EC%8B%9C%20%EC%A4%91%EA%B5%AC%20%EB%AA%85%EB%8D%95%EB%A1%9C55%EA%B8%B8%201&amp;z=17&amp;output=embed" style="width:100%;height:100%;border:0;display:block" loading="lazy"></iframe>
         </div>
-        <figcaption style="display:flex;justify-content:space-between;gap:12px;align-items:baseline"><span style="font-size:16px;font-weight:600;color:#121212">오시는 길</span><a href="https://m.place.naver.com/place/2050630772/home" target="_blank" rel="noopener" style="font-family:Inter,sans-serif;font-size:11px;letter-spacing:.18em;color:#121212;border-bottom:1px solid #F3A7B9">NAVER PLACE ↗</a></figcaption>
+        <figcaption style="display:flex;justify-content:space-between;gap:12px;align-items:baseline"><span style="font-size:16px;font-weight:600;color:#121212">오시는 길</span><a href="https://naver.me/G28M0ltd" target="_blank" rel="noopener" style="font-family:Inter,sans-serif;font-size:11px;letter-spacing:.18em;color:#121212;border-bottom:1px solid #F3A7B9">NAVER PLACE ↗</a></figcaption>
       </figure>
     </div>
   </div>
@@ -123,9 +123,9 @@ class Component extends DCLogic {
       g3: mob ? 'minmax(0,1fr)' : 'repeat(3,minmax(0,1fr))', span2: mob ? 'auto' : 'span 2',
       rowCols: mob ? 'minmax(0,1fr)' : '140px minmax(0,1fr)', igCols: w < 1000 ? 'minmax(0,1fr)' : 'repeat(2,minmax(0,1fr))',
       footerPad: mob ? '100px' : '44px',
-      naver: [mk('nb', '네이버 예약', I.book, '#'), mk('nt', '톡톡 상담', I.talk, '#'), mk('np', '네이버 플레이스', I.place, 'https://m.place.naver.com/place/2050630772/home', { target: '_blank' })],
+      naver: [mk('nb', '네이버 예약', I.book, 'https://booking.naver.com/booking/13/bizes/1446834/items/7255844'), mk('nt', '톡톡 상담', I.talk, 'https://talk.naver.com/profile/wozy9yp'), mk('np', '네이버 플레이스', I.place, 'https://naver.me/G28M0ltd')],
       insta: [['눈썹', 'sayjibeauty__shop'], ['입술', 'sayjibeauty__lip'], ['아이라인', 'sayjibeauty__eyeliner'], ['공식 · 아카데미', 'sayjibeauty_official']].map(([label, handle]) => mk('ig' + handle, label, I.insta, 'https://instagram.com/' + handle, { handle })),
-      channels: [mk('bl', '블로그', I.blog, '#'), mk('yt', '유튜브', I.yt, '#'), mk('tt', '틱톡', I.tt, '#')]
+      channels: [mk('bl', '블로그', I.blog, 'https://blog.naver.com/donggyu80'), mk('yt', '유튜브', I.yt, 'https://youtube.com/@sayjibeauty6677'), mk('tt', '틱톡', I.tt, 'https://www.tiktok.com/@sayjibeauty')]
     };
   }
 }
