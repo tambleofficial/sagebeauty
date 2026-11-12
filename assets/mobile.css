@@ -78,3 +78,6 @@
  .sj-director-mobile-history li{position:relative;padding:11px 0 11px 12px;border-top:1px solid #F1EAE6;font-size:14px;line-height:1.75;color:#4A4648;overflow-wrap:anywhere;word-break:keep-all}
  .sj-director-mobile-history li::before{content:'·';position:absolute;left:0;color:#B97A63}
 }
+
+/* 푸터 사업자 정보: 모바일은 한 줄에 하나씩 */
+@media (max-width:759px){ .sj-biz{flex-direction:column!important;gap:2px!important} .sj-biz>span{border-left:0!important;padding-left:0!important;white-space:normal!important} }

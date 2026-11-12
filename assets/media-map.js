@@ -48,13 +48,13 @@
         host && host.appendChild(vd);
         if (vio) { vio.observe(vd); near.observe(vd); } else { vd.autoplay = true; var pr = vd.play(); if (pr && pr.catch) pr.catch(function(){}); }
       } else {
-        if (io) { s.__sjSrc = f; io.observe(s); } else s.setAttribute('src', f);
+        if (io && !s.hasAttribute('src')) { s.__sjSrc = f; io.observe(s); } else { s.__sjSrc = null; s.setAttribute('src', f); }
       }
       s.style.transform = flip ? 'scaleX(-1)' : '';
     }
   }
   var t; function sched(){ clearTimeout(t); t = setTimeout(apply, 60); }
-  new MutationObserver(sched).observe(document.documentElement, { childList: true, subtree: true });
+  new MutationObserver(sched).observe(document.documentElement, { childList: true, subtree: true, attributes: true, attributeFilter: ['id'] });
   if (window.__sjMM) return; window.__sjMM = 1;
   apply(); window.addEventListener('load', apply);
 })();

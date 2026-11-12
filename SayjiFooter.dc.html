@@ -64,14 +64,14 @@
         </div>
         <div style="display:grid;grid-template-columns:{{ rowCols }};gap:16px;padding:26px 0;border-bottom:1px solid #ECE7E8;align-items:center">
           <span style="font-size:16px;font-weight:600;color:#121212">주소</span>
-          <a href="https://www.google.com/maps/search/?api=1&amp;query=%EC%84%B8%EC%9D%B4%EC%A7%80%EB%B7%B0%ED%8B%B0+%EB%8C%80%EA%B5%AC" target="_blank" style="font-size:15px;color:#121212;align-self:center;justify-self:start;border-bottom:1px solid #F3A7B9;padding-bottom:2px">대구 · 정확한 주소는 네이버 플레이스 확인 후 반영 ↗</a>
+          <a href="https://m.place.naver.com/place/2050630772/location" target="_blank" rel="noopener" style="font-size:15px;line-height:1.6;color:#121212;align-self:center;justify-self:start;border-bottom:1px solid #F3A7B9;padding-bottom:2px">대구광역시 중구 명덕로55길 1, 4층 (대봉동, 대천빌딩) ↗</a>
         </div>
       </div>
       <figure id="map" style="margin:0;display:flex;flex-direction:column;gap:14px">
         <div data-m="b" style="aspect-ratio:4/5;overflow:hidden;background:#F7F3F4">
-          <iframe title="세이지뷰티 위치" src="https://maps.google.com/maps?q=%EC%84%B8%EC%9D%B4%EC%A7%80%EB%B7%B0%ED%8B%B0%20%EB%8C%80%EA%B5%AC&amp;z=15&amp;output=embed" style="width:100%;height:100%;border:0;display:block" loading="lazy"></iframe>
+          <iframe title="세이지뷰티 위치" src="https://maps.google.com/maps?q=%EB%8C%80%EA%B5%AC%EA%B4%91%EC%97%AD%EC%8B%9C%20%EC%A4%91%EA%B5%AC%20%EB%AA%85%EB%8D%95%EB%A1%9C55%EA%B8%B8%201&amp;z=17&amp;output=embed" style="width:100%;height:100%;border:0;display:block" loading="lazy"></iframe>
         </div>
-        <figcaption style="display:flex;justify-content:space-between;gap:12px;align-items:baseline"><span style="font-size:16px;font-weight:600;color:#121212">오시는 길</span><a href="#" style="font-family:Inter,sans-serif;font-size:11px;letter-spacing:.18em;color:#121212;border-bottom:1px solid #F3A7B9">NAVER PLACE ↗</a></figcaption>
+        <figcaption style="display:flex;justify-content:space-between;gap:12px;align-items:baseline"><span style="font-size:16px;font-weight:600;color:#121212">오시는 길</span><a href="https://m.place.naver.com/place/2050630772/home" target="_blank" rel="noopener" style="font-family:Inter,sans-serif;font-size:11px;letter-spacing:.18em;color:#121212;border-bottom:1px solid #F3A7B9">NAVER PLACE ↗</a></figcaption>
       </figure>
     </div>
   </div>
@@ -79,16 +79,19 @@
 </sc-if>
 <sc-if value="{{ showBar }}" hint-placeholder-val="{{ true }}">
 <footer style="border-top:1px solid #ECE7E8;padding:44px 0 {{ footerPad }}">
-  <div style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,4vw,48px);display:flex;justify-content:space-between;gap:28px;flex-wrap:wrap;align-items:flex-end">
-    <div style="display:flex;flex-direction:column;gap:10px">
-      <span style="font-family:Inter,sans-serif;font-weight:500;font-size:14px;letter-spacing:.3em;color:#121212">SAYJI BEAUTY</span>
-      <span style="font-size:14px;line-height:1.7;color:#646164">세이지뷰티 · 대구 퍼스널 PMU 디자인 스튜디오 · T. 010-7932-7927</span>
-    </div>
-    <nav style="display:flex;gap:24px;flex-wrap:wrap;font-family:Inter,sans-serif;font-size:12px;font-weight:500;letter-spacing:.16em">
-      <a href="/brand">BRAND</a><a href="/program">PROGRAM</a><a href="/correction">CORRECTION</a><a href="/cases">CASES</a><a href="/contact">CONTACT</a>
-    </nav>
-    <span style="font-family:Inter,sans-serif;font-size:12px;letter-spacing:.12em;color:#646164">© 2026 SAYJI BEAUTY</span>
-  </div>
+<div style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,4vw,48px);display:flex;flex-direction:column;gap:26px">
+<div style="display:flex;justify-content:space-between;gap:20px 28px;flex-wrap:wrap;align-items:center">
+<span style="font-family:Inter,sans-serif;font-weight:500;font-size:14px;letter-spacing:.3em;color:#121212">SAYJI BEAUTY</span>
+<nav style="display:flex;gap:24px;flex-wrap:wrap;font-family:Inter,sans-serif;font-size:12px;font-weight:500;letter-spacing:.16em">
+<a href="/brand">BRAND</a><a href="/program">PROGRAM</a><a href="/correction">CORRECTION</a><a href="/cases">CASES</a><a href="/contact">CONTACT</a>
+</nav>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px;padding-top:22px;border-top:1px solid #F1ECED;font-size:13px;line-height:1.7;color:#646164">
+<div class="sj-biz" style="display:flex;flex-wrap:wrap;gap:4px 14px"><span style="white-space:normal;word-break:keep-all;">상호명 세이지뷰티 대구눈썹문신&amp;입술</span><span style="white-space:nowrap;padding-left:14px;border-left:1px solid #E2DCDE;">대표 이지현</span><span style="white-space:nowrap;padding-left:14px;border-left:1px solid #E2DCDE;">사업자등록번호 121-70-14411</span><span style="white-space:nowrap;padding-left:14px;border-left:1px solid #E2DCDE;">통신판매업 제 2022-대구중구-0325호</span></div>
+<div class="sj-biz" style="display:flex;flex-wrap:wrap;gap:4px 14px"><span style="white-space:normal;word-break:keep-all;">주소 대구광역시 중구 명덕로55길 1, 4층 (대봉동, 대천빌딩)</span><span style="white-space:nowrap;padding-left:14px;border-left:1px solid #E2DCDE;">전화 <a href="tel:01079327927" style="color:#646164">010-7932-7927</a></span></div>
+<span style="margin-top:6px;font-family:Inter,sans-serif;font-size:12px;letter-spacing:.06em;color:#8A8487">© 2026 SAYJI BEAUTY. All rights reserved.</span>
+</div>
+</div>
 </footer>
 </sc-if>
 </div>
@@ -120,7 +123,7 @@ class Component extends DCLogic {
       g3: mob ? 'minmax(0,1fr)' : 'repeat(3,minmax(0,1fr))', span2: mob ? 'auto' : 'span 2',
       rowCols: mob ? 'minmax(0,1fr)' : '140px minmax(0,1fr)', igCols: w < 1000 ? 'minmax(0,1fr)' : 'repeat(2,minmax(0,1fr))',
       footerPad: mob ? '100px' : '44px',
-      naver: [mk('nb', '네이버 예약', I.book, '#'), mk('nt', '톡톡 상담', I.talk, '#'), mk('np', '네이버 플레이스', I.place, '#')],
+      naver: [mk('nb', '네이버 예약', I.book, '#'), mk('nt', '톡톡 상담', I.talk, '#'), mk('np', '네이버 플레이스', I.place, 'https://m.place.naver.com/place/2050630772/home', { target: '_blank' })],
       insta: [['눈썹', 'sayjibeauty__shop'], ['입술', 'sayjibeauty__lip'], ['아이라인', 'sayjibeauty__eyeliner'], ['공식 · 아카데미', 'sayjibeauty_official']].map(([label, handle]) => mk('ig' + handle, label, I.insta, 'https://instagram.com/' + handle, { handle })),
       channels: [mk('bl', '블로그', I.blog, '#'), mk('yt', '유튜브', I.yt, '#'), mk('tt', '틱톡', I.tt, '#')]
     };
