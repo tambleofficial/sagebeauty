@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="ko"><head>
+<!-- 검색로봇용 미리 그린 화면: 방문자에게 보이는 화면과 같은 내용 (functions/_middleware.js 가 로봇에게만 보냄) --><style>
+    .sc-placeholder{background:color-mix(in srgb,currentColor 8%,transparent);
+      border:1px solid color-mix(in srgb,currentColor 50%,transparent);
+      border-radius:2px;box-sizing:border-box;overflow:hidden}
+    @keyframes sc-shine{0%{background-position:100% 50%}100%{background-position:0% 50%}}
+    html.sc-dc-streaming .sc-placeholder,
+    html.sc-dc-streaming .sc-interp.sc-missing{position:relative;
+      background:color-mix(in srgb,currentColor 5%,transparent);
+      border-color:transparent}
+    html.sc-dc-streaming .sc-placeholder::before,
+    html.sc-dc-streaming .sc-interp.sc-missing::before{content:'';
+      position:absolute;inset:0;pointer-events:none;
+      background:linear-gradient(90deg,rgba(217,119,87,0) 25%,rgba(247,225,211,.95) 37%,rgba(217,119,87,0) 63%);
+      background-size:400% 100%;animation:sc-shine 1.4s ease infinite}
+    html.sc-dc-streaming .sc-placeholder:nth-child(n+9 of .sc-placeholder)::before,
+    html.sc-dc-streaming .sc-interp.sc-missing:nth-child(n+9 of .sc-interp.sc-missing)::before{animation:none;
+      background:color-mix(in srgb,currentColor 8%,transparent)}
+    .sc-placeholder-error{padding:4px 8px;font:11px/1.4 ui-monospace,monospace;
+      color:color-mix(in srgb,currentColor 70%,transparent);word-break:break-word}
+    .sc-interp.sc-missing{display:inline-block;width:2em;height:1em;overflow:hidden;
+      vertical-align:text-bottom;background:rgba(255,255,255,.3);border:1px solid rgba(0,0,0,.5);
+      border-radius:2px;box-sizing:border-box;color:transparent;
+      user-select:none}
+    .sc-interp.sc-unresolved{font-family:ui-monospace,monospace;font-size:.85em;
+      color:color-mix(in srgb,currentColor 50%,transparent);
+      background:color-mix(in srgb,currentColor 10%,transparent);border-radius:3px;
+      padding:0 3px}
+    .sc-host.sc-has-error{position:relative}
+    .sc-logic-error{position:absolute;top:8px;left:8px;z-index:2147483647;max-width:60ch;
+      padding:6px 10px;background:#b00020;color:#fff;font:12px/1.4 ui-monospace,monospace;
+      border-radius:4px;white-space:pre-wrap;pointer-events:none}
+    /* Mirrors PRINT_BASELINE_CSS in apps/web deck-stage-export.ts — keep both
+       in sync until dc-runtime regains a build step. */
+    @media print {
+      @page { margin: 0.5cm; }
+      figure, table { break-inside: avoid; }
+      #dc-root, #dc-root > .sc-host { height: auto; }
+      *, *::before, *::after {
+        print-color-adjust: exact; -webkit-print-color-adjust: exact;
+        backdrop-filter: none !important; -webkit-backdrop-filter: none !important;
+        animation-delay: -99s !important; animation-duration: .001s !important;
+        animation-iteration-count: 1 !important; animation-fill-mode: both !important;
+        animation-play-state: running !important; transition-duration: 0s !important;
+      }
+    }
+  </style>
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+<title>CASES | 세이지뷰티 SAYJI BEAUTY</title>
+<meta name="description" content="세이지뷰티 실제 작업 사례와 고객 후기.">
+<link rel="canonical" href="https://sayjibeauty.co.kr/cases">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="세이지뷰티 SAYJI BEAUTY">
+<meta property="og:title" content="CASES | 세이지뷰티 SAYJI BEAUTY">
+<meta property="og:description" content="세이지뷰티 실제 작업 사례와 고객 후기.">
+<meta property="og:url" content="https://sayjibeauty.co.kr/cases">
+<meta property="og:image" content="https://sayjibeauty.co.kr/assets/sb-logo.png">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" type="application/rss+xml" title="세이지뷰티" href="https://sayjibeauty.co.kr/rss.xml">
+
+<meta name="sj-page" content="Cases">
+
+
+
+<link rel="stylesheet" href="./assets/mobile.css?v=20261112-perf5">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>x-dc{display:none!important}</style>
+<style>html,body{height:100%;margin:0}#dc-root,#dc-root>.sc-host{height:100%}</style><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;display=swap"><style>
+html{scroll-behavior:smooth}
+body{margin:0;background:#FFFFFF;color:#121212;font-family:Pretendard,'SUIT',-apple-system,sans-serif;-webkit-font-smoothing:antialiased;word-break:keep-all}
+a{color:#121212;text-decoration:none}
+a:hover{color:#646164}
+::selection{background:#FBE9EE}
+@keyframes sjLb{from{opacity:0}to{opacity:1}}
+</style><style>
+@keyframes sjchUp{from{transform:translateY(105%)}to{transform:translateY(0)}}
+@keyframes sjchFade{from{opacity:0}to{opacity:1}}
+@keyframes sjchDraw{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes sjchDrift{0%{transform:translateX(-6%) scaleY(1)}50%{transform:translateX(4%) scaleY(1.15)}100%{transform:translateX(-6%) scaleY(1)}}
+</style><style></style><style>
+html,body{overflow-x:clip;-webkit-text-size-adjust:100%}
+img,video{max-width:100%}
+@media (max-width:759px){
+  [style*="animation:inSilk"],[style*="animation: inSilk"],[style*="background-size:220% 220%"]{animation:none!important}
+  [style*="position:sticky"]:not([data-hero]){position:relative!important;top:auto!important}
+  [style*="backdrop-filter"]{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+  h1,h2,h3{word-break:keep-all;overflow-wrap:anywhere}
+  p{word-break:keep-all}
+}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style><style>
+@keyframes txSilk{from{background-position:0% 50%}to{background-position:100% 50%}}
+</style></head>
+<body>
+
+
+<div id="dc-root"><div class="sc-host" data-sc-name="cases"><div style="background: rgb(255, 255, 255); color: rgb(18, 18, 18); font-family: Pretendard, SUIT, sans-serif;"><div class="sc-host" data-sc-name="SayjiChrome"><div><header style="position: fixed; top: 0px; left: 0px; right: 0px; z-index: 60; background: rgba(255, 255, 255, 0); border-bottom: 1px solid rgba(18, 18, 18, 0); transition: background 0.5s, border-color 0.5s, backdrop-filter 0.5s; backdrop-filter: none;">
+  <div style="max-width: 1200px; margin: 0px auto; padding: 0px clamp(20px, 4vw, 48px); height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px;">
+    <a href="/" style="display: flex; align-items: center; gap: 14px; white-space: nowrap; flex-shrink: 0; color: rgb(18, 18, 18);">
+      <img src="/assets/sb-mono.png" alt="세이지뷰티 SAYJI BEAUTY" style="height: 34px; width: auto; display: block;">
+      <span style="font-family: Inter, sans-serif; font-weight: 500; font-size: 13px; letter-spacing: 0.32em;">SAYJI BEAUTY</span>
+    </a>
+    
+      <nav style="display: flex; gap: clamp(22px, 3vw, 48px); align-items: center;">
+        
+          <a href="/brand" class="scp0" style="position: relative; font-family: Inter, sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.18em; white-space: nowrap; color: rgb(18, 18, 18); padding: 8px 0px;">
+            <span class="sc-interp">BRAND</span>
+            <span style="position: absolute; left: 0px; bottom: 0px; height: 1px; background: rgb(243, 167, 185); width: 0%; transition: width 0.4s;"></span>
+          </a>
+        
+          <a href="/program" class="scp0" style="position: relative; font-family: Inter, sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.18em; white-space: nowrap; color: rgb(18, 18, 18); padding: 8px 0px;">
+            <span class="sc-interp">PROGRAM</span>
+            <span style="position: absolute; left: 0px; bottom: 0px; height: 1px; background: rgb(243, 167, 185); width: 0%; transition: width 0.4s;"></span>
+          </a>
+        
+          <a href="/correction" class="scp0" style="position: relative; font-family: Inter, sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.18em; white-space: nowrap; color: rgb(18, 18, 18); padding: 8px 0px;">
+            <span class="sc-interp">CORRECTION</span>
+            <span style="position: absolute; left: 0px; bottom: 0px; height: 1px; background: rgb(243, 167, 185); width: 0%; transition: width 0.4s;"></span>
+          </a>
+        
+          <a href="/cases" class="scp0" style="position: relative; font-family: Inter, sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.18em; white-space: nowrap; color: rgb(18, 18, 18); padding: 8px 0px;">
+            <span class="sc-interp">CASES</span>
+            <span style="position: absolute; left: 0px; bottom: 0px; height: 1px; background: rgb(243, 167, 185); width: 100%; transition: width 0.4s;"></span>
+          </a>
+        
+          <a href="/contact" class="scp0" style="position: relative; font-family: Inter, sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.18em; white-space: nowrap; color: rgb(18, 18, 18); padding: 8px 0px;">
+            <span class="sc-interp">CONTACT</span>
+            <span style="position: absolute; left: 0px; bottom: 0px; height: 1px; background: rgb(243, 167, 185); width: 0%; transition: width 0.4s;"></span>
+          </a>
+        
+      </nav>
+    
+    <div style="display: flex; gap: 12px; align-items: center; flex-shrink: 0;">
+      <a href="https://booking.naver.com/booking/13/bizes/1446834/items/7255844" target="_blank" rel="noopener" data-gloss="1" data-cursor="BOOK" class="scp1" style="position: relative; overflow: hidden; background: rgb(18, 18, 18); color: rgb(255, 255, 255); font-family: Inter, sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 0.2em; padding: 14px 22px; white-space: nowrap; border-radius: 999px;">RESERVATION</a>
+      
+    </div>
+  </div></header>
+  <div style="position: fixed; right: 22px; top: 50%; transform: translateY(-50%); z-index: 50; display: flex; flex-direction: column; gap: 8px; align-items: flex-end;">
+    
+      <a href="https://booking.naver.com/booking/13/bizes/1446834/items/7255844" target="_blank" rel="noopener" class="scp2" style="display: flex; align-items: center; gap: 8px; color: rgb(18, 18, 18);">
+        <span style="height: 48px; display: flex; align-items: center; max-width: 0px; opacity: 0; overflow: hidden; white-space: nowrap; background: rgb(255, 255, 255); border: 1px solid rgb(243, 167, 185); border-radius: 999px; font-size: 13px; font-weight: 500; transition: max-width 0.36s cubic-bezier(0.2, 0.7, 0.2, 1), opacity 0.3s; box-sizing: border-box;"><span style="padding: 0px 18px;"><span class="sc-interp">예약</span></span></span>
+        <span style="width: 48px; height: 48px; border-radius: 50%; background: rgb(255, 255, 255); border: 1px solid rgb(231, 226, 227); display: flex; align-items: center; justify-content: center; transition: background 0.3s, border-color 0.3s; box-sizing: border-box; flex-shrink: 0;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#121212" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16v14H4z M4 10h16 M8 3.5v4 M16 3.5v4 M9 15l2 2 4-4"></path></svg>
+        </span>
+      </a>
+    
+      <a href="https://talk.naver.com/profile/wozy9yp" target="_blank" rel="noopener" class="scp2" style="display: flex; align-items: center; gap: 8px; color: rgb(18, 18, 18);">
+        <span style="height: 48px; display: flex; align-items: center; max-width: 0px; opacity: 0; overflow: hidden; white-space: nowrap; background: rgb(255, 255, 255); border: 1px solid rgb(243, 167, 185); border-radius: 999px; font-size: 13px; font-weight: 500; transition: max-width 0.36s cubic-bezier(0.2, 0.7, 0.2, 1), opacity 0.3s; box-sizing: border-box;"><span style="padding: 0px 18px;"><span class="sc-interp">톡톡</span></span></span>
+        <span style="width: 48px; height: 48px; border-radius: 50%; background: rgb(255, 255, 255); border: 1px solid rgb(231, 226, 227); display: flex; align-items: center; justify-content: center; transition: background 0.3s, border-color 0.3s; box-sizing: border-box; flex-shrink: 0;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#121212" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4c4.7 0 8.5 3 8.5 6.8S16.7 17.6 12 17.6c-.8 0-1.6-.1-2.3-.3L5.5 20l.9-3.7C4.6 15 3.5 13 3.5 10.8 3.5 7 7.3 4 12 4z M9 11h.01 M12 11h.01 M15 11h.01"></path></svg>
+        </span>
+      </a>
+    
+      <a href="tel:01079327927" target="_self" rel="noopener" class="scp2" style="display: flex; align-items: center; gap: 8px; color: rgb(18, 18, 18);">
+        <span style="height: 48px; display: flex; align-items: center; max-width: 0px; opacity: 0; overflow: hidden; white-space: nowrap; background: rgb(255, 255, 255); border: 1px solid rgb(243, 167, 185); border-radius: 999px; font-size: 13px; font-weight: 500; transition: max-width 0.36s cubic-bezier(0.2, 0.7, 0.2, 1), opacity 0.3s; box-sizing: border-box;"><span style="padding: 0px 18px;"><span class="sc-interp">전화</span></span></span>
+        <span style="width: 48px; height: 48px; border-radius: 50%; background: rgb(255, 255, 255); border: 1px solid rgb(231, 226, 227); display: flex; align-items: center; justify-content: center; transition: background 0.3s, border-color 0.3s; box-sizing: border-box; flex-shrink: 0;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#121212" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1z"></path></svg>
+        </span>
+      </a>
+    
+      <a href="https://naver.me/G28M0ltd" target="_blank" rel="noopener" class="scp2" style="display: flex; align-items: center; gap: 8px; color: rgb(18, 18, 18);">
+        <span style="height: 48px; display: flex; align-items: center; max-width: 0px; opacity: 0; overflow: hidden; white-space: nowrap; background: rgb(255, 255, 255); border: 1px solid rgb(243, 167, 185); border-radius: 999px; font-size: 13px; font-weight: 500; transition: max-width 0.36s cubic-bezier(0.2, 0.7, 0.2, 1), opacity 0.3s; box-sizing: border-box;"><span style="padding: 0px 18px;"><span class="sc-interp">위치</span></span></span>
+        <span style="width: 48px; height: 48px; border-radius: 50%; background: rgb(255, 255, 255); border: 1px solid rgb(231, 226, 227); display: flex; align-items: center; justify-content: center; transition: background 0.3s, border-color 0.3s; box-sizing: border-box; flex-shrink: 0;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#121212" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.5-5.6-6.5-11.2a6.5 6.5 0 0 1 13 0C18.5 15.4 12 21 12 21z M12 12.3a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"></path></svg>
+        </span>
+      </a>
+    
+  </div><div style="position: fixed; inset: 0px; z-index: 400; background: rgb(251, 233, 238); transform: translateY(100%); pointer-events: none; display: flex; align-items: center; justify-content: center;">
+  <span style="position: absolute; left: 0px; right: 0px; top: 0px; height: 1px; background: rgb(243, 167, 185);"></span>
+  <span style="font-family: Inter, sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.4em; color: rgb(18, 18, 18);">SAYJI</span></div></div></div><div class="sc-host" data-sc-name="SayjiChapterHero"><section style="position: relative; height: clamp(480px, 66svh, 720px); background: rgb(255, 255, 255); overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end;">
+  <div style="position: absolute; left: 0px; right: 0px; bottom: 0px; height: 0px; animation: 1.6s ease 0.2s 1 normal both running sjchFade; pointer-events: none;">
+    <div style="position: absolute; left: -15%; right: -15%; top: -120px; height: 240px; background: radial-gradient(50% 50%, rgba(243, 167, 185, 0.4) 0%, rgba(251, 233, 238, 0.5) 40%, rgba(255, 255, 255, 0) 72%); animation: 18s ease-in-out 0s infinite normal none running sjchDrift;"></div>
+    <div style="position: absolute; left: 0px; right: 0px; top: -1px; height: 1px; background: linear-gradient(90deg, rgba(243, 167, 185, 0), rgb(243, 167, 185) 25%, rgb(236, 118, 147) 50%, rgb(243, 167, 185) 75%, rgba(243, 167, 185, 0)); transform-origin: left center; animation: 1.3s cubic-bezier(0.7, 0, 0.2, 1) 0.35s 1 normal both running sjchDraw;"></div>
+  </div>
+  <div style="position: relative; max-width: 1200px; width: 100%; margin: 0px auto; padding: 0px clamp(20px, 4vw, 48px) clamp(42px, 7vw, 96px); box-sizing: border-box; display: flex; flex-direction: column; gap: clamp(20px, 2.4vw, 32px);">
+    <span style="display: flex; gap: 12px; font-family: Inter, sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.2em; color: rgb(18, 18, 18); animation: 0.8s ease 0.1s 1 normal both running sjchFade;"><span style="color: rgb(236, 118, 147);"><span class="sc-interp">04</span></span><span style="color: rgb(100, 97, 100);">/ 05</span></span>
+    <h1 style="margin: 0px; overflow: hidden; font-family: Inter, sans-serif; font-size: clamp(39px, 8vw, 112px); font-weight: 300; letter-spacing: -0.05em; line-height: 1; color: rgb(18, 18, 18);"><span style="display: block; animation: 1.1s cubic-bezier(0.2, 0.75, 0.1, 1) 0.25s 1 normal both running sjchUp;"><span class="sc-interp">CASES</span></span></h1>
+    <div style="display: flex; flex-direction: column; gap: 8px; max-width: 560px; animation: 0.9s ease 0.7s 1 normal both running sjchFade;">
+      <span style="font-size: 20px; font-weight: 600; color: rgb(18, 18, 18);"><span class="sc-interp">실제 작업 사례</span></span>
+      <p style="margin: 0px; font-size: 17px; line-height: 1.8; color: rgb(18, 18, 18);"><span class="sc-interp">동일 고객의 실제 자료만, 같은 조건으로 촬영한 사진으로 보여드립니다.</span></p>
+    </div>
+  </div></section></div><section id="gallery" style="padding: clamp(58px, 10vw, 140px) 0px;">
+  <div style="max-width: 1200px; margin: 0px auto; padding: 0px clamp(20px, 4vw, 48px);">
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0px, 1fr)); gap: 24px; align-items: end; margin-bottom: 32px;">
+      <div style="display: flex; flex-direction: column; gap: 20px; grid-column: span 2;">
+        <span style="display: flex; gap: 12px; font-family: Inter, sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.2em;"><span style="color: rgb(236, 118, 147);">01</span>PORTFOLIO</span>
+        <h2 style="margin: 0px; font-size: clamp(30px, 3.4vw, 46px); line-height: 1.32; font-weight: 600; letter-spacing: -0.035em; overflow: hidden;"><span data-m="a" style="display: block; transform: translateY(0px); transition: transform 1s cubic-bezier(0.2, 0.75, 0.1, 1);">프로그램별 작업 사례</span></h2>
+      </div>
+      <p style="margin: 0px; font-size: 17px; line-height: 1.8;">사진을 누르면 크게 볼 수 있습니다. 현재 <span class="sc-interp">12</span>개의 사례가 있습니다.</p>
+    </div>
+    <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 32px;">
+      
+        <button style="font-family: Inter, sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.14em; padding: 12px 18px; border: 1px solid rgb(18, 18, 18); background: rgb(18, 18, 18); color: rgb(255, 255, 255); cursor: pointer; border-radius: 999px; transition: 0.3s;"><span class="sc-interp">ALL</span></button>
+      
+        <button style="font-family: Inter, sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.14em; padding: 12px 18px; border: 1px solid rgb(226, 220, 222); background: rgb(255, 255, 255); color: rgb(18, 18, 18); cursor: pointer; border-radius: 999px; transition: 0.3s;"><span class="sc-interp">BROW</span></button>
+      
+        <button style="font-family: Inter, sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.14em; padding: 12px 18px; border: 1px solid rgb(226, 220, 222); background: rgb(255, 255, 255); color: rgb(18, 18, 18); cursor: pointer; border-radius: 999px; transition: 0.3s;"><span class="sc-interp">LIP</span></button>
+      
+        <button style="font-family: Inter, sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.14em; padding: 12px 18px; border: 1px solid rgb(226, 220, 222); background: rgb(255, 255, 255); color: rgb(18, 18, 18); cursor: pointer; border-radius: 999px; transition: 0.3s;"><span class="sc-interp">EYELINE</span></button>
+      
+        <button style="font-family: Inter, sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.14em; padding: 12px 18px; border: 1px solid rgb(226, 220, 222); background: rgb(255, 255, 255); color: rgb(18, 18, 18); cursor: pointer; border-radius: 999px; transition: 0.3s;"><span class="sc-interp">CORRECTION</span></button>
+      
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0px, 1fr)); gap: 24px;">
+      
+        <figure style="margin: 0px; display: flex; flex-direction: column; gap: 14px; opacity: 1; clip-path: inset(0px 0px 0%); transition: opacity 0.35s, clip-path 0.5s cubic-bezier(0.7, 0, 0.2, 1);">
+          <div style="position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: rgb(247, 243, 244);">
+            <div style="position: absolute; inset: 0px; transform: scale(1); transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);"><img src="/assets/media/cs1.jpg" alt="CASE 01" id="case-01" loading="lazy"></div>
+            <span style="position: absolute; inset: 0px; border: 1px solid rgb(243, 167, 185); opacity: 0; transition: opacity 0.4s; pointer-events: none;"></span>
+          </div>
+          <figcaption style="display: flex; justify-content: space-between; gap: 12px; align-items: center;">
+            <span style="display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 16px; font-weight: 600;"><span class="sc-interp">눈썹 디자인</span></span><span style="font-family: Inter, sans-serif; font-size: 11px; letter-spacing: 0.18em; color: rgb(100, 97, 100);">CASE <span class="sc-interp">01</span></span></span>
+            <button data-cursor="OPEN" style="border: 1px solid rgb(226, 220, 222); background: rgb(255, 255, 255); border-radius: 999px; padding: 10px 16px; font-size: 13px; font-weight: 600; cursor: pointer; color: rgb(18, 18, 18);">크게 보기</button>
+          </figcaption>
+        </figure>
+      
+        <figure style="margin: 0px; display: flex; flex-direction: column; gap: 14px; opacity: 1; clip-path: inset(0px 0px 0%); transition: opacity 0.35s, clip-path 0.5s cubic-bezier(0.7, 0, 0.2, 1);">
+          <div style="position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: rgb(247, 243, 244);">
+            <div style="position: absolute; inset: 0px; transform: scale(1); transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);"><img src="/assets/media/cs2.jpg" alt="CASE 02" id="case-02" loading="lazy"></div>
+            <span style="position: absolute; inset: 0px; border: 1px solid rgb(243, 167, 185); opacity: 0; transition: opacity 0.4s; pointer-events: none;"></span>
+          </div>
+          <figcaption style="display: flex; justify-content: space-between; gap: 12px; align-items: center;">
+            <span style="display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 16px; font-weight: 600;"><span class="sc-interp">입술 톤 디자인</span></span><span style="font-family: Inter, sans-serif; font-size: 11px; letter-spacing: 0.18em; color: rgb(100, 97, 100);">CASE <span class="sc-interp">02</span></span></span>
+            <button data-cursor="OPEN" style="border: 1px solid rgb(226, 220, 222); background: rgb(255, 255, 255); border-radius: 999px; padding: 10px 16px; font-size: 13px; font-weight: 600; cursor: pointer; color: rgb(18, 18, 18);">크게 보기</button>
+          </figcaption>
+        </figure>
+      
+        <figure style="margin: 0px; display: flex; flex-direction: column; gap: 14px; opacity: 1; clip-path: inset(0px 0px 0%); transition: opacity 0.35s, clip-path 0.5s cubic-bezier(0.7, 0, 0.2, 1);">
+          <div style="position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: rgb(247, 243, 244);">
+            <div style="position: absolute; inset: 0px; transform: scale(1); transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);"><img src="/assets/media/cs3.jpg" alt="CASE 03" id="case-03" loading="lazy"></div>
+            <span style="position: absolute; inset: 0px; border: 1px solid rgb(243, 167, 185); opacity: 0; transition: opacity 0.4s; pointer-events: none;"></span>
+          </div>
+          <figcaption style="display: flex; justify-content: space-between; gap: 12px; align-items: center;">
+            <span style="display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 16px; font-weight: 600;"><span class="sc-interp">눈썹 디자인</span></span><span style="font-family: Inter, sans-serif; font-size: 11px; letter-spacing: 0.18em; color: rgb(100, 97, 100);">CASE <span class="sc-interp">03</span></span></span>
+            <button data-cursor="OPEN" style="border: 1px solid rgb(226, 220, 222); background: rgb(255, 255, 255); border-radius: 999px; padding: 10px 16px; font-size: 13px; font-weight: 600; cursor: pointer; color: rgb(18, 18, 18);">크게 보기</button>
+          </figcaption>
+        </figure>
+      
+        <figure style="margin: 0px; display: flex; flex-direction: column; gap: 14px; opacity: 1; clip-path: inset(0px 0px 0%); transition: opacity 0.35s, clip-path 0.5s cubic-bezier(0.7, 0, 0.2, 1);">
+          <div style="position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: rgb(247, 243, 244);">
+            <div style="position: absolute; inset: 0px; transform: scale(1); transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);"><img src="/assets/media/cs4.jpg" alt="CASE 04" id="case-04" loading="lazy"></div>
+            <span style="position: absolute; inset: 0px; border: 1px solid rgb(243, 167, 185); opacity: 0; transition: opacity 0.4s; pointer-events: none;"></span>
+          </div>
+          <figcaption style="display: flex; justify-content: space-between; gap: 12px; align-items: center;">
+            <span style="display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 16px; font-weight: 600;"><span class="sc-interp">아이라인 디자인</span></span><span style="font-family: Inter, sans-serif; font-size: 11px; letter-spacing: 0.18em; color: rgb(100, 97, 100);">CASE <span class="sc-interp">04</span></span></span>
+            <button data-cursor="OPEN" style="border: 1px solid rgb(226, 220, 222); background: rgb(255, 255, 255); border-radius: 999px; padding: 10px 16px; font-size: 13px; font-weight: 600; cursor: pointer; color: rgb(18, 18, 18);">크게 보기</button>
+          </figcaption>
+        </figure>
+      
+        <figure style="margin: 0px; display: flex; flex-direction: column; gap: 14px; opacity: 1; clip-path: inset(0px 0px 0%); transition: opacity 0.35s, clip-path 0.5s cubic-bezier(0.7, 0, 0.2, 1);">
+          <div style="position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: rgb(247, 243, 244);">
+            <div style="position: absolute; inset: 0px; transform: scale(1); transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);"><img src="/assets/media/cs5.jpeg" alt="CASE 05" id="case-05" loading="lazy"></div>
+            <span style="position: absolute; inset: 0px; border: 1px solid rgb(243, 167, 185); opacity: 0; transition: opacity 0.4s; pointer-events: none;"></span>
+          </div>
+          <figcaption style="display: flex; justify-content: space-between; gap: 12px; align-items: center;">
+            <span style="display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 16px; font-weight: 600;"><span class="sc-interp">리커렉션</span></span><span style="font-family: Inter, sans-serif; font-size: 11px; letter-spacing: 0.18em; color: rgb(100, 97, 100);">CASE <span class="sc-interp">05</span></span></span>
+            <button data-cursor="OPEN" style="border: 1px solid rgb(226, 220, 222); background: rgb(255, 255, 255); border-radius: 999px; padding: 10px 16px; font-size: 13px; font-weight: 600; cursor: pointer; color: rgb(18, 18, 18);">크게 보기</button>
+          </figcaption>
+        </figure>
+      
+        <figure style="margin: 0px; display: flex; flex-direction: column; gap: 14px; opacity: 1; clip-path: inset(0px 0px 0%); transition: opacity 0.35s, clip-path 0.5s cubic-bezier(0.7, 0, 0.2, 1);">
+          <div style="position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: rgb(247, 243, 244);">
+            <div style="position: absolute; inset: 0px; transform: scale(1); transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);"><img src="/assets/media/cs6.jpg" alt="CASE 06" id="case-06" loading="lazy"></div>
+            <span style="position: absolute; inset: 0px; border: 1px solid rgb(243, 167, 185); opacity: 0; transition: opacity 0.4s; pointer-events: none;"></span>
+          </div>
+          <figcaption style="display: flex; justify-content: space-between; gap: 12px; align-items: center;">
+            <span style="display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 16px; font-weight: 600;"><span class="sc-interp">아이라인 디자인</span></span><span style="font-family: Inter, sans-serif; font-size: 11px; letter-spacing: 0.18em; color: rgb(100, 97, 100);">CASE <span class="sc-interp">06</span></span></span>
+            <button data-cursor="OPEN" style="border: 1px solid rgb(226, 220, 222); background: rgb(255, 255, 255); border-radius: 999px; padding: 10px 16px; font-size: 13px; font-weight: 600; cursor: pointer; color: rgb(18, 18, 18);">크게 보기</button>
+          </figcaption>
+        </figure>
+      
+        <figure style="margin: 0px; display: flex; flex-direction: column; gap: 14px; opacity: 1; clip-path: inset(0px 0px 0%); transition: opacity 0.35s, clip-path 0.5s cubic-bezier(0.7, 0, 0.2, 1);">
+          <div style="position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: rgb(247, 243, 244);">
+            <div style="position: absolute; inset: 0px; transform: scale(1); transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);"><img src="/assets/media/cs7.jpeg" alt="CASE 07" id="case-07" loading="lazy"></div>
+            <span style="position: absolute; inset: 0px; border: 1px solid rgb(243, 167, 185); opacity: 0; transition: opacity 0.4s; pointer-events: none;"></span>
+          </div>
+          <figcaption style="display: flex; justify-content: space-between; gap: 12px; align-items: center;">
+            <span style="display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 16px; font-weight: 600;"><span class="sc-interp">리커렉션</span></span><span style="font-family: Inter, sans-serif; font-size: 11px; letter-spacing: 0.18em; color: rgb(100, 97, 100);">CASE <span class="sc-interp">07</span></span></span>
+            <button data-cursor="OPEN" style="border: 1px solid rgb(226, 220, 222); background: rgb(255, 255, 255); border-radius: 999px; padding: 10px 16px; font-size: 13px; font-weight: 600; cursor: pointer; color: rgb(18, 18, 18);">크게 보기</button>
+          </figcaption>
+        </figure>
+      
+        <figure style="margin: 0px; display: flex; flex-direction: column; gap: 14px; opacity: 1; clip-path: inset(0px 0px 0%); transition: opacity 0.35s, clip-path 0.5s cubic-bezier(0.7, 0, 0.2, 1);">
+          <div style="position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: rgb(247, 243, 244);">
+            <div style="position: absolute; inset: 0px; transform: scale(1); transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);"><img src="/assets/media/cs8.jpg" alt="CASE 08" id="case-08" loading="lazy"></div>
+            <span style="position: absolute; inset: 0px; border: 1px solid rgb(243, 167, 185); opacity: 0; transition: opacity 0.4s; pointer-events: none;"></span>
+          </div>
+          <figcaption style="display: flex; justify-content: space-between; gap: 12px; align-items: center;">
+            <span style="display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 16px; font-weight: 600;"><span class="sc-interp">눈썹 디자인</span></span><span style="font-family: Inter, sans-serif; font-size: 11px; letter-spacing: 0.18em; color: rgb(100, 97, 100);">CASE <span class="sc-interp">08</span></span></span>
+            <button data-cursor="OPEN" style="border: 1px solid rgb(226, 220, 222); background: rgb(255, 255, 255); border-radius: 999px; padding: 10px 16px; font-size: 13px; font-weight: 600; cursor: pointer; color: rgb(18, 18, 18);">크게 보기</button>
+          </figcaption>
+        </figure>
+      
+        <figure style="margin: 0px; display: flex; flex-direction: column; gap: 14px; opacity: 1; clip-path: inset(0px 0px 0%); transition: opacity 0.35s, clip-path 0.5s cubic-bezier(0.7, 0, 0.2, 1);">
+          <div style="position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: rgb(247, 243, 244);">
+            <div style="position: absolute; inset: 0px; transform: scale(1); transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);"><video data-media-video="1" src="/assets/media/cs9.mp4" muted="" loop="" playsinline="" preload="auto" poster="/assets/media/cs9.poster.jpg" style="position: absolute; inset: 0px; width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none;"></video></div>
+            <span style="position: absolute; inset: 0px; border: 1px solid rgb(243, 167, 185); opacity: 0; transition: opacity 0.4s; pointer-events: none;"></span>
+          </div>
+          <figcaption style="display: flex; justify-content: space-between; gap: 12px; align-items: center;">
+            <span style="display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 16px; font-weight: 600;"><span class="sc-interp">입술 톤 디자인</span></span><span style="font-family: Inter, sans-serif; font-size: 11px; letter-spacing: 0.18em; color: rgb(100, 97, 100);">CASE <span class="sc-interp">09</span></span></span>
+            <button data-cursor="OPEN" style="border: 1px solid rgb(226, 220, 222); background: rgb(255, 255, 255); border-radius: 999px; padding: 10px 16px; font-size: 13px; font-weight: 600; cursor: pointer; color: rgb(18, 18, 18);">크게 보기</button>
+          </figcaption>
+        </figure>
+      
+        <figure style="margin: 0px; display: flex; flex-direction: column; gap: 14px; opacity: 1; clip-path: inset(0px 0px 0%); transition: opacity 0.35s, clip-path 0.5s cubic-bezier(0.7, 0, 0.2, 1);">
+          <div style="position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: rgb(247, 243, 244);">
+            <div style="position: absolute; inset: 0px; transform: scale(1); transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);"><img src="/assets/media/cs10.jpg" alt="CASE 10" id="case-10" loading="lazy"></div>
+            <span style="position: absolute; inset: 0px; border: 1px solid rgb(243, 167, 185); opacity: 0; transition: opacity 0.4s; pointer-events: none;"></span>
+          </div>
+          <figcaption style="display: flex; justify-content: space-between; gap: 12px; align-items: center;">
+            <span style="display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 16px; font-weight: 600;"><span class="sc-interp">아이라인 디자인</span></span><span style="font-family: Inter, sans-serif; font-size: 11px; letter-spacing: 0.18em; color: rgb(100, 97, 100);">CASE <span class="sc-interp">10</span></span></span>
+            <button data-cursor="OPEN" style="border: 1px solid rgb(226, 220, 222); background: rgb(255, 255, 255); border-radius: 999px; padding: 10px 16px; font-size: 13px; font-weight: 600; cursor: pointer; color: rgb(18, 18, 18);">크게 보기</button>
+          </figcaption>
+        </figure>
+      
+        <figure style="margin: 0px; display: flex; flex-direction: column; gap: 14px; opacity: 1; clip-path: inset(0px 0px 0%); transition: opacity 0.35s, clip-path 0.5s cubic-bezier(0.7, 0, 0.2, 1);">
+          <div style="position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: rgb(247, 243, 244);">
+            <div style="position: absolute; inset: 0px; transform: scale(1); transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);"><img src="/assets/media/cs11.jpg" alt="CASE 11" id="case-11" loading="lazy"></div>
+            <span style="position: absolute; inset: 0px; border: 1px solid rgb(243, 167, 185); opacity: 0; transition: opacity 0.4s; pointer-events: none;"></span>
+          </div>
+          <figcaption style="display: flex; justify-content: space-between; gap: 12px; align-items: center;">
+            <span style="display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 16px; font-weight: 600;"><span class="sc-interp">입술 톤 디자인</span></span><span style="font-family: Inter, sans-serif; font-size: 11px; letter-spacing: 0.18em; color: rgb(100, 97, 100);">CASE <span class="sc-interp">11</span></span></span>
+            <button data-cursor="OPEN" style="border: 1px solid rgb(226, 220, 222); background: rgb(255, 255, 255); border-radius: 999px; padding: 10px 16px; font-size: 13px; font-weight: 600; cursor: pointer; color: rgb(18, 18, 18);">크게 보기</button>
+          </figcaption>
+        </figure>
+      
+        <figure style="margin: 0px; display: flex; flex-direction: column; gap: 14px; opacity: 1; clip-path: inset(0px 0px 0%); transition: opacity 0.35s, clip-path 0.5s cubic-bezier(0.7, 0, 0.2, 1);">
+          <div style="position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: rgb(247, 243, 244);">
+            <div style="position: absolute; inset: 0px; transform: scale(1); transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);"><img src="/assets/media/cs12.jpg" alt="CASE 12" id="case-12" loading="lazy"></div>
+            <span style="position: absolute; inset: 0px; border: 1px solid rgb(243, 167, 185); opacity: 0; transition: opacity 0.4s; pointer-events: none;"></span>
+          </div>
+          <figcaption style="display: flex; justify-content: space-between; gap: 12px; align-items: center;">
+            <span style="display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 16px; font-weight: 600;"><span class="sc-interp">눈썹 디자인</span></span><span style="font-family: Inter, sans-serif; font-size: 11px; letter-spacing: 0.18em; color: rgb(100, 97, 100);">CASE <span class="sc-interp">12</span></span></span>
+            <button data-cursor="OPEN" style="border: 1px solid rgb(226, 220, 222); background: rgb(255, 255, 255); border-radius: 999px; padding: 10px 16px; font-size: 13px; font-weight: 600; cursor: pointer; color: rgb(18, 18, 18);">크게 보기</button>
+          </figcaption>
+        </figure>
+      
+    </div>
+  </div></section><section id="before-after" style="padding: clamp(58px, 10vw, 140px) 0px; background: rgb(255, 255, 255); border-top: 1px solid rgb(241, 237, 238);">
+  <div style="max-width: 1200px; margin: 0px auto; padding: 0px clamp(20px, 4vw, 48px);">
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0px, 1fr)); gap: 24px; align-items: end; margin-bottom: clamp(40px, 5vw, 64px);">
+      <div style="display: flex; flex-direction: column; gap: 20px; grid-column: span 2;">
+        <span style="display: flex; gap: 12px; font-family: Inter, sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.2em;"><span style="color: rgb(236, 118, 147);">02</span>BEFORE / AFTER</span>
+        <h2 style="margin: 0px; font-size: clamp(30px, 3.4vw, 46px); line-height: 1.32; font-weight: 600; letter-spacing: -0.035em;">
+          <span style="display: block; overflow: hidden;"><span data-m="a" style="display: block; transform: translateY(0px); transition: transform 1s cubic-bezier(0.2, 0.75, 0.1, 1);">같은 조명, 같은 각도로</span></span>
+          <span style="display: block; overflow: hidden;"><span data-m="a" data-d=".08" style="display: block; transform: translateY(0px); transition: transform 1s cubic-bezier(0.2, 0.75, 0.1, 1) 0.08s;">그대로 보여드립니다.</span></span>
+        </h2>
+      </div>
+      <p style="margin: 0px; font-size: 17px; line-height: 1.8;">가운데 선을 좌우로 움직여 비교해 보세요.</p>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0px, 1fr)); gap: 24px; align-items: start;">
+      <div style="display: flex; flex-direction: column; border-top: 1px solid rgb(18, 18, 18); grid-column: span 2;">
+        
+          <div style="display: grid; grid-template-columns: 48px minmax(0px, 1fr); gap: 16px; padding: 26px 0px; border-bottom: 1px solid rgb(236, 231, 232); align-items: baseline;">
+            <span style="font-family: Inter, sans-serif; font-size: 13px; font-weight: 500; color: rgb(236, 118, 147); padding-left: 4px;"><span class="sc-interp">01</span></span>
+            <span style="display: flex; flex-direction: column; gap: 6px;"><span style="font-size: 20px; font-weight: 600;"><span class="sc-interp">동일 고객</span></span><span style="font-size: 16px; line-height: 1.7;"><span class="sc-interp">같은 고객의 실제 자료만 게시합니다.</span></span></span>
+          </div>
+        
+          <div style="display: grid; grid-template-columns: 48px minmax(0px, 1fr); gap: 16px; padding: 26px 0px; border-bottom: 1px solid rgb(236, 231, 232); align-items: baseline;">
+            <span style="font-family: Inter, sans-serif; font-size: 13px; font-weight: 500; color: rgb(236, 118, 147); padding-left: 4px;"><span class="sc-interp">02</span></span>
+            <span style="display: flex; flex-direction: column; gap: 6px;"><span style="font-size: 20px; font-weight: 600;"><span class="sc-interp">동일 조건</span></span><span style="font-size: 16px; line-height: 1.7;"><span class="sc-interp">같은 조명과 각도에서 촬영한 사진을 비교합니다.</span></span></span>
+          </div>
+        
+          <div style="display: grid; grid-template-columns: 48px minmax(0px, 1fr); gap: 16px; padding: 26px 0px; border-bottom: 1px solid rgb(236, 231, 232); align-items: baseline;">
+            <span style="font-family: Inter, sans-serif; font-size: 13px; font-weight: 500; color: rgb(236, 118, 147); padding-left: 4px;"><span class="sc-interp">03</span></span>
+            <span style="display: flex; flex-direction: column; gap: 6px;"><span style="font-size: 20px; font-weight: 600;"><span class="sc-interp">보정 없음</span></span><span style="font-size: 16px; line-height: 1.7;"><span class="sc-interp">밝기나 색을 인위적으로 바꾸지 않습니다.</span></span></span>
+          </div>
+        
+      </div>
+      <figure style="margin: 0px; display: flex; flex-direction: column; gap: 14px;">
+        <div style="position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: rgb(247, 243, 244); user-select: none;">
+          <div style="position: absolute; inset: 0px;"><img src="/assets/media/ba-before.jpg" alt="동일 고객 · 동일 조명" id="ba-before-45" loading="lazy"></div>
+          <div style="position: absolute; inset: 0px; clip-path: inset(0px 0px 0px 50%);"><img src="/assets/media/ba-after.jpg" alt="동일 고객 · 동일 조명" id="ba-after-45" loading="lazy"></div>
+          <div data-cursor="DRAG" style="position: absolute; top: 0px; bottom: 0px; left: 50%; width: 40px; margin-left: -20px; cursor: ew-resize; display: flex; justify-content: center; touch-action: none;">
+            <span style="width: 1px; height: 100%; background: rgb(255, 255, 255);"></span>
+            <span style="position: absolute; top: 50%; width: 44px; height: 44px; margin-top: -22px; border-radius: 50%; background: rgb(255, 255, 255); border: 1px solid rgb(243, 167, 185); display: flex; align-items: center; justify-content: center; font-family: Inter, sans-serif; font-size: 13px;">↔</span>
+          </div>
+        </div>
+        <figcaption style="display: flex; justify-content: space-between; gap: 12px; align-items: baseline;"><span style="font-size: 16px; font-weight: 600;">전 · 후 비교</span><span style="font-family: Inter, sans-serif; font-size: 11px; letter-spacing: 0.18em; color: rgb(100, 97, 100);">BEFORE ← → AFTER</span></figcaption>
+      </figure>
+    </div>
+  </div></section><div class="sc-host" data-sc-name="SayjiBlocks"><div><section id="review" style="position: relative; overflow: clip; padding: clamp(66px, 12vw, 170px) 0px; background: linear-gradient(rgb(251, 245, 242) 0%, rgb(255, 255, 255) 40%);">
+  
+  
+  <div style="position: relative; max-width: 1200px; margin: 0px auto; padding: 0px clamp(20px, 4vw, 48px);">
+
+    
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 32px 48px; margin-bottom: clamp(36px, 6vw, 88px);">
+        <div style="display: flex; flex-direction: column; gap: 28px; flex: 1 1 460px;">
+          <div style="display: flex; align-items: center; gap: 14px; font-family: Inter, sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.22em; color: rgb(18, 18, 18);"><span style="color: rgb(185, 122, 99);"><span class="sc-interp">03</span></span><span data-m="c" style="display: block; width: 40px; height: 1px; background: linear-gradient(90deg, rgb(185, 122, 99), rgb(233, 194, 174)); transform: scaleX(1); transform-origin: left center; transition: transform 1.1s cubic-bezier(0.7, 0, 0.2, 1);"></span><span><span class="sc-interp">REVIEW</span></span></div>
+          <h2 style="margin: 0px; font-size: clamp(32px, 3.6vw, 52px); line-height: 1.34; font-weight: 600; letter-spacing: -0.04em; color: rgb(18, 18, 18);">
+            
+              <span style="display: block; overflow: hidden;"><span data-m="a" data-d="0" style="display: block; transform: translateY(0px); transition: transform 1s cubic-bezier(0.2, 0.75, 0.1, 1);"><span class="sc-interp">고객이 직접 남긴 이야기</span></span></span>
+            
+          </h2>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 22px; flex: 0 1 380px; padding-top: 24px; border-top: 1px solid rgb(230, 220, 216);">
+          <p style="margin: 0px; font-size: 17px; line-height: 1.85; color: rgb(74, 70, 72); text-wrap: pretty;"><span class="sc-interp">네이버 플레이스에 남겨주신 실제 방문자 리뷰입니다.</span></p>
+          
+        </div>
+      </div>
+    
+
+    
+
+    
+      <div data-rv="1" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+        
+          <article style="flex: 0 0 clamp(108px, 17vw, 204px); display: flex; flex-direction: column; background: rgb(255, 255, 255); border: 1px solid rgb(239, 231, 227);">
+            <div class="sj-review-visual" style="position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: rgb(244, 238, 235);"><img src="/assets/media/cr1.jpg" alt="디자인 참고 이미지" id="review-1" loading="lazy"></div>
+            <div style="display: flex; flex-direction: column; gap: 16px; padding: 22px 22px 24px; flex: 1 1 0%;">
+              <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px;"><span style="font-family: Inter, sans-serif; font-size: 12px; color: rgb(154, 143, 138);"><span class="sc-interp">2026.10.26</span></span></div>
+              <p style="margin: 0px; font-size: 15px; line-height: 1.75; color: rgb(18, 18, 18); min-height: 5.25em; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden;"><span class="sc-interp">탈각 끝나고 나니까 색이 은은하게 올라와서 너무 예뻐요💗 처음엔 색이 좀 빠진 것 같아서 걱정했는데 지금은 딱 원하던 느낌이에요ㅎㅎ 메이크업할때 살짝 컬러틴트 바르면 넘 이뻐요 ㅋ 입술이 자연스럽게 생기 있어 보여서 너무 만족해요🥰</span></p>
+              <a href="https://m.place.naver.com/place/2050630772/review/visitor" target="_blank" rel="noopener noreferrer" style="font-size: 12px; color: rgb(122, 112, 108); text-decoration: underline;">네이버 플레이스 원문 보기</a><span style="margin-top: auto; align-self: flex-start; font-size: 12px; font-weight: 500; color: rgb(168, 106, 85); border: 1px solid rgb(233, 194, 174); padding: 6px 10px;"><span class="sc-interp">입술 퍼스널 컨설팅</span></span>
+            </div>
+          </article>
+        
+          <article style="flex: 0 0 clamp(108px, 17vw, 204px); display: flex; flex-direction: column; background: rgb(255, 255, 255); border: 1px solid rgb(239, 231, 227);">
+            <div class="sj-review-visual" style="position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: rgb(244, 238, 235);"><img src="/assets/media/cr2.jpg" alt="디자인 참고 이미지" id="review-2" loading="lazy"></div>
+            <div style="display: flex; flex-direction: column; gap: 16px; padding: 22px 22px 24px; flex: 1 1 0%;">
+              <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px;"><span style="font-family: Inter, sans-serif; font-size: 12px; color: rgb(154, 143, 138);"><span class="sc-interp">2026.10.24</span></span></div>
+              <p style="margin: 0px; font-size: 15px; line-height: 1.75; color: rgb(18, 18, 18); min-height: 5.25em; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden;"><span class="sc-interp">포그립 받고 탈각까지 끝났는데 색이 너무 예쁘게 남았어요ㅠㅠ💕 원래 입술색이 얼룩덜룩했는데 지금은 전체적으로 맑아진 느낌이에요! 친구들도 자연스럽다고 어디서 했냐고 물어봐서 괜히 뿌듯해요ㅎㅎ</span></p>
+              <a href="https://m.place.naver.com/place/2050630772/review/visitor" target="_blank" rel="noopener noreferrer" style="font-size: 12px; color: rgb(122, 112, 108); text-decoration: underline;">네이버 플레이스 원문 보기</a><span style="margin-top: auto; align-self: flex-start; font-size: 12px; font-weight: 500; color: rgb(168, 106, 85); border: 1px solid rgb(233, 194, 174); padding: 6px 10px;"><span class="sc-interp">입술 퍼스널 컨설팅</span></span>
+            </div>
+          </article>
+        
+          <article style="flex: 0 0 clamp(108px, 17vw, 204px); display: flex; flex-direction: column; background: rgb(255, 255, 255); border: 1px solid rgb(239, 231, 227);">
+            <div class="sj-review-visual" style="position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: rgb(244, 238, 235);"><img src="/assets/media/cr3.jpg" alt="디자인 참고 이미지" id="review-3" loading="lazy"></div>
+            <div style="display: flex; flex-direction: column; gap: 16px; padding: 22px 22px 24px; flex: 1 1 0%;">
+              <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px;"><span style="font-family: Inter, sans-serif; font-size: 12px; color: rgb(154, 143, 138);"><span class="sc-interp">2026.09.28</span></span></div>
+              <p style="margin: 0px; font-size: 15px; line-height: 1.75; color: rgb(18, 18, 18); min-height: 5.25em; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden;"><span class="sc-interp">거울 볼 때마다 눈썹이 너무 맘에 들어서 괜히 기분 좋아져요 🌿✨ 진하지 않고 보송보송하게 차오른 느낌이라 쌩얼에도 완전 찰떡! 주변에서도 눈썹 예쁘다고 해줘서 포그브로우 하길 진짜 잘한 것 같아요 💗</span></p>
+              <a href="https://m.place.naver.com/place/2050630772/review/visitor" target="_blank" rel="noopener noreferrer" style="font-size: 12px; color: rgb(122, 112, 108); text-decoration: underline;">네이버 플레이스 원문 보기</a><span style="margin-top: auto; align-self: flex-start; font-size: 12px; font-weight: 500; color: rgb(168, 106, 85); border: 1px solid rgb(233, 194, 174); padding: 6px 10px;"><span class="sc-interp">메이크업 눈썹 맞춤 컨설팅</span></span>
+            </div>
+          </article>
+        
+          <article style="flex: 0 0 clamp(108px, 17vw, 204px); display: flex; flex-direction: column; background: rgb(255, 255, 255); border: 1px solid rgb(239, 231, 227);">
+            <div class="sj-review-visual" style="position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: rgb(244, 238, 235);"><img src="/assets/media/cr4.jpg" alt="디자인 참고 이미지" id="review-4" loading="lazy"></div>
+            <div style="display: flex; flex-direction: column; gap: 16px; padding: 22px 22px 24px; flex: 1 1 0%;">
+              <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px;"><span style="font-family: Inter, sans-serif; font-size: 12px; color: rgb(154, 143, 138);"><span class="sc-interp">2026.10.08</span></span></div>
+              <p style="margin: 0px; font-size: 15px; line-height: 1.75; color: rgb(18, 18, 18); min-height: 5.25em; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden;"><span class="sc-interp">눈썹 결이 한 올 한 올 살아 있어서 제 눈썹처럼 자연스러워요! 너무 진해 보일까 걱정했는데 깔끔하게 정리된 느낌이라 마음에 들어요 🤎 아침마다 눈썹 그리는 시간도 줄어서 훨씬 편해졌어요 역시 세이지의 나노스트록👍👍👍</span></p>
+              <a href="https://m.place.naver.com/place/2050630772/review/visitor" target="_blank" rel="noopener noreferrer" style="font-size: 12px; color: rgb(122, 112, 108); text-decoration: underline;">네이버 플레이스 원문 보기</a><span style="margin-top: auto; align-self: flex-start; font-size: 12px; font-weight: 500; color: rgb(168, 106, 85); border: 1px solid rgb(233, 194, 174); padding: 6px 10px;"><span class="sc-interp">눈썹 퍼스널 컨설팅</span></span>
+            </div>
+          </article>
+        
+          <article style="flex: 0 0 clamp(108px, 17vw, 204px); display: flex; flex-direction: column; background: rgb(255, 255, 255); border: 1px solid rgb(239, 231, 227);">
+            <div class="sj-review-visual" style="position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: rgb(244, 238, 235);"><img src="/assets/media/cr5.jpg" alt="디자인 참고 이미지" id="review-5" loading="lazy"></div>
+            <div style="display: flex; flex-direction: column; gap: 16px; padding: 22px 22px 24px; flex: 1 1 0%;">
+              <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px;"><span style="font-family: Inter, sans-serif; font-size: 12px; color: rgb(154, 143, 138);"><span class="sc-interp">2026.09.16</span></span></div>
+              <p style="margin: 0px; font-size: 15px; line-height: 1.75; color: rgb(18, 18, 18); min-height: 5.25em; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden;"><span class="sc-interp">직장인이라 출근할 때 눈썹 정리하는 시간이 줄었으면 했어요.메이크업 눈썹 맞춤 컨설팅으로 문의하고 방문했는데 제 이미지에 맞는 선을 같이 잡아주셨습니다. 너무 세 보이지 않게 정리돼서 회사에서도 부담이 없어요. 친구가 보더니 인상이 깔끔해졌다고 하네요🙂</span></p>
+              <a href="https://m.place.naver.com/place/2050630772/review/visitor" target="_blank" rel="noopener noreferrer" style="font-size: 12px; color: rgb(122, 112, 108); text-decoration: underline;">네이버 플레이스 원문 보기</a><span style="margin-top: auto; align-self: flex-start; font-size: 12px; font-weight: 500; color: rgb(168, 106, 85); border: 1px solid rgb(233, 194, 174); padding: 6px 10px;"><span class="sc-interp">메이크업 눈썹 맞춤 컨설팅</span></span>
+            </div>
+          </article>
+        
+      </div><div class="sj-review-controls"><span>옆으로 밀어 리뷰를 확인하세요</span><div><button type="button" aria-label="이전 리뷰">←</button><button type="button" aria-label="다음 리뷰">→</button></div></div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  </div></section><section id="block-1" style="position: relative; overflow: clip; padding: clamp(66px, 12vw, 170px) 0px; background: rgb(246, 228, 221);">
+  
+  <div style="position: absolute; inset: 0px; pointer-events: none; background: linear-gradient(115deg, rgb(246, 228, 221) 0%, rgb(251, 243, 239) 22%, rgb(242, 220, 210) 40%, rgb(252, 246, 243) 58%, rgb(241, 217, 206) 76%, rgb(249, 238, 233) 100%) 0% 0% / 220% 220%; animation: 18s ease-in-out 0s infinite alternate none running txSilk;"></div>
+  <div style="position: absolute; inset: 0px; pointer-events: none; background: radial-gradient(60% 80% at 30% 20%, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0) 60%);"></div>
+  <div style="position: absolute; left: 0px; right: 0px; top: 0px; height: 240px; pointer-events: none; background: linear-gradient(rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0.6) 40%, rgba(255, 255, 255, 0) 100%);"></div>
+  
+  
+  <div style="position: relative; max-width: 1200px; margin: 0px auto; padding: 0px clamp(20px, 4vw, 48px);">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 40px;">
+        <div style="display: flex; flex-direction: column; gap: 28px;">
+          <div style="display: flex; align-items: center; gap: 14px; font-family: Inter, sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.22em;"><span data-m="c" style="display: block; width: 40px; height: 1px; background: linear-gradient(90deg, rgb(185, 122, 99), rgb(233, 194, 174)); transform: scaleX(0); transform-origin: left center; transition: transform 1.1s cubic-bezier(0.7, 0, 0.2, 1);"></span><span>RESERVATION</span></div>
+          <h2 style="margin: 0px; font-size: clamp(32px, 3.6vw, 52px); font-weight: 600; letter-spacing: -0.04em; line-height: 1.34;">
+            <span style="display: block;"><span class="sc-interp">나에게 어울리는 방향이</span></span><span style="display: block;"><span class="sc-interp">궁금하다면.</span></span>
+          </h2>
+        </div>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+          <a href="/contact#reservation" data-gloss="1" class="scp1" style="position: relative; overflow: hidden; background: rgb(18, 18, 18); color: rgb(255, 255, 255); border-radius: 999px; padding: 17px 32px; font-size: 15px; font-weight: 600;"><span class="sc-interp">상담 예약</span></a>
+          <a href="tel:01079327927" class="scp5" style="border: 1px solid rgb(18, 18, 18); border-radius: 999px; padding: 16px 30px; font-family: Inter, sans-serif; font-size: 15px; font-weight: 500; background: rgba(255, 255, 255, 0.4);">010-7932-7927</a>
+        </div>
+      </div>
+    
+
+  </div></section></div></div><div class="sc-host" data-sc-name="SayjiFooter"><div style="background: rgb(255, 255, 255);"><footer style="border-top: 1px solid rgb(236, 231, 232); padding: 44px 0px;"><div style="max-width: 1200px; margin: 0px auto; padding: 0px clamp(20px, 4vw, 48px); display: flex; flex-direction: column; gap: 26px;"><div style="display: flex; justify-content: space-between; gap: 20px 28px; flex-wrap: wrap; align-items: center;"><span style="font-family: Inter, sans-serif; font-weight: 500; font-size: 14px; letter-spacing: 0.3em; color: rgb(18, 18, 18);">SAYJI BEAUTY</span><nav style="display: flex; gap: 24px; flex-wrap: wrap; font-family: Inter, sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.16em;"><a href="/brand">BRAND</a><a href="/program">PROGRAM</a><a href="/correction">CORRECTION</a><a href="/cases">CASES</a><a href="/contact">CONTACT</a></nav></div><div style="display: flex; flex-direction: column; gap: 8px; padding-top: 22px; border-top: 1px solid rgb(241, 236, 237); font-size: 13px; line-height: 1.7; color: rgb(100, 97, 100);"><div class="sj-biz" style="display: flex; flex-wrap: wrap; gap: 4px 14px;"><span style="white-space: normal; word-break: keep-all;">상호명 세이지뷰티 대구눈썹문신&amp;입술</span><span style="white-space: nowrap; padding-left: 14px; border-left: 1px solid rgb(226, 220, 222);">대표 이지현</span><span style="white-space: nowrap; padding-left: 14px; border-left: 1px solid rgb(226, 220, 222);">사업자등록번호 121-70-14411</span><span style="white-space: nowrap; padding-left: 14px; border-left: 1px solid rgb(226, 220, 222);">통신판매업 제 2022-대구중구-0325호</span></div><div class="sj-biz" style="display: flex; flex-wrap: wrap; gap: 4px 14px;"><span style="white-space: normal; word-break: keep-all;">주소 대구광역시 중구 명덕로55길 1, 4층 (대봉동, 대천빌딩)</span><span style="white-space: nowrap; padding-left: 14px; border-left: 1px solid rgb(226, 220, 222);">전화 <a href="tel:01079327927" style="color: rgb(100, 97, 100);">010-7932-7927</a></span></div><span style="margin-top: 6px; font-family: Inter, sans-serif; font-size: 12px; letter-spacing: 0.06em; color: rgb(138, 132, 135);">© 2026 SAYJI BEAUTY. All rights reserved.</span></div></div></footer></div></div></div></div></div>
+
+
+
+</body></html>

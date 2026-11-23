@@ -25,10 +25,43 @@ export function inject(html, data, extraHead = '', serverText = true) {
   return html.replace(/<head>/i, (m) => m + extraHead + '<script>window.__CMS=' + json + ';</script>');
 }
 
+// 검색로봇(네이버 Yeti, 구글 등)은 자바스크립트로 그리는 화면을 잘 못 읽어서,
+// 방문자에게 보이는 화면을 미리 그려 둔 seo/*.html 을 로봇에게만 보냅니다(내용은 같음).
+const BOT_RE = /Yeti|NaverBot|Googlebot|Google-InspectionTool|AdsBot-Google|Storebot-Google|bingbot|BingPreview|msnbot|Daumoa|Daum|kakaotalk-scrap|Applebot|DuckDuckBot|YandexBot|Baiduspider|Slurp|facebookexternalhit|Twitterbot|LinkedInBot|Pinterest/i;
+const SEO_PAGES = { '/': 'home', '/index': 'home', '/brand': 'brand', '/program': 'program', '/correction': 'correction', '/cases': 'cases', '/contact': 'contact' };
+const APEX = 'sayjibeauty.co.kr';
+
 export async function onRequest(ctx) {
   const url = new URL(ctx.request.url);
   const p = url.pathname;
+
+  // www 로 들어오면 대표 주소로 영구 이동 (DNS only 라 존 규칙 대신 여기서 처리)
+  if (url.hostname === 'www.' + APEX) {
+    return Response.redirect('https://' + APEX + p + url.search, 301);
+  }
+
+  // 네이버·구글 소유확인 파일은 .html 주소 그대로 200 으로 (Pages 기본 동작은 308 이동)
+  if (/^\/(naver|google)[0-9a-f]+\.html$/.test(p)) {
+    const r = await ctx.env.ASSETS.fetch(new URL(p.replace(/\.html$/, ''), url));
+    if (r.ok) return new Response(await r.text(), { status: 200, headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'no-cache' } });
+  }
+
+  // 로봇용 화면 파일은 직접 열지 못하게
+  if (p === '/seo' || p.startsWith('/seo/')) return new Response('Not found', { status: 404 });
+
   if (p.startsWith('/edit') || p.startsWith('/api/') || p.startsWith('/assets/') || p.startsWith('/content/')) return ctx.next();
+
+  const key = SEO_PAGES[p.length > 1 ? p.replace(/\/+$/, '').replace(/\.html$/, '') : p];
+  const ua = ctx.request.headers.get('user-agent') || '';
+  if (key && BOT_RE.test(ua) && (ctx.request.method === 'GET' || ctx.request.method === 'HEAD')) {
+    const r = await ctx.env.ASSETS.fetch(new URL('/seo/' + key, url));
+    if (r.ok) {
+      const data = await loadCms(ctx, url);
+      const html = inject(await r.text(), data).replace(/<script>window\.__CMS=[\s\S]*?<\/script>/, '');
+      return new Response(html, { status: 200, headers: { 'content-type': 'text/html; charset=utf-8', 'vary': 'User-Agent', 'cache-control': 'public, max-age=0, must-revalidate', 'x-sj-render': 'prerender' } });
+    }
+  }
+
   const res = await ctx.next();
   const type = res.headers.get('content-type') || '';
   if (!type.includes('text/html') || p.endsWith('.dc.html') || res.status !== 200) return res;
@@ -37,5 +70,6 @@ export async function onRequest(ctx) {
   const headers = new Headers(res.headers);
   headers.delete('content-length');
   headers.delete('etag');
+  if (key) headers.set('vary', 'User-Agent');
   return new Response(html, { status: res.status, headers });
 }
